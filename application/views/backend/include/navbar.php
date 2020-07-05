@@ -36,7 +36,14 @@
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php if ($this->session->userdata('level')!="admin") {
+                    ?>
                     <img class="user-avatar rounded-circle" src="<?= base_url('assets/image/').$this->session->userdata('level').'/'.$this->session->userdata('foto') ?>" alt="User Avatar">
+                    <?php }else{
+                    ?>
+                    <img class="user-avatar rounded-circle" src="<?= base_url('assets/image/').$this->session->userdata('foto') ?>" alt="User Avatar">
+                    <?php
+                    } ?>
                 </a>
 
                 <div class="user-menu dropdown-menu">

@@ -85,6 +85,7 @@ jQuery(document).ready(function($) {
 		} 
 		
 	});
-  
- 
+
+	var title = $('#title').text();
+		
 });

@@ -18,6 +18,11 @@ class Users_model extends CI_Model {
         return $this->db->get('users');
     }
 
+    public function getAll()
+    {
+        return $this->db->get('users');
+    }
+
     public function gantiStatus($id,$status)
     {
         $data = array('status'=>$status);

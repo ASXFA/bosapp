@@ -131,4 +131,9 @@ class Users extends CI_Controller {
         }
     }
 
+    public function get_user()
+    {
+        $data = $this->db->getByLevel("mahasiswa")->result();
+        json_encode($data);
+    }
 }

@@ -10,12 +10,19 @@
                 <li class="menu-item-has-children dropdown" id="akademik">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-graduation-cap"></i>Akademik</a>
                     <ul class="sub-menu children dropdown-menu">                            
-                        <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/users/user/dosen') ?>">Manage Dosen</a></li>
-                        <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/users/user/mahasiswa') ?>">Manage Mahasiswa</a></li>
+                        <li><i class="fa fa-users"></i><a href="<?= base_url('backend/users/user/dosen') ?>">Manage Dosen</a></li>
+                        <li><i class="fa fa-users"></i><a href="<?= base_url('backend/users/user/mahasiswa') ?>">Manage Mahasiswa</a></li>
                     </ul>
                 </li>
-                <li id="jdl_skripsi">
-                    <a href="widgets.html"> <i class="menu-icon fa fa-book"></i>Judul Skripsi</a>
+                <li class="menu-item-has-children dropdown" id="akademik">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Skripsi</a>
+                    <ul class="sub-menu children dropdown-menu">                            
+                        <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/skripsi/skripsi/lulus') ?>">Skripsi Arsip</a></li>
+                        <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/skripsi/skripsi/aktif') ?>">Skripsi Aktif</a></li>
+                    </ul>
+                </li>
+                <li id="log">
+                    <a href="widgets.html"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
                 </li>
                 <li id="cetak">
                     <a href="widgets.html"> <i class="menu-icon fa fa-print"></i>Cetak Laporan</a>

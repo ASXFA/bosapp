@@ -2507,5 +2507,8 @@ footer.site-footer {
   #cellPaiChart #pieLabel0 {
     left: inherit !important;
     right: 20px !important; }
+    .text-left.text-small{
+      font-size: 11px !important;
+    }
 
 /*# sourceMappingURL=style.css.map */

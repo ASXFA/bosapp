@@ -29,10 +29,19 @@ class Admin extends CI_Controller {
     
 	public function index()
 	{
+		$this->load->model('users_model');
+		$this->load->model('kategori_skripsi_model');
+		$this->load->model('skripsi_model');
+
+		$data['mhs'] = $this->users_model->getByLevel('mahasiswa')->num_rows();
+		$data['dosen'] = $this->users_model->getByLevel('dosen')->num_rows();
+		$data['kategori'] = $this->kategori_skripsi_model->getAll()->num_rows();
+		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->num_rows();
+
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
         $this->load->view('backend/include/navbar.php');
-        $this->load->view('backend/dashboard');
+        $this->load->view('backend/dashboard',$data);
         $this->load->view('backend/include/footer.php');
 	}
 }
