@@ -52,50 +52,99 @@
                             if (empty($skripsi)) {
                                 echo "<tr> <td colspan='6' class='text-center'> Data tidak tersedia ! </td></tr>";
                             }else{
-                                
-                            $no=1;
-                            foreach($skripsi as $skripsi):
+                                if($this->session->userdata('level')=="dosen" && $title=="aktif"){
+                                    $no = 1;
+                                    foreach($skripsi as $skripsi){
+                                        if($skripsi->dospem1 == $this->session->userdata('nama') || $skripsi->dospem2 ==$this->session->userdata('nama')){
                         ?>
-                        <tr>
-                            <td class="serial"><?= $no ?></td>
-                            <td width="20%"> <?= $skripsi->judul ?> </td>
-                            <td> <?= $skripsi->kategoriskripsi ?> </td>
-                            <td> <?= $skripsi->tahun ?> </td>
-                            <td> <?= $skripsi->mahasiswa ?> </td>
-                            <td>
-                                <?php 
-                                    if ($skripsi->status_skripsi=="published") {
-                                ?>
-                                <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
-                                <?php 
-                                    }else {
-                                ?>
-                                <span class="badge badge-warning"><?= $skripsi->status_skripsi ?></span>
-                                <?php
+                                            <tr>
+                                                <td class="serial"><?= $no ?></td>
+                                                <td width="20%"> <?= $skripsi->judul ?> </td>
+                                                <td> <?= $skripsi->kategoriskripsi ?> </td>
+                                                <td> <?= $skripsi->tahun ?> </td>
+                                                <td> <?= $skripsi->mahasiswa ?> </td>
+                                                <td>
+                                                    <?php 
+                                                        if ($skripsi->status_skripsi=="published") {
+                                                    ?>
+                                                    <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
+                                                    <?php 
+                                                        }else {
+                                                    ?>
+                                                    <span class="badge badge-warning"><?= $skripsi->status_skripsi ?></span>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td width="25%">
+                                                    <?php 
+                                                        if ($skripsi->status_skripsi == "published") {
+                                                    ?>
+                                                    <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
+                                                    <?php
+                                                        }else{
+                                                    ?>
+                                                    <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
+                                                    
+                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
+                                                    
+                                                    <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                        <?php
+                                        }$no++;
                                     }
-                                ?>
-                            </td>
-                            <td width="25%">
-                                <?php 
-                                    if ($skripsi->status_skripsi == "published") {
-                                ?>
-                                <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
-                                <?php
-                                    }else{
-                                ?>
-                                <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
-                                <?php
-                                    }
-                                ?>
-                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
-                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <?php 
-                            $no++;
-                            endforeach;
-                            }
+                                    // echo "<tr> <td colspan='6' class='text-center'> Anda tidak membimbing mahasiswa aktif ! </td></tr>";
+                                }else{
+                                    $no = 1;
+                                    foreach($skripsi as $skripsi){
+                        ?>
+                                        <tr>
+                                            <td class="serial"><?= $no ?></td>
+                                            <td width="20%"> <?= $skripsi->judul ?> </td>
+                                            <td> <?= $skripsi->kategoriskripsi ?> </td>
+                                            <td> <?= $skripsi->tahun ?> </td>
+                                            <td> <?= $skripsi->mahasiswa ?> </td>
+                                            <td>
+                                                <?php 
+                                                    if ($skripsi->status_skripsi=="published") {
+                                                ?>
+                                                <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
+                                                <?php 
+                                                    }else {
+                                                ?>
+                                                <span class="badge badge-warning"><?= $skripsi->status_skripsi ?></span>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td width="25%">
+                                                <?php 
+                                                    if ($skripsi->status_skripsi == "published") {
+                                                ?>
+                                                <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
+                                                <?php
+                                                    }
+                                                ?>
+                                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
+                                                
+                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
+                                                
+                                                <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                        <?php
+                                    $no++;} 
+                                }
+                            }      
                         ?>
                     </tbody>
                 </table>
@@ -193,18 +242,18 @@
                             <div class="card-body">
                             <div class="form-group">
                                     <label for="" class="form-control-label">Judul Skripsi</label>
-                                    <input type="text" name="judul" class="form-control" value="<?= $skripsi->judul ?>">
+                                    <input type="text" name="judul" class="form-control" value="<?= $skripsi->judul ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Mahasiswa</label>
                                     <?php 
                                         if($title=="lulus"){
                                     ?>
-                                    <input class="form-control" name="mahasiswa" type="text" value="<?= $skripsi->mahasiswa ?>">
+                                    <input class="form-control" name="mahasiswa" type="text" value="<?= $skripsi->mahasiswa ?>" required>
                                     <?php 
                                         }else{
                                     ?>
-                                    <select name="mahasiswa" id="" class="form-control">
+                                    <select name="mahasiswa" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="mahasiswa"){ 
@@ -225,7 +274,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 1</label>
-                                    <select name="dospem1" id="" class="form-control">
+                                    <select name="dospem1" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen"){ 
@@ -243,7 +292,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 2</label>
-                                    <select name="dospem2" id="" class="form-control">
+                                    <select name="dospem2" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen"){ 
@@ -261,7 +310,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Kategori Skripsi</label>
-                                    <select name="kategoriskripsi" id="" class="form-control">
+                                    <select name="kategoriskripsi" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($kategori_skripsi as $kategori):
                                             if($kategori->nama==$skripsi->kategoriskripsi){ 
@@ -277,7 +326,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Tahun</label>
-                                    <input type="number" name="tahun" min="1990" max="2030" class="form-control" value="<?= $skripsi->tahun ?>">
+                                    <input type="number" name="tahun" min="1990" max="2030" class="form-control" value="<?= $skripsi->tahun ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">File Skripsi</label>
@@ -316,55 +365,56 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Judul Skripsi</label>
-                                    <input type="text" name="judul" class="form-control">
+                                    <input type="text" name="judul" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Mahasiswa</label>
                                     <?php 
                                         if($title=="lulus"){
                                     ?>
-                                    <input class="form-control" name="mahasiswa" type="text">
+                                    <input class="form-control" name="mahasiswa" type="text" required>
                                     <?php 
                                         }else{
                                     ?>
-                                    <select name="mahasiswa" id="" class="form-control">
+                                    <select name="mahasiswa" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
-                                            if($user->level=="mahasiswa"){ ?>
+                                            if($user->level=="mahasiswa" && $user->status=="aktif"){ ?>
                                         <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
-                                    </select>
                                         <?php }
-                                    endforeach;
+                                    endforeach; ?>
+                                    </select>
+                                        <?php 
                                         }
                                     ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 1</label>
-                                    <select name="dospem1" id="" class="form-control">
+                                    <select name="dospem1" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
-                                            if($user->level=="dosen"){ ?>
+                                            if($user->level=="dosen" && $user->status=="aktif"){ ?>
                                         <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
-                                    </select>
                                         <?php }
                                         endforeach;
                                         ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 2</label>
-                                    <select name="dospem2" id="" class="form-control">
+                                    <select name="dospem2" id="" class="form-control" required>
                                     <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
-                                            if($user->level=="dosen"){ ?>
+                                            if($user->level=="dosen" && $user->status=="aktif"){ ?>
                                         <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
-                                    </select>
                                         <?php }
                                         endforeach;
                                         ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Kategori Skripsi</label>
-                                    <select name="kategoriskripsi" id="" class="form-control">
+                                    <select name="kategoriskripsi" id="" class="form-control" required>
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($kategori_skripsi as $kategori):?>
                                         <option value="<?= $kategori->nama ?>"><?= $kategori->nama ?></option>
@@ -375,11 +425,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Tahun</label>
-                                    <input type="text" name="tahun" class="form-control" id="tahun">
+                                    <input type="number" min="1990" max="2030" name="tahun" class="form-control" id="tahun" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">File Skripsi</label>
-                                    <input type="file" name="file" class="form-control">
+                                    <input type="file" name="file" class="form-control" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>

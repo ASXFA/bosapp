@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 04 Jul 2020 pada 04.10
+-- Waktu pembuatan: 08 Jul 2020 pada 06.51
 -- Versi server: 5.7.24
 -- Versi PHP: 7.2.19
 
@@ -21,31 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `bosapp`
 --
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `judul_skripsi`
---
-
-CREATE TABLE `judul_skripsi` (
-  `id` int(3) NOT NULL,
-  `judulskripsi` varchar(255) NOT NULL,
-  `mahasiswa` varchar(100) NOT NULL,
-  `dospem1` varchar(100) NOT NULL,
-  `dospem2` varchar(100) NOT NULL,
-  `kategoriskripsi` varchar(100) NOT NULL,
-  `tahun` varchar(255) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `link` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `judul_skripsi`
---
-
-INSERT INTO `judul_skripsi` (`id`, `judulskripsi`, `mahasiswa`, `dospem1`, `dospem2`, `kategoriskripsi`, `tahun`, `status`, `link`) VALUES
-(1, 'wewewe', 'nurul', 'ali', 'ali', 'Management_Data', '2020', 'aktif', 'www.unla.co.id');
 
 -- --------------------------------------------------------
 
@@ -80,6 +55,36 @@ INSERT INTO `kategori_skripsi` (`id`, `nama`) VALUES
 (2, 'Management Data'),
 (3, 'Security'),
 (4, 'Jaringan');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `skripsi`
+--
+
+CREATE TABLE `skripsi` (
+  `id` int(3) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `mahasiswa` varchar(100) NOT NULL,
+  `dospem1` varchar(100) NOT NULL,
+  `dospem2` varchar(100) NOT NULL,
+  `kategoriskripsi` varchar(100) NOT NULL,
+  `tahun` varchar(255) NOT NULL,
+  `status_mahasiswa` varchar(100) NOT NULL,
+  `status_skripsi` varchar(100) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `file_size` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `skripsi`
+--
+
+INSERT INTO `skripsi` (`id`, `judul`, `mahasiswa`, `dospem1`, `dospem2`, `kategoriskripsi`, `tahun`, `status_mahasiswa`, `status_skripsi`, `file`, `file_size`) VALUES
+(2, 'Manajemen keamanan jaringan terhadap serangan ARP Spoofing DNS Spoofing dan Packet Sniffer', 'Bagja Septian', 'Ali Ahmadi S.T M.T', 'Amras Mauludin S.T M.T', 'Jaringan', '2019', 'aktif', 'published', 'Surat_Lamaran.pdf', '7.58'),
+(3, 'Tracer Study Alumni Menggunakan Algoritma K-means', 'Febrianto Rahmadi.SKOM', 'Ali Ahmadi S.T M.T', 'Ali Ahmadi S.T M.T', 'Management Data', '2019', 'aktif', 'unpublish', 'transkip.pdf', '2048'),
+(5, 'Aplikasi Booking Online', 'Ramdhany Febriansyah.Skom', 'Ali Ahmadi S.T M.T', 'Amras Mauludin S.T M.T', 'Management Data', '2019', 'lulus', 'unpublish', 'Ijazah2.pdf', '766.31'),
+(6, 'Manajement Keamanan Jaringan', 'Fachri Arief Rachman Agustian.Skom', 'Ali Ahmadi S.T M.T', 'Ali Ahmadi S.T M.T', 'Security', '2019', 'lulus', 'unpublish', 'CV.pdf', '4389.33');
 
 -- --------------------------------------------------------
 
@@ -123,10 +128,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `nomor_induk`, `jenis_kelamin`, `telepon`, `email`, `konsentrasi`, `angkatan`, `jabatan`, `status`, `foto`, `level`, `username`, `password`) VALUES
-(1, 'Admin', '', 'Laki-Laki', '087856435421', 'admin@example.com', '', '', '', '', '', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
-(3, 'Ali Ahmadi S.T M.T', '45634325', 'Laki-Laki', '087864523431', 'ali@gmail.com', '', '', 'Dosen', 'aktif', 'checkout.png', 'dosen', '423423153', '1df6c2cc0d3d5a1386973812a9d9cb61'),
-(4, 'Amras Mauludin S.T M.T', '457684638', 'Laki-Laki', '082176453645', 'amras@gmail.com', NULL, NULL, 'Dosen', 'belum aktif', 'IMG_11531.JPG', 'dosen', '457684638', '85128458b12de205046b5d6fd0baac4a'),
-(5, 'Bagja Septian', '41155050160039', 'Laki-Laki', '089767263627', 'bagja@gmail.com', 'Management Data', '2016', 'Mahasiswa', 'belum aktif', 'IMG_1072.JPG', 'mahasiswa', '41155050160039', '76bc5640b8b4880ef040b383bd712946');
+(1, 'Admin', '', 'Laki-Laki', '087856435421', 'admin@example.com', '', '', '', '', 'admin.png', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
+(5, 'Bagja Septian', '41155050160039', 'Laki-Laki', '089767263627', 'bagja@gmail.com', 'Management Data', '2016', 'Mahasiswa', 'tidak aktif', 'IMG_1072.JPG', 'mahasiswa', '41155050160039', '76bc5640b8b4880ef040b383bd712946'),
+(6, 'Ali Ahmadi S.T M.T', '456346654', 'Laki-Laki', '08729374738', 'ali@gmail.com', NULL, NULL, 'Dosen', 'belum aktif', 'IMG_1176.JPG', 'dosen', '456346654', 'ee23ad4a75e016274e955dc5fd6a9c5e'),
+(7, 'Amras Mauludin S.T M.T', '4765382638', 'Laki-Laki', '087652773654', 'test@email.com', NULL, NULL, 'Dosen', 'aktif', 'IMG_1149.JPG', 'dosen', '4765382638', '325e9971a70b2036d7bdcef20c1ff28a'),
+(8, 'Serghi Apriyatna', '41155050160028', 'Laki-Laki', '082376263445', 'sergi@gmail.com', 'Management Data', '2016', 'Mahasiswa', 'aktif', 'IMG_1170.JPG', 'mahasiswa', '41155050160028', 'eb17c96c335b11b8a53a4fea4b1609a0');
 
 -- --------------------------------------------------------
 
@@ -153,12 +159,6 @@ INSERT INTO `users_category` (`id`, `kategori`) VALUES
 --
 
 --
--- Indeks untuk tabel `judul_skripsi`
---
-ALTER TABLE `judul_skripsi`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indeks untuk tabel `kartubimbingan`
 --
 ALTER TABLE `kartubimbingan`
@@ -168,6 +168,12 @@ ALTER TABLE `kartubimbingan`
 -- Indeks untuk tabel `kategori_skripsi`
 --
 ALTER TABLE `kategori_skripsi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `skripsi`
+--
+ALTER TABLE `skripsi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -193,12 +199,6 @@ ALTER TABLE `users_category`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `judul_skripsi`
---
-ALTER TABLE `judul_skripsi`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT untuk tabel `kartubimbingan`
 --
 ALTER TABLE `kartubimbingan`
@@ -211,6 +211,12 @@ ALTER TABLE `kategori_skripsi`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT untuk tabel `skripsi`
+--
+ALTER TABLE `skripsi`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT untuk tabel `tbl_upload`
 --
 ALTER TABLE `tbl_upload`
@@ -220,7 +226,7 @@ ALTER TABLE `tbl_upload`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_category`

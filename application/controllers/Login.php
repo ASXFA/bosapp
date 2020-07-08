@@ -54,10 +54,11 @@ class Login extends CI_Controller {
 			if ($this->session->userdata('level')=="admin") {
 				$this->session->set_userdata('login','Selamat Datang !');
 				redirect('admin');
-			}else if($this->session->useradata('level')=="mahasiswa"){
+			}else if($this->session->userdata('level')=="mahasiswa"){
 				echo "Mahasiswa";
-			}else if($this->session->useradata('level')=="dosen"){
-				echo "Dosen";
+			}else if($this->session->userdata('level')=="dosen"){
+				$this->session->set_userdata('login','Selamat Datang !');
+				redirect('admin');
 			}
 		}else{
 			$this->session->set_userdata('login','Password atau Username anda tidak cocok !');

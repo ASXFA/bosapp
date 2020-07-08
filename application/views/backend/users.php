@@ -32,7 +32,11 @@
         ?>
         <div class="card">
             <div class="card-header">
-                <h4 class="d-block">Data <?= $title ?><span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span></h4>
+                <h4 class="d-block">Data <?= $title ?>
+                    <?php if($this->session->userdata('level')=="admin"){ ?>
+                    <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
+                    <?php } ?>
+                </h4>
             </div>
             <div class="table-stats order-table ov-h">
                 <table class="table">
@@ -81,19 +85,23 @@
                             </td>
                             <td>
                                 <?php 
-                                    if ($user->status == "aktif") {
+                                    if($this->session->userdata('level')=="admin"){
+                                        if ($user->status == "aktif") {
                                 ?>
-                                <a href="<?= base_url('backend/users/gantiStatus/'.$user->id.'/block/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Akun Dosen ?')"><i class="fa fa-times"></i> Block</a>
+                                <a href="<?= base_url('backend/users/gantiStatus/'.$user->id.'/block/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Akun <?= $title ?> ?')"><i class="fa fa-times"></i> Block</a>
                                 <?php
-                                    }else{
+                                        }else{
                                 ?>
-                                <a href="<?= base_url('backend/users/gantiStatus/'.$user->id.'/activate/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Akun Dosen ?')"><i class="fa fa-check"></i> Activate</a>
+                                <a href="<?= base_url('backend/users/gantiStatus/'.$user->id.'/activate/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Akun <?= $title ?> ?')"><i class="fa fa-check"></i> Activate</a>
                                 <?php
+                                        }
                                     }
                                 ?>
                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $user->id ?>" ><i class="fa fa-eye"></i></a>
+                                <?php if($this->session->userdata('level')=="admin"){ ?>
                                 <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $user->id ?>"><i class="fa fa-edit"></i></a>
                                 <a href="<?= base_url('backend/users/delete/'.$user->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php 
@@ -171,15 +179,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Nama Lengkap</label>
-                                    <input type="text" name="nama" class="form-control" value="<?= $user->nama?>">
+                                    <input type="text" name="nama" class="form-control" value="<?= $user->nama?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Nomor Induk</label>
-                                    <input type="text" name="nomor_induk" class="form-control" value="<?= $user->nomor_induk?>">
+                                    <input type="text" name="nomor_induk" class="form-control" value="<?= $user->nomor_induk?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" id="" class="form-control">
+                                    <select name="jenis_kelamin" id="" class="form-control" required>
                                         <option selected disabled>-- Pilih --</option>
                                         <?php 
                                             if ($user->jenis_kelamin=="Laki-Laki") {
@@ -198,11 +206,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Telepon</label>
-                                    <input type="text" name="telepon" class="form-control" value="<?= $user->telepon?>">
+                                    <input type="text" name="telepon" class="form-control" value="<?= $user->telepon?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">E-mail</label>
-                                    <input type="email" name="email" class="form-control" value="<?= $user->email?>">
+                                    <input type="email" name="email" class="form-control" value="<?= $user->email?>" required>
                                 </div>
                                 <?php 
                                     if($title=="dosen"){
@@ -214,7 +222,7 @@
                                     <?php }else if($title=="mahasiswa"){ ?>
                                     <div class="form-group">
                                         <label for="" class="form-control-label">Konsentrasi</label>
-                                        <select name="konsentrasi" id="" class="form-control">
+                                        <select name="konsentrasi" id="" class="form-control" required>
                                         <option selected disabled>-- Pilih --</option>
                                         <?php 
                                             foreach($kategori as $k):
@@ -231,7 +239,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="form-control-label">Angkatan</label>
-                                        <input type="text" name="angkatan" class="form-control" value="<?= $user->angkatan?>">
+                                        <input type="number" min="1990" max="2030" name="angkatan" class="form-control" value="<?= $user->angkatan?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="form-control-label">Jabatan</label>
@@ -241,7 +249,7 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Foto</label>
                                     <input type="text" name="old_foto" class="form-control" value="<?= $user->foto?>" hidden>
-                                    <input type="file" name="new_foto" class="form-control">
+                                    <input type="file" name="new_foto" class="form-control" >
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>
@@ -272,15 +280,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Nama Lengkap</label>
-                                    <input type="text" name="nama" class="form-control">
+                                    <input type="text" name="nama" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Nomor Induk</label>
-                                    <input type="text" name="nomor_induk" class="form-control" >
+                                    <input type="text" name="nomor_induk" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" id="" class="form-control">
+                                    <select name="jenis_kelamin" id="" class="form-control" required>
                                         <option selected disabled>-- Pilih --</option>
                                         <option value="Laki-Laki"> Laki-Laki </option>
                                         <option value="Perempuan"> Perempuan </option>
@@ -288,11 +296,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Telepon</label>
-                                    <input type="text" name="telepon" class="form-control" >
+                                    <input type="text" name="telepon" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">E-mail</label>
-                                    <input type="email" name="email" class="form-control" >
+                                    <input type="email" name="email" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Jabatan</label>
@@ -301,7 +309,7 @@
                                 <?php if($title=="mahasiswa"){ ?>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Konsentrasi</label>
-                                    <select name="konsentrasi" id="" class="form-control">
+                                    <select name="konsentrasi" id="" class="form-control" required>
                                         <option selected disabled>-- PILIH --</option>
                                         <?php foreach($kategori as $k): ?> 
                                         <option value="<?= $k->nama ?>"><?= $k->nama ?></option>
@@ -310,12 +318,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Angkatan</label>
-                                    <input type="text" name="angkatan" class="form-control" >
+                                    <input type="number" min="1990" max="2030" name="angkatan" class="form-control" required >
                                 </div>
                                 <?php } ?>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Foto</label>
-                                    <input type="file" name="foto" class="form-control">
+                                    <input type="file" name="foto" class="form-control" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>

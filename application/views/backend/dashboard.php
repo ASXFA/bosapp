@@ -1,3 +1,17 @@
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h4 class="mt-3">Dashboard <?= ucfirst($this->session->userdata('level')) ?></h4>
+                        <h1>Halo <?= ucfirst($this->session->userdata('nama')) ?></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Content -->
 <div class="content dashboard-content">
     <!-- Animated -->
@@ -35,6 +49,9 @@
                 </div>
             </div>
 
+            <?php 
+                if ($this->session->userdata('level')=="admin") {
+            ?>
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -52,6 +69,9 @@
                     </div>
                 </div>
             </div>
+            <?php
+                }
+            ?>
 
             <div class="col-lg-3 col-md-6">
                 <div class="card">
