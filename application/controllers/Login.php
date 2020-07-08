@@ -55,7 +55,8 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('login','Selamat Datang !');
 				redirect('admin');
 			}else if($this->session->userdata('level')=="mahasiswa"){
-				echo "Mahasiswa";
+				$this->session->set_userdata('login','Selamat Datang !');
+				redirect('backend/users/mahasiswa');
 			}else if($this->session->userdata('level')=="dosen"){
 				$this->session->set_userdata('login','Selamat Datang !');
 				redirect('admin');

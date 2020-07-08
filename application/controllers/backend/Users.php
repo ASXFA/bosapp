@@ -136,4 +136,10 @@ class Users extends CI_Controller {
         $data = $this->db->getByLevel("mahasiswa")->result();
         json_encode($data);
     }
+
+    public function mahasiswa(){
+        $this->load->view('frontend/mahasiswa/include/header');
+        $this->load->view('frontend/mahasiswa/mahasiswa');
+        $this->load->view('frontend/mahasiswa/include/footer');
+    }
 }
