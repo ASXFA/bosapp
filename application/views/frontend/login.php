@@ -6,7 +6,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-    <img src=<?= base_url('assets/frontend/login/style.css')"http://danielzawadzki.com/codepen/01/icon.svg"?> id="icon" alt="User Icon" />
+    <img src="http://danielzawadzki.com/codepen/01/icon.svg"?> id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->

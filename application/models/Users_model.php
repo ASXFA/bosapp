@@ -18,6 +18,12 @@ class Users_model extends CI_Model {
         return $this->db->get('users');
     }
 
+    public function getById($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get('users');
+    }
+
     public function getAll()
     {
         return $this->db->get('users');

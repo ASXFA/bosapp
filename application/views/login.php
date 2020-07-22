@@ -70,6 +70,7 @@
 						<button class="login100-form-btn" type="submit">
 							Login
 						</button>
+						<a href="<?= base_url() ?>" class="mt-2"> <i class="fa fa-arrow-left mr-2"></i> Back to Home </a>
 					</div>
 				</form>
 			</div>

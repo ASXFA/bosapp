@@ -18,6 +18,12 @@ class Skripsi_model extends CI_Model {
         return $this->db->get('skripsi');
     }
 
+    public function getById($name)
+    {
+        $this->db->where('mahasiswa',$name);
+        return $this->db->get('skripsi');
+    }
+
     public function gantiStatus($id,$status)
     {
         $data = array('status_skripsi'=>$status);

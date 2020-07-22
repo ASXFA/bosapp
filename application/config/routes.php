@@ -54,3 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'backend/dashboard/index';
+$route['arsipSkripsi'] = 'welcome/skripsi';
+$route['mahasiswa'] = 'backend/users/mahasiswa';
+$route['bimbingan/(:any)'] = 'backend/bimbingan/bimbingan/$1';

@@ -138,8 +138,14 @@ class Users extends CI_Controller {
     }
 
     public function mahasiswa(){
-        $this->load->view('frontend/mahasiswa/include/header');
-        $this->load->view('frontend/mahasiswa/mahasiswa');
+        $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();
+        $this->load->model('skripsi_model');
+        $data['title'] = "dashboard";
+        $data['skripsi'] = $this->skripsi_model->getById($this->session->userdata('nama'))->row();
+        $data['dosen'] = $this->users_model->getByLevel('Dosen')->result();
+        $data['dosen2'] = $this->users_model->getByLevel('Dosen')->result();
+        $this->load->view('frontend/mahasiswa/include/header',$data);
+        $this->load->view('frontend/mahasiswa/mahasiswa',$data);
         $this->load->view('frontend/mahasiswa/include/footer');
     }
 }

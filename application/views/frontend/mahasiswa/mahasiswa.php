@@ -1,355 +1,215 @@
+ <!-- ======= Hero Section ======= -->
+ <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1><?= $user->nama ?> - <span class="font-weight-light nip"><?= $user->nomor_induk ?></span> </h1>
+      <p>Login Sebagai  <span class="typed" data-typed-items="<?= ucfirst($user->level) ?>"></span></p>
+      <!-- <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div> -->
+    </div>
+  </section><!-- End Hero -->
 
+  <main id="main">
 
-    <!--====================================================
-                        ABOUT
-    ======================================================-->
-      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-          <div class="my-auto" >
-              <img src="img/logo-s.png" class="img-fluid mb-3" alt="">
-              <h1 class="mb-0">
-                <?= $this->session->userdata('nama')?>
-              </h1>
-              <!-- <div class="subheading mb-5">THE NEXT BIG IDEA IS WAITING FOR ITS NEXT BIG CHANGER WITH 
-                  <a href="#">THEMSBIT</a>
-              </div>
-              <p class="mb-5" style="max-width: 500px;" >I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-              <ul class="list-inline list-social-icons mb-0">
-                  <li class="list-inline-item">
-                      <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-                  </li>
-                  <li class="list-inline-item">
-                      <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-                  </li>
-                  <li class="list-inline-item">
-                      <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-                  </li>
-                  <li class="list-inline-item">
-                      <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-                  </li>
-              </ul> -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>tentang</h2>
+        </div>
+
+        <div class="row abouts">
+          <div class="col-lg-4">
+            <img src="<?= base_url() ?>assets/image/mahasiswa/<?= $user->foto ?>" class="img-fluid" alt="">
           </div>
-      </section>
-
-    <!--====================================================
-                        EXPERIENCE
-    ======================================================-->      
-      <section class="resume-section p-3 p-lg-5 " id="experience">
-          <div class="row my-auto">
-              <div class="col-12">
-                <h2 class="  text-center">Experience</h2>
-                <div class="mb-5 heading-border"></div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content">
+            <h3><?= strtoupper($user->nama) ?></h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="icofont-rounded-right"></i> <strong>Jenis Kelamin:</strong> <?= $user->jenis_kelamin ?></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Angkatan:</strong> <?= $user->angkatan ?></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Konsentrasi:</strong> <?= $user->konsentrasi ?></li>
+                </ul>
               </div>
-              <div class="resume-item col-md-6 col-sm-12 " > 
-                <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
-                  <div class=" resume-content mr-auto">
-                      <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i> Senior Web Developer</h4>
-                      <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-                  </div>
-                  <div class="resume-date text-md-right">
-                      <span class="text-primary">March 2019 - Present</span>
-                  </div>
-                </div>  
-              </div>
-              <div class="resume-item col-md-6 col-sm-12">
-                <div class="card mx-0 p-4 mb-5" style="border-color: #ffc107; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
-                  <div class="resume-content mr-auto">
-                      <h4 class="mb-3"><i class="fa fa-laptop mr-3 text-warning"></i>  Web Developer</h4>
-                      <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-                  </div>
-                  <div class="resume-date text-md-right">
-                      <span class="text-primary">December 2018 - March 2019</span>
-                  </div>
-                </div>  
-              </div>
-              <div class="resume-item col-md-6 col-sm-12">
-                <div class="card mx-0 p-4 mb-5" style="border-color: #28a745; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
-                  <div class="resume-content mr-auto">
-                      <h4 class="mb-3"><i class="fa fa-camera mr-3 text-success"></i> Junior Web Designer</h4>
-                      <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-                  </div>
-                  <div class="resume-date text-md-right">
-                      <span class="text-primary">July 2017 - December 2018</span>
-                  </div>
-                </div>  
-              </div>
-              <div class="resume-item col-md-6 col-sm-12">
-                <div class="card mx-0 p-4 mb-5" style="border-color: #2196f3; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
-                  <div class="resume-content mr-auto">
-                      <h4 class="mb-3"><i class="fa fa-area-chart mr-3 text-primary"></i> Web Design Intern</h4>
-                      <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-                  </div>
-                  <div class="resume-date text-md-right">
-                      <span class="text-primary">September 2018 - June 2019</span>
-                  </div>
-                </div>  
-              </div>
-          </div>
-      </section>
-
-    <!--====================================================
-                        PORTFOLIO
-    ======================================================-->      
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="portfolio"> 
-          <div class="row my-auto">
-              <div class="col-12">
-                <h2 class="  text-center">Portfolio</h2>
-                <div class="mb-5 heading-border"></div>
-              </div>
-              <div class="col-md-12">
-                <div class="port-head-cont">
-                  <button class="btn btn-general btn-green filter-b" data-filter="all">All</button>
-                  <button class="btn btn-general btn-green filter-b" data-filter="consulting">Web Design</button>
-                  <button class="btn btn-general btn-green filter-b" data-filter="finance">Mobile Apps</button>
-                  <button class="btn btn-general btn-green filter-b" data-filter="marketing">Graphics Design</button> 
-                </div>
-              </div>
-          </div>
-          <div class="row my-auto">
-              <div class="col-sm-4 portfolio-item filter finance">
-                  <a class="portfolio-link" href="#portfolioModal4" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-4.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter marketing">
-                  <a class="portfolio-link" href="#portfolioModal5" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-5.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter consulting">
-                  <a class="portfolio-link" href="#portfolioModal6" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-6.jpg" alt="">
-                  </a>
-              </div>              
-              <div class="col-sm-4 portfolio-item filter consulting">
-                  <a class="portfolio-link" href="#portfolioModal7" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-7.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter consulting">
-                  <a class="portfolio-link" href="#portfolioModal8" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-8.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter finance">
-                  <a class="portfolio-link" href="#portfolioModal9" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-9.jpg" alt="">
-                  </a>
-              </div>              
-              <div class="col-sm-4 portfolio-item filter marketing">
-                  <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-1.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter marketing">
-                  <a class="portfolio-link" href="#portfolioModal2" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-2.jpg" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-4 portfolio-item filter finance">
-                  <a class="portfolio-link" href="#portfolioModal3" data-toggle="modal">
-                      <div class="caption-port">
-                          <div class="caption-port-content">
-                              <i class="fa fa-search-plus fa-3x"></i>
-                          </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/p-3.jpg" alt="">
-                  </a>
-              </div> 
-          </div>
-      </section>
-
-    <!--====================================================
-                        SKILLS
-    ======================================================-->       
-      <section class=" d-flex flex-column" id="skills">
-         <div class="p-lg-5 p-3 skill-cover">
-          <h3 class="text-center text-white">Coding Skills</h3>
-          <div class="row text-center my-auto "> 
-              <div class="col-md-3 col-sm-6">
-                  <div class="skill-item">
-                      <i class="fa fa-html5 fa-5x"></i>
-                      <h2><span class="counter"> 84 </span><span>%</span></h2>
-                      <p>HTML5</p>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                  <div class="skill-item">
-                      <i class="fa fa-css3 fa-5x"></i>
-                      <h2><span class="counter"> 95 </span><span>%</span></h2>
-                      <p>CSS3</p>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                  <div class="skill-item">
-                      <i class="fa fa-code fa-5x"></i>
-                      <h2><span class="counter"> 65 </span><span>%</span></h2>
-                      <p>JQuery</p>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                  <div class="skill-item">
-                      <i class="fa fa-globe fa-5x"></i>
-                      <h2><span class="counter"> 89 </span><span>%</span></h2>
-                      <p>PHP</p>
-                  </div>
-              </div>
-          </div>
-         </div> 
-      </section>
-
-    <!--====================================================
-                           AWARDS
-    ======================================================-->       
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
-          <div class="row my-auto">
-              <div class="col-12">
-                <h2 class="  text-center">Awards</h2>
-                <div class="mb-5 heading-border"></div>
-              </div> 
-              <div class="main-award" id="award-box">
-                  <div class="award">
-                      <div class="award-icon"></div>
-                      <div class="award-content">
-                          <span class="date">Apr 2017 - Mar 2018</span>
-                          <h5 class="title">Google Analytics Certified Developer</h5>
-                          <p class="description">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                          </p>
-                      </div>
-                  </div>
-                  <div class="award">
-                      <div class="award-icon"></div>
-                      <div class="award-content">
-                          <span class="date">Apr 2018 - Mar 2019</span>
-                          <h5 class="title">Mobile Web Specialist - Google Certification</h5>
-                          <p class="description">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section> 
-
-    <!--====================================================
-                          CONTACT
-    ======================================================-->       
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column">
-          <div class="row my-auto" id="contact"> 
-            <div class="col-md-8">
-              <div class="contact-cont">
-                <h3>CONTACT Us</h3>
-                <div class="heading-border-light"></div>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
-              </div>   
-              <div class="row con-form">
-                <div class="col-md-12">
-                  <input type="text" name="full-name" placeholder="Full Name" class="form-control">
-                </div>
-                <div class="col-md-12">
-                  <input type="text" name="email" placeholder="Email Id" class="form-control">
-                </div>
-                <div class="col-md-12">
-                  <input type="text" name="subject" placeholder="Subject" class="form-control">
-                </div>
-                <div class="col-md-12"><textarea name="" id=""></textarea></div>
-                <div class="col-md-12 sub-but"><button class="btn btn-general btn-white" role="button">Send</button></div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="icofont-rounded-right"></i> <strong>NPM:</strong> <?= $user->nomor_induk ?></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> <?= $user->email ?></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Telepon:</strong> <?= $user->telepon ?></li>
+                </ul>
               </div>
             </div>
-            <div class="col-md-4 col-sm-12 mt-5"> 
-              <div class="contact-cont2"> 
-                <div class="contact-add contact-box-desc">
-                  <h3><i class="fa fa-map-marker cl-atlantis fa-2x"></i> Address</h3>
-                  <p>25, Dist town Street, Logn <br>
-                  California, US <br></p>
-                </div>
-                <div class="contact-phone contact-side-desc contact-box-desc">
-                  <h3><i class="fa fa-phone cl-atlantis fa-2x"></i> Phone</h3>
-                  <p>800 123 3456 <br>900 123 3457</p>
-                </div>
-                <div class="contact-mail contact-side-desc contact-box-desc">
-                  <h3><i class="fa fa-envelope-o cl-atlantis fa-2x"></i> Email</h3>
-                <address class="address-details-f"> 
-                  Fax: 800 123 3456 <br>
-                  Email: <a href="mailto:info@themsbit.com" class="">info@themsbit.com</a>
-                </address>
-                <ul class="list-inline social-icon-f top-data">
-                  <li><a href="#" target="_empty"><i class="fa top-social fa-facebook" style="color: #4267b2; border-color:#4267b2;"></i></a></li>
-                  <li><a href="#" target="_empty"><i class="fa top-social fa-twitter" style="color: #4AB3F4; border-color:#4AB3F4;"></i></a></li>
-                  <li><a href="#" target="_empty"><i class="fa top-social fa-google-plus" style="color: #e24343; border-color:#e24343;"></i></a></li> 
-                </ul>
-                </div>
-              </div>
-            </div> 
-          </div>
-      </section>
-
-      <section class=" d-flex flex-column" id="maps">
-        <div id="map">
-          <div class="map-responsive">
-             <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6030.418742494061!2d-111.34563870463673!3d26.01036670629853!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1471908546569" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <h5 class="font-weight-bold">Judul Skripsi</h5>
+            <p>
+              <?= $skripsi->judul ?>
+            </p>
           </div>
         </div>
-      </section>
 
+      </div>
+    </section><!-- End About Section -->
 
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Dosen Pembimbing</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="resume-title text-center">Dosen Pembimbing 1</h3>
+            <div class="card p-5 ml-3">              
+              <?php foreach($dosen as $dosen): if($dosen->nama == $skripsi->dospem1){ ?>
+              <ul>
+                <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
+              </ul>
+              <div class="ml-4">
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-user mr-4 ml-3 mb-2"></i> <?= $dosen->nama ?> </h4>
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-id-card mr-4 ml-3 mb-2"></i> <?= $dosen->nomor_induk ?></h4>
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-phone mr-4 ml-3 mb-2"></i> <?= $dosen->telepon ?></h4>
+              </div>
+              <div class="text-center mt-5"> <a href="<?= base_url('bimbingan/'.$dosen->id) ?>" class="btn btn-primary dosen">Mulai Bimbingan</a>  </div>
+              <?php } endforeach; ?>
+            </div>
+          </div>
+
+          <!-- batas -->
+          <!-- <div class="col-md-1">
+
+          </div> -->
+          <!-- endbatas -->
+          <!-- batas -->
+          <!-- <div class="col-md-1">
+            <h3 class="resume-title text-white"> sda  </h3>
+            <div class="resume-item">
+              <?php for ($i=0; $i < 25 ; $i++) { 
+                  echo "<br>";
+              } ?>
+            </div>
+            <div class="resume-item"></div>
+          </div> -->
+          <!-- endbatas -->
+
+          <div class="col-lg-6">
+            <h3 class="resume-title text-center">Dosen Pembimbing 2</h3>
+            <div class="card p-5 ml-3">              
+              <?php foreach($dosen2 as $dosen): if($dosen->nama == $skripsi->dospem2){ ?>
+              <ul>
+                <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
+              </ul>
+              <div class="ml-4">
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-user mr-4 ml-3 mb-2"></i> <?= $dosen->nama ?></h4>
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-id-card mr-4 ml-3 mb-2"></i> <?= $dosen->nomor_induk ?></h4>
+                <h4 class="font-weight-bold ml-5"> <i class="bx bx-phone mr-4 ml-3 mb-2"></i> <?= $dosen->telepon ?></h4>
+              </div>
+              <div class="text-center mt-5"> <a href="<?= base_url('bimbingan/'.$dosen->id) ?>" class="btn btn-primary dosen">Mulai Bimbingan</a>  </div>
+              <?php } endforeach; ?>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Resume Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Kartu Bimbingan</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bx bxl-dribbble"></i>
+              </div>
+              <h4><a href="">Lorem Ipsum</a></h4>
+              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-orange ">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
+                </svg>
+                <i class="bx bx-file"></i>
+              </div>
+              <h4><a href="">Sed Perspiciatis</a></h4>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-pink">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
+                </svg>
+                <i class="bx bx-tachometer"></i>
+              </div>
+              <h4><a href="">Magni Dolores</a></h4>
+              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-yellow">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
+                </svg>
+                <i class="bx bx-layer"></i>
+              </div>
+              <h4><a href="">Nemo Enim</a></h4>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-red">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
+                </svg>
+                <i class="bx bx-slideshow"></i>
+              </div>
+              <h4><a href="">Dele Cardo</a></h4>
+              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-teal">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                </svg>
+                <i class="bx bx-arch"></i>
+              </div>
+              <h4><a href="">Divera Don</a></h4>
+              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+  </main><!-- End #main -->

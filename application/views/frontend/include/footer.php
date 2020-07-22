@@ -1,83 +1,71 @@
-<footer class="templateux-footer bg-light">
-      <div class="container">
-
-        <div class="row mb-5">
-          <div class="col-md-4 pr-md-5">
-            <div class="block-footer-widget">
-              <h3>About</h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            </div>
+	<!-- footer section start -->
+  <footer class="footer" id="contact">
+			<div class="container">
+				<div class="row">
+                    <div class="col-lg-12">
+						<div class="subscribe-form">
+							<form action="#">
+								<input type="text" placeholder="Your email address here">
+								<button type="submit">Subcribe</button>
+							</form>
+						</div>
+                    </div>
+				</div>
+				<div class="row">
+          <div class="col-lg-12">
+						<div class="copyright-area">
+							<ul>
+								<li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
+								<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
+								<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
+								<li><a href="#"><i class="icofont icofont-social-pinterest"></i></a></li>
+								<li><a href="#"><i class="icofont icofont-social-google-plus"></i></a></li>
+							</ul>
+							<p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </p>
+						</div>
           </div>
+				</div>
+			</div>
+		</footer><!-- footer section end -->
+		<a href="#" class="scrollToTop">
+			<i class="icofont icofont-arrow-up"></i>
+		</a>
 
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="block-footer-widget">
-                  <h3>Learn More</h3>
-                  <ul class="list-unstyled">
-                    <li><a href="#">How it works?</a></li>
-                    <li><a href="#">Useful Tools</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Sitemap</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="block-footer-widget">
-                  <h3>Support</h3>
-                  <ul class="list-unstyled">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Help Desk</a></li>
-                    <li><a href="#">Knowledgebase</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="block-footer-widget">
-                  <h3>About Us</h3>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="block-footer-widget">
-                  <a href="#" class="btn btn-primary mb-3">Download for free</a>
-                  <p>Connect With Us</p>
-                  <ul class="list-unstyled block-social">
-                    <li><a href="#" class="p-1"><span class="icon-facebook-square"></span></a></li>
-                    <li><a href="#" class="p-1"><span class="icon-twitter"></span></a></li>
-                    <li><a href="#" class="p-1"><span class="icon-github"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div> <!-- .row -->
-            
-          </div>
-        </div> <!-- .row -->
-
-        <div class="row pt-5 text-left">
-          <div class="col-md-12 text-left"><p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p></div>
-        </div> <!-- .row -->
-
-      </div>
-    </footer> <!-- .templateux-footer -->
+		<!-- jquery main JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/jquery.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/bootstrap.min.js"></script>
+		<!-- Slick nav JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/jquery.slicknav.min.js"></script>
+		<!-- Slick JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/slick.min.js"></script>
+		<!-- owl carousel JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/owl.carousel.min.js"></script>
+		<!-- Popup JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/jquery.magnific-popup.min.js"></script>
+		<!-- Counter JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/jquery.counterup.min.js"></script>
+		<!-- Counterup waypoints JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/waypoints.min.js"></script>
+	    <!-- YTPlayer JS -->
+	    <script src="<?= base_url('assets/frontend/') ?>js/jquery.mb.YTPlayer.min.js"></script>
+		<!-- jQuery Easing JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/jquery.easing.1.3.js"></script>
+		<!-- Gmap JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/gmap3.min.js"></script>
+        <!-- Google map api -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnKyOpsNq-vWYtrwayN3BkF3b4k3O9A_A"></script>
+		<!-- Custom map JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/custom-map.js"></script>
+		<!-- WOW JS -->
+		<script src="<?= base_url('assets/frontend/') ?>js/wow-1.3.0.min.js"></script>
+		<!-- Switcher JS -->
+    <script src="<?= base_url('assets/frontend/') ?>js/switcher.js"></script>
     
-
-   </div> <!-- .js-animsition -->
-
-  
-  <script src="<?= base_url('assets/frontend/js/scripts-all.js')?>"></script>
-  <script src="<?= base_url('assets/frontend/js/main.js')?>"></script>
-  
-  </body>
+		<!-- main JS -->
+    <script src="<?= base_url('assets/frontend/') ?>js/main.js"></script>
+    
+	</body>
 </html>

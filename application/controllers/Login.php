@@ -35,6 +35,7 @@ class Login extends CI_Controller {
 			foreach($check->result() as $user){
 				$sess = array(
 					'is_login' => 1,
+					'id' => $user->id,
 					'nama'=> $user->nama,
 					'nomor_induk'=> $user->nomor_induk,
 					'jenis_kelamin'=> $user->jenis_kelamin,
@@ -56,7 +57,7 @@ class Login extends CI_Controller {
 				redirect('admin');
 			}else if($this->session->userdata('level')=="mahasiswa"){
 				$this->session->set_userdata('login','Selamat Datang !');
-				redirect('backend/users/mahasiswa');
+				redirect('mahasiswa');
 			}else if($this->session->userdata('level')=="dosen"){
 				$this->session->set_userdata('login','Selamat Datang !');
 				redirect('admin');
