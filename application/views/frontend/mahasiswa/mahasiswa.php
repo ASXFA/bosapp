@@ -2,7 +2,7 @@
  <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h1><?= $user->nama ?> - <span class="font-weight-light nip"><?= $user->nomor_induk ?></span> </h1>
-      <p>Login Sebagai  <span class="typed" data-typed-items="<?= ucfirst($user->level) ?>"></span></p>
+      <p><span class="typed" data-typed-items="<?= ucfirst($user->level) ?>"></span></p>
       <!-- <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
