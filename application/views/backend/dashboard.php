@@ -109,8 +109,20 @@
                 </div>
             </div>
         </div>
-        <!-- /Widgets -->
-        
+        <div class="row">
+            <div class="col-md-4">
+                <?php if(!empty($bimbinganBaruLimit)){ ?>
+                    <div class="alert alert-success" role="alert" style="font-size:13px;">
+                    <?php 
+                        foreach($user as $user): 
+                            if ($user->id == $bimbinganBaruLimit->id_from) {
+                    ?>
+                    <a href="<?= base_url('backend/bimbingan/detailBimbingan/'.$user->id) ?>" class="">Pesan Baru dari <strong><?= $user->nama ?></strong></a>
+                            <?php }endforeach ?> 
+                </div>
+                            <?php } ?>
+            </div>
+        </div>
     </div>
     <!-- .animated -->
 </div>

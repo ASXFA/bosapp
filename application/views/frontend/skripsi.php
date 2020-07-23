@@ -36,7 +36,7 @@
         <![endif]-->
         <style>
             .header{
-                background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+                background: #0074d9;
             }
 
             @keyframes zoom-in{

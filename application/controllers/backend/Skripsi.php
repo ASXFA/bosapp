@@ -26,6 +26,7 @@ class Skripsi extends CI_Controller {
             redirect('login');
         }
         $this->load->model('skripsi_model');
+        $this->load->model('bimbingan_model');
     }
     
 	public function skripsi($statusMhs)
@@ -37,11 +38,13 @@ class Skripsi extends CI_Controller {
         $data['users'] = $this->users_model->getAll()->result();
         $data['kategori_skripsi'] = $this->kategori_skripsi_model->getAll()->result();
         $data['skripsiModal'] = $this->skripsi_model->getByLevel($statusMhs)->result();
+        $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
+        $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         // $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         // $data['userModal'] = $this->users_model->getByLevel($level)->result();
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
-        $this->load->view('backend/include/navbar.php');
+        $this->load->view('backend/include/navbar.php',$data);
         $this->load->view('backend/skripsi',$data);
         $this->load->view('backend/include/footer.php');
     }

@@ -49,12 +49,12 @@
 					<div class="col-lg-8 col-md-9 col-6">
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
-                  <ul id="primary-menu">
-                    <li><a class="nav-link active" href="#home">Home</a></li>
-                    <li><a class="nav-link" href="#counter">Informasi</a></li>
-                    <li><a class="nav-link" href="<?= base_url('arsipSkripsi') ?>">Arsip Skripsi</a></li>
-                    <li><a class="nav-link" href="<?= base_url('login') ?>">Admin</a></li>
-                  </ul>
+							<ul id="primary-menu">
+								<li><a class="nav-link active" href="#home">Home</a></li>
+								<li><a class="nav-link" href="#counter">Informasi</a></li>
+								<li><a class="nav-link" href="<?= base_url('arsipSkripsi') ?>">Arsip Skripsi</a></li>
+								<li><a class="nav-link" href="<?= base_url('login') ?>">Admin</a></li>
+							</ul>
 					    </div>
 					</div>
 				</div>

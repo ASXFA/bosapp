@@ -26,6 +26,7 @@ class Users extends CI_Controller {
             redirect('login');
         }
         $this->load->model('users_model');
+        $this->load->model('bimbingan_model');
     }
     
 	public function user($level)
@@ -35,9 +36,11 @@ class Users extends CI_Controller {
         $data['user'] = $this->users_model->getByLevel($level)->result();
         $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         $data['userModal'] = $this->users_model->getByLevel($level)->result();
+        $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
+        $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
-        $this->load->view('backend/include/navbar.php');
+        $this->load->view('backend/include/navbar.php',$data);
         $this->load->view('backend/users',$data);
         $this->load->view('backend/include/footer.php');
     }
@@ -140,10 +143,23 @@ class Users extends CI_Controller {
     public function mahasiswa(){
         $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();
         $this->load->model('skripsi_model');
+        $this->load->model('bimbingan_model');
         $data['title'] = "dashboard";
-        $data['skripsi'] = $this->skripsi_model->getById($this->session->userdata('nama'))->row();
+        $data['skripsi'] = $this->skripsi_model->getById($this->session->userdata('id'))->row();
         $data['dosen'] = $this->users_model->getByLevel('Dosen')->result();
         $data['dosen2'] = $this->users_model->getByLevel('Dosen')->result();
+        $skripsi = $this->skripsi_model->getByLevel('aktif')->result();
+        $dospem1 = "";
+        $dospem2 = "";
+        foreach($skripsi as $s):
+			if($s->mahasiswa == $this->session->userdata('id')){
+				$dospem1 = $s->dospem1;
+				$dospem2 = $s->dospem2;
+			}
+        endforeach;
+        $data['bimbinganBaruDospem1'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem1)->result();
+		$data['bimbinganBaruDospem2'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem2)->result();
+		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'))->result();
         $this->load->view('frontend/mahasiswa/include/header',$data);
         $this->load->view('frontend/mahasiswa/mahasiswa',$data);
         $this->load->view('frontend/mahasiswa/include/footer');

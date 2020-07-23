@@ -17,7 +17,7 @@
                     </ul>
                 </li>
                 <li id="log">
-                    <a href="widgets.html"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
+                    <a href="<?= base_url('backend/bimbingan') ?>"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
                 </li>
                 <li class="menu-item-has-children dropdown" id="akademik">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Skripsi</a>

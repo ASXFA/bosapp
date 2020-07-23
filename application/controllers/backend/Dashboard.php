@@ -32,6 +32,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('users_model');
 		$this->load->model('kategori_skripsi_model');
 		$this->load->model('skripsi_model');
+		$this->load->model('bimbingan_model');
 
 		$data['mhs'] = $this->users_model->getByLevel('mahasiswa')->num_rows();
 		if ($this->session->userdata('level')=="admin") {
@@ -40,9 +41,14 @@ class Dashboard extends CI_Controller {
 		$data['kategori'] = $this->kategori_skripsi_model->getAll()->num_rows();
 		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->num_rows();
 
+        $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
+		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
+        $data['bimbinganBaruLimit'] = $this->bimbingan_model->getByStatusLimit('0',$this->session->userdata('id'))->row();
+
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
-        $this->load->view('backend/include/navbar.php');
+        $this->load->view('backend/include/navbar',$data);
         $this->load->view('backend/dashboard',$data);
         $this->load->view('backend/include/footer.php');
 	}

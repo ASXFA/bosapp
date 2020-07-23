@@ -1981,6 +1981,20 @@ header .form-inline {
   -webkit-box-shadow: none;
           box-shadow: none; }
 
+.card table.detailBimbinganTable tr td
+{
+  padding-left: 25px;
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+
+.card.riwayat table tr td
+{
+  font-size: 13px;
+  font-weight: 100;
+}
+
 /*    Widget Three
 ---------------------------*/
 .stat-widget-three .stat-icon {

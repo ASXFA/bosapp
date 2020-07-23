@@ -57,3 +57,4 @@ $route['admin'] = 'backend/dashboard/index';
 $route['arsipSkripsi'] = 'welcome/skripsi';
 $route['mahasiswa'] = 'backend/users/mahasiswa';
 $route['bimbingan/(:any)'] = 'backend/bimbingan/bimbingan/$1';
+$route['tambahBimbingan'] = 'backend/bimbingan/tambahBimbingan';

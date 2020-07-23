@@ -32,58 +32,18 @@
 <section class="resume bimb">
     <div class="container" data-aos="zoom-in">
         <div class="row">
-            <div class="col-lg-6">
-                <h3 class="resume-title">Bimbingan <button id="btnBimbingan" class="btn btn-info btn-sm float-right font-weight-bold text-white">Bimbingan Sekarang</button></h3>
-                <table class="table table-hover mt-1">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr>
+            <div class="col-md-6">
+                <h3 class="resume-title">Bimbingan <button id="btnBimbingan" class="btn btn-primary btn-sm float-right font-weight-bold text-white">Bimbingan Sekarang</button></h3>
                 <div id="formBimbingan" data-aos="zoom-in" >
-                    <h3 class="resume-title">Form Bimbingan </h3>
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <h5>Form Bimbingan </h5>
+                    <form action="<?= base_url('tambahBimbingan') ?>" method="post"  class="" enctype="multipart/form-data"> 
                         <div class="form-row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="id_from_nama" class="form-control" placeholder="Your Name" value="<?= $this->session->userdata('nama') ?>" readonly />
                                 <input type="text" name="id_from" class="form-control" id="id_from" placeholder="Your Name" value="<?= $this->session->userdata('id') ?>" hidden />
+                                <?php if(!empty($bimbingan)){ ?>
+                                <input type="text" name="idBimbingan" class="form-control" placeholder="Your Name" value="<?= $bimbingan->id ?>" hidden />
+                                <?php } ?>
                             </div>
                             <div class="col-md-6 form-group">
                                 <input type="text" name="id_to_nama" class="form-control" placeholder="Your Name" value="<?= $dosen->nama ?>" readonly />
@@ -91,40 +51,43 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" />
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required/>
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control" name="file" id="file" placeholder="File" />
+                            <input type="file" class="form-control" name="file" id="file" placeholder="File" required/>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Keterangan" ></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Keterangan" required></textarea>
                         </div>
-                        <div class="text-center"><input type="submit" class="btn btn-primary btn-sm" name="submit" value="Kirim Pesan" ></div>
+                        <div class="text-center"><button class="btn btn-primary" type="submit">Kirim</button></div>
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-6">
                 <h3 class="resume-title">Pesan Terbaru</h3>
                 <div class="resume-item pb-0">
-                    <h4>Brandon Johnson</h4>
-                    <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+                    <?php if(!empty($bimbingan)){ ?>
+                    <h4><?= $bimbingan->subject ?></h4>
+                    <h5><?= $bimbingan->tgl_bimbingan ?></h5>
+                    <p><em><?= $bimbingan->keterangan ?></em></p>
+                    <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$bimbingan->id_from.'/'.$bimbingan->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $bimbingan->file_name ?></a></p>
+                    <?php }else{ ?>
+                    <h4>Belum Ada Balasan Dari Pembimbing</h4>
+                    <?php } ?>
                 </div>
 
-                <h3 class="resume-title">Education</h3>
+                <h3 class="resume-title">Riwayat</h3>
                 <div class="resume-item">
-                    <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2015 - 2016</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-                </div>
-                <div class="resume-item">
-                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2010 - 2014</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+                    <?php if(!empty($bimbinganRiwayat)){ foreach($bimbinganRiwayat as $riwayat): ?>
+                    <h4><?= $riwayat->subject ?></h4>
+                    <h5><?= $riwayat->tgl_bimbingan ?></h5>
+                    <p><?= $riwayat->keterangan ?></p>
+                    <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$bimbingan->id_from.'/'.$riwayat->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $riwayat->file_name ?></a></p>
+                    <?php endforeach; }else{ ?>
+                        <h4>Belum ada Riwayat Bimbingan</h4>
+                        <?php } ?>
                 </div>
             </div>
-            
         </div>
     </div>
 

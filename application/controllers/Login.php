@@ -72,7 +72,7 @@ class Login extends CI_Controller {
 	{
 		$this->session->set_userdata('is_login','0');
 		$this->session->sess_destroy();
-		redirect('login');
+		redirect(base_url());
 	}
 
 }

@@ -3,6 +3,27 @@
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h1><?= $user->nama ?> - <span class="font-weight-light nip"><?= $user->nomor_induk ?></span> </h1>
       <p><span class="typed" data-typed-items="<?= ucfirst($user->level) ?>"></span></p>
+      <div class="row">
+        <div class="col-md-4">
+          <?php 
+            if(!empty($bimbinganBaruDospem1) || !empty($bimbinganBaruDospem2) ){
+              foreach($bimbinganBaruDospem1 as $bimbingan):
+          ?>
+          <div class="alert alert-secondary" role="alert">
+            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan->id_from) ?>" class="alert-link">Dosen Pembimbing 1 </a>. </div>
+          </div>
+          <?php 
+            endforeach;
+            foreach($bimbinganBaruDospem2 as $bimbingan2):
+          ?>
+          <div class="alert alert-secondary" role="alert">
+            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan2->id_from) ?>" class="alert-link">Dosen Pembimbing 2 </a>. </div>
+          </div>
+          <?php
+          endforeach;}
+          ?>
+        </div>
+      </div>
       <!-- <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -66,7 +87,7 @@
           <div class="col-lg-6">
             <h3 class="resume-title text-center">Dosen Pembimbing 1</h3>
             <div class="card p-5 ml-3">              
-              <?php foreach($dosen as $dosen): if($dosen->nama == $skripsi->dospem1){ ?>
+              <?php foreach($dosen as $dosen): if($dosen->id == $skripsi->dospem1){ ?>
               <ul>
                 <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
               </ul>
@@ -100,7 +121,7 @@
           <div class="col-lg-6">
             <h3 class="resume-title text-center">Dosen Pembimbing 2</h3>
             <div class="card p-5 ml-3">              
-              <?php foreach($dosen2 as $dosen): if($dosen->nama == $skripsi->dospem2){ ?>
+              <?php foreach($dosen2 as $dosen): if($dosen->id == $skripsi->dospem2){ ?>
               <ul>
                 <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
               </ul>

@@ -55,7 +55,7 @@
                                 if($this->session->userdata('level')=="dosen" && $title=="aktif"){
                                     $no = 1;
                                     foreach($skripsi as $skripsi){
-                                        if($skripsi->dospem1 == $this->session->userdata('nama') || $skripsi->dospem2 ==$this->session->userdata('nama')){
+                                        if($skripsi->dospem1 == $this->session->userdata('id') || $skripsi->dospem2 ==$this->session->userdata('id')){
                         ?>
                                             <tr>
                                                 <td class="serial"><?= $no ?></td>
@@ -257,10 +257,10 @@
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="mahasiswa"){ 
-                                                if ($skripsi->mahasiswa==$user->nama) {
-                                                    echo "<option value='".$user->nama."' selected>";
+                                                if ($skripsi->mahasiswa==$user->id) {
+                                                    echo "<option value='".$user->id."' selected>";
                                                 }else{
-                                                    echo "<option value='".$user->nama."'>";
+                                                    echo "<option value='".$user->id."'>";
                                                 }
                                                 ?>
                                                     <?= $user->nama ?></option>
@@ -278,10 +278,10 @@
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen"){ 
-                                                if ($skripsi->dospem1==$user->nama) {
-                                                    echo "<option value='".$user->nama."' selected>";
+                                                if ($skripsi->dospem1==$user->id) {
+                                                    echo "<option value='".$user->id."' selected>";
                                                 }else{
-                                                    echo "<option value='".$user->nama."'>";
+                                                    echo "<option value='".$user->id."'>";
                                                 }
                                                 ?>
                                                     <?= $user->nama ?></option>
@@ -296,10 +296,10 @@
                                         <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen"){ 
-                                                if ($skripsi->dospem2==$user->nama) {
-                                                    echo "<option value='".$user->nama."' selected>";
+                                                if ($skripsi->dospem2==$user->id) {
+                                                    echo "<option value='".$user->id."' selected>";
                                                 }else{
-                                                    echo "<option value='".$user->nama."'>";
+                                                    echo "<option value='".$user->id."'>";
                                                 }
                                                 ?>
                                                     <?= $user->nama ?></option>
@@ -406,7 +406,7 @@
                                     <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen" && $user->status=="aktif"){ ?>
-                                        <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
+                                        <option value="<?= $user->id ?>"><?= $user->nama ?></option>
                                         <?php }
                                         endforeach;
                                         ?>

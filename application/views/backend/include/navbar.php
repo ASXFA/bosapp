@@ -12,24 +12,22 @@
             <div class="header-left">
 
                 <div class="dropdown for-notification">
+                    <?php $jumlah = $bimbinganBaru->num_rows(); ?>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
-                        <span class="count bg-danger">3</span>
+                        <span class="count bg-danger"><?php echo $jumlah; ?></span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="notification">
-                        <p class="red">You have 3 Notification</p>
-                        <a class="dropdown-item media" href="#">
-                            <i class="fa fa-check"></i>
-                            <p>Server #1 overloaded.</p>
+                        <p class="red">Kamu Punya <?php echo $jumlah ?> Notifikasi</p>
+                        <?php foreach($bimbinganBaru->result() as $notif): 
+                                foreach($userNotif as $user):
+                                    if($user->id == $notif->id_from){
+                        ?>
+                        <a class="dropdown-item media" href="<?= base_url('backend/bimbingan/detailBimbingan/'.$user->id.'/'.$notif->id) ?>">
+                            <i class="fa fa-envelope"></i>
+                            <p>Pesan Baru dari <strong><?= $user->nama ?></strong></p>
                         </a>
-                        <a class="dropdown-item media" href="#">
-                            <i class="fa fa-info"></i>
-                            <p>Server #2 overloaded.</p>
-                        </a>
-                        <a class="dropdown-item media" href="#">
-                            <i class="fa fa-warning"></i>
-                            <p>Server #3 overloaded.</p>
-                        </a>
+                        <?php } endforeach; endforeach ?>
                     </div>
                 </div>
             </div>
@@ -38,10 +36,10 @@
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php if ($this->session->userdata('level')!="admin") {
                     ?>
-                    <img class="user-avatar rounded-circle" src="<?= base_url('assets/image/').$this->session->userdata('level').'/'.$this->session->userdata('foto') ?>" alt="User Avatar">
+                    <img class="user-avatar img-thumbnail" src="<?= base_url('assets/image/').$this->session->userdata('level').'/'.$this->session->userdata('foto') ?>" alt="User Avatar">
                     <?php }else{
                     ?>
-                    <img class="user-avatar rounded-circle" src="<?= base_url('assets/image/').$this->session->userdata('foto') ?>" alt="User Avatar">
+                    <img class="user-avatar img-thumbnail" src="<?= base_url('assets/image/').$this->session->userdata('foto') ?>" alt="User Avatar">
                     <?php
                     } ?>
                 </a>
