@@ -26,6 +26,9 @@
                         <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/skripsi/skripsi/aktif') ?>">Skripsi Aktif</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="<?= base_url('backend/users/editProfil') ?>"> <i class="menu-icon fa fa-cogs"></i>Edit Profil</a>
+                </li>
                 <?php if($this->session->userdata('level')=="admin"){ ?>
                 <li id="cetak">
                     <a href="widgets.html"> <i class="menu-icon fa fa-print"></i>Cetak Laporan</a>

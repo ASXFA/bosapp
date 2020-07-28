@@ -22,7 +22,8 @@ class Users extends CI_Controller {
     public function __construct(){
         parent::__construct();
         if ($this->session->userdata('is_login')!=1) {
-            $this->session->set_userdata('login','Anda belum login, Silahkan Login Terlebih dahulu !');
+            $this->session->set_flashdata('kondisi','0');
+            $this->session->set_flashdata('login','Anda belum login, Silahkan Login Terlebih dahulu !');
             redirect('login');
         }
         $this->load->model('users_model');
@@ -112,11 +113,45 @@ class Users extends CI_Controller {
         if ($data == TRUE) {
             $this->session->set_flashdata('kondisi','1');
             $this->session->set_flashdata('status','Data Berhasil disimpan !');
-            redirect('backend/users/user/'.$level);
+            if ($this->session->userdata('level')=="dosen") {
+                redirect('backend/users/editProfil');
+            }else{
+                redirect('backend/users/user/'.$level);
+            }
         }else{
             $this->session->set_flashdata('kondisi','0');
             $this->session->set_flashdata('status','Data Gagal diedit !');
-            redirect('backend/users/user/'.$level);
+            if ($this->session->userdata('level')=="dosen") {
+                redirect('backend/users/editProfil');
+            }else{
+                redirect('backend/users/user/'.$level);
+            }
+        }
+    }
+
+    public function editProfil()
+    {
+        $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
+        $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();
+        $this->load->view('backend/include/head.php');
+        $this->load->view('backend/include/sider.php');
+        $this->load->view('backend/include/navbar.php',$data);
+        $this->load->view('backend/editProfil',$data);
+        $this->load->view('backend/include/footer.php');
+    }
+
+    public function editAturan()
+    {
+        $data = $this->users_model->editAturan();
+        if ($data == TRUE) {
+            $this->session->set_flashdata('kondisi','1');
+            $this->session->set_flashdata('status','Data Berhasil disimpan !');
+            redirect('backend/users/editProfil');
+        }else{
+            $this->session->set_flashdata('kondisi','0');
+            $this->session->set_flashdata('status','Data Gagal diedit !');
+            redirect('backend/users/editProfil');
         }
     }
 
@@ -163,5 +198,35 @@ class Users extends CI_Controller {
         $this->load->view('frontend/mahasiswa/include/header',$data);
         $this->load->view('frontend/mahasiswa/mahasiswa',$data);
         $this->load->view('frontend/mahasiswa/include/footer');
+    }
+
+    public function gantiPassword()
+    {
+        $oldPass = $this->input->post('old_pass');
+        $newPass = $this->input->post('new_pass');
+        $confPass = $this->input->post('conf_pass');
+        
+        if ($newPass != $confPass) {
+            $this->session->set_flashdata('kondisi','0');
+            $this->session->set_flashdata('status','Password Baru dengan Konfirmasi beda  !');
+            redirect('backend/users/editProfil');
+        }else{
+            $check = $this->users_model->cek($oldPass);
+            if ($check == FALSE) {
+                $this->session->set_flashdata('kondisi','0');
+                $this->session->set_flashdata('status','Password Lama tidak cocok !');
+                redirect('backend/users/editProfil');
+            }else{
+                $ganti = $this->users_model->gantiPassword($newPass);
+                if ($ganti==TRUE) {
+                    $this->session->set_flashdata('gantiPass','1');
+                    redirect('login/logout');
+                }else{
+                    $this->session->set_flashdata('kondisi','0');
+                    $this->session->set_flashdata('status','Password gagal diganti !');
+                    redirect('backend/users/editProfil');
+                }
+            }
+        }
     }
 }

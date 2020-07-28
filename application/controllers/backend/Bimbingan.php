@@ -52,6 +52,7 @@ class Bimbingan extends CI_Controller {
         // $data['skripsi'] = $this->skripsi_model->getByLevel($statusMhs)->result();
         $data['dosen'] = $this->users_model->getById($idDosen)->row();
         $data['bimbingan'] = $this->bimbingan_model->getByIdLimit($idDosen,$this->session->userdata('id'))->row();
+        $data['bimbinganAll'] = $this->bimbingan_model->getByStatusNol($idDosen,$this->session->userdata('id'),'0')->result();
         $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idDosen,$this->session->userdata('id'))->result();
         // $data['kategori_skripsi'] = $this->kategori_skripsi_model->getAll()->result();
         // $data['skripsiModal'] = $this->skripsi_model->getByLevel($statusMhs)->result();
@@ -67,8 +68,9 @@ class Bimbingan extends CI_Controller {
         $this->load->model('users_model');
         $this->load->model('skripsi_model');
 		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
-        $data['bimbingan'] = $this->bimbingan_model->getByIdLimit($idUser,$this->session->userdata('id'))->row();
+        $data['bimbingan'] = $this->bimbingan_model->getByIdLimitDosen($idUser,$this->session->userdata('id'))->row();
         $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        $data['bimbinganRiwayatCek'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['skripsi'] = $this->skripsi_model->getByLevel('aktif')->result();
@@ -133,26 +135,21 @@ class Bimbingan extends CI_Controller {
             $config['upload_path']          = './assets/bimbingan/'.$this->input->post('id_to').'/'.$this->input->post('id_from');
         }
         
-		$config['allowed_types']        = 'docx|doc|pdf';
+		$config['allowed_types']        = '*';
 		$config['max_size']             = 20480;
         
         $this->load->library('upload', $config);
         $idBimbingan = $this->input->post('idBimbingan');
         if (! $this->upload->do_upload('file')) {
-            $this->session->set_flashdata('kondisi','0');
-            $this->session->set_flashdata('status','File terlalu besar atau Ekstensi bukan PDF !');
-            if ($this->session->userdata('level')=="dosen") {
-                redirect('backend/bimbingan/detailBimbingan/'.$this->input->post('id_to').'/'.$this->input->post('idBimbingan'));
-            }else if($this->session->userdata('level')=="mahasiswa"){
-                redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
-            }
-        }else{
-            $file_name = $this->upload->data('file_name');
-            $file_size = $this->upload->data('file_size');
+            $file_name = "";
+            $file_size = "";
             $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);
             if ($data == TRUE) {
                 if ($idBimbingan != "") {
-                    $this->bimbingan_model->gantiStatus($idBimbingan);
+                    $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
+                    foreach($list as $list){
+                        $this->bimbingan_model->gantiStatus($list->id);
+                    }
                 }
                 $this->session->set_flashdata('kondisi','1');
                 $this->session->set_flashdata('status','Pesan Berhasil dikirim !');
@@ -166,6 +163,43 @@ class Bimbingan extends CI_Controller {
                 $this->session->set_flashdata('status','Pesan Gagal dikirim !');
                 if ($this->session->userdata('level')=="dosen") {
                     redirect('backend/bimbingan/'.$this->input->post('idBimbingan'));
+                }else if($this->session->userdata('level')=="mahasiswa"){
+                    redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                }
+            }
+        }else{
+            if ($this->upload->data('file_ext')==".pdf" || $this->upload->data('file_ext')==".doc" || $this->upload->data('file_ext')==".docx" ) {
+                $file_name = $this->upload->data('file_name');
+                $file_size = $this->upload->data('file_size');
+                $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);
+                if ($data == TRUE) {
+                    if ($idBimbingan != "") {
+                        $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
+                        foreach($list as $list){
+                            $this->bimbingan_model->gantiStatus($list->id);
+                        }
+                    }
+                    $this->session->set_flashdata('kondisi','1');
+                    $this->session->set_flashdata('status','Pesan Berhasil dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/detailBimbingan/'.$this->input->post('id_to').'/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }else{
+                    $this->session->set_flashdata('kondisi','0');
+                    $this->session->set_flashdata('status','Pesan Gagal dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }
+            }else{
+                $this->session->set_flashdata('kondisi','0');
+                $this->session->set_flashdata('status','File Ekstensi bukan PDF DOC atau DOCX !');
+                if ($this->session->userdata('level')=="dosen") {
+                    redirect('backend/bimbingan/detailBimbingan/'.$this->input->post('id_to').'/'.$this->input->post('idBimbingan'));
                 }else if($this->session->userdata('level')=="mahasiswa"){
                     redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
                 }

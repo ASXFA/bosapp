@@ -30,7 +30,7 @@
             $this->session->set_userdata('status','');
             $this->session->set_userdata('kondisi','');
         ?>
-        <?php if (empty($bimbingan)) {
+        <?php if (empty($bimbinganRiwayatCek)) {
             $this->session->set_flashdata('kondisi','0');
             $this->session->set_flashdata('status','Mahasiswa belum melakukan Bimbingan !');
             redirect('backend/bimbingan');
@@ -78,7 +78,7 @@
                     <div class="card-header bg-info">
                         <table class="detailBimbinganTable">
                             <tr>
-                                <td rowspan="3"><img class="rounded d-block" src="<?= base_url('assets/image/dosen/'.$this->session->userdata('foto')) ?>" width="70px" alt=""></td>
+                                <td rowspan="3"><img class="rounded d-block" src="<?= base_url('assets/image/dosen/'.$this->session->userdata('foto')) ?>" width="35px" alt=""></td>
                             </tr>
                             <tr>
                                 <td class="text-white"><?= $this->session->userdata('nama') ?></td>
@@ -137,7 +137,14 @@
                                     <?php $no=1; foreach($bimbinganRiwayat as $riwayat): ?>
                                         <tr>
                                             <td ><?= $no ?></td>
-                                            <td><a href="<?= base_url('backend/bimbingan/detailBimbinganRiwayat/'.$riwayat->id_from.'/'.$riwayat->id) ?>" class=""><?= $riwayat->subject ?></a></td>
+                                            <td>
+                                                <a href="<?= base_url('backend/bimbingan/detailBimbinganRiwayat/'.$riwayat->id_from.'/'.$riwayat->id) ?>" class=""><?= $riwayat->subject ?></a> 
+                                                <?php if($riwayat->status == "0"){ ?>
+                                                <span class="badge badge-success"><i class="fa fa-comment"></i></span>
+                                                <?php }else{ ?>
+                                                <span class="badge badge-secondary"><i class="fa fa-check-circle"></i></span>
+                                                <?php } ?>
+                                            </td>
                                             <td><?= $riwayat->tgl_bimbingan ?></td>
                                         </tr>
                                     <?php $no++; endforeach ?>

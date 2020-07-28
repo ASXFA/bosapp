@@ -59,7 +59,26 @@ class Bimbingan_model extends CI_Model {
         return $this->db->get('bimbingan');
     }
 
+    public function getByStatusNol($idFrom,$idTo,$status)
+    {
+        $this->db->where('id_from',$idFrom);
+        $this->db->where('id_to',$idTo);
+        $this->db->where('status',$status);
+        $this->db->order_by('id','DESC');
+        return $this->db->get('bimbingan');
+    }
+
     public function getByIdLimit($idUser,$idDosen)
+    {
+        $this->db->where('id_from',$idUser);
+        $this->db->where('id_to',$idDosen);
+        $this->db->where('status','0');
+        $this->db->order_by('id','DESC');
+        $this->db->limit(1);
+        return $this->db->get('bimbingan');
+    }
+
+    public function getByIdLimitDosen($idUser,$idDosen)
     {
         $this->db->where('id_from',$idUser);
         $this->db->where('id_to',$idDosen);

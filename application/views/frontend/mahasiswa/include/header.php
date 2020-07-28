@@ -51,8 +51,8 @@
             <?php }else{ ?>
                 <li class="active"><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
                 <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-                <li><a href="#services"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="#resume"><i class="bx bx-group"></i> <span>Dosen Pembimbing</span></a></li>
+                <li><a href="#services"><i class="bx bx-book-content"></i> <span>Log Bimbingan</span></a></li>
                 <li><a href="<?= base_url('login/logout') ?>"><i class="bx bx-log-out-circle"></i> <span>Logout</span></a></li>
             <?php } ?>
         </ul>

@@ -3,11 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users_model extends CI_Model {
 
-    public function check()
+    public function check($level)
     {
         $where = array(
             'username' => $this->input->post('username'),
-            'password' => md5($this->input->post('pass'))
+            'password' => md5($this->input->post('pass')),
+            'level' => $level
         );
         return $this->db->get_where('users',$where);
     }
@@ -68,18 +69,68 @@ class Users_model extends CI_Model {
 
     public function edit($id,$foto)
     {
-        $data = array(
-            'nama' => $this->input->post('nama'),
-            'nomor_induk' => $this->input->post('nomor_induk'),
-            'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-            'telepon' => $this->input->post('telepon'),
-            'email' => $this->input->post('email'),
-            'konsentrasi' => $this->input->post('konsentrasi'),
-            'angkatan' => $this->input->post('angkatan'),
-            'jabatan' => $this->input->post('jabatan'),
-            'foto' => $foto
-        );
+        if ($this->session->userdata('id')=="dosen") {
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'nomor_induk' => $this->input->post('nomor_induk'),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                'telepon' => $this->input->post('telepon'),
+                'email' => $this->input->post('email'),
+                'jabatan' => $this->input->post('jabatan'),
+                'foto' => $foto
+            );
+        }else{
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'nomor_induk' => $this->input->post('nomor_induk'),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                'telepon' => $this->input->post('telepon'),
+                'email' => $this->input->post('email'),
+                'konsentrasi' => $this->input->post('konsentrasi'),
+                'angkatan' => $this->input->post('angkatan'),
+                'jabatan' => $this->input->post('jabatan'),
+                'foto' => $foto
+            );
+        }
         $this->db->where('id',$id);
+        $query = $this->db->update('users',$data);
+        if ($query) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    public function editAturan()
+    {
+        $data = array(
+            'aturan' => $this->input->post('aturan')
+        );
+        $this->db->where('id',$this->session->userdata('id'));
+        $query = $this->db->update('users',$data);
+        if ($query) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    public function cek($password)
+    {
+        $this->db->where('id',$this->session->userdata('id'));
+        $this->db->where('password',md5($password));
+        $data = $this->db->get('users');
+        if ($data) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    public function gantiPassword($password)
+    {
+        $data = array('password'=> md5($password));
+        $this->db->where('id',$this->session->userdata('id'));
         $query = $this->db->update('users',$data);
         if ($query) {
             return TRUE;

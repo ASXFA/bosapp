@@ -1,4 +1,16 @@
 <div class="breadcrumbs">
+    <?php 
+        if ($this->session->flashdata('login')) {?>
+            <div class="sufee-alert alert with-close alert-dark alert-dismissible fade show" id="alertlogin">
+                <span class="badge badge-pill badge-dark">Success</span>
+                <?= $this->session->flashdata('login') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+    ?>
     <div class="breadcrumbs-inner">
         <div class="row m-0">
             <div class="col-sm-4">
@@ -17,19 +29,6 @@
     <!-- Animated -->
     <div class="animated fadeIn">
         <!-- Widgets  -->
-            <?php 
-                if ($this->session->userdata('login')) {?>
-                    <div class="sufee-alert alert with-close alert-dark alert-dismissible fade show" id="alertlogin">
-                        <span class="badge badge-pill badge-dark">Success</span>
-                        <?= $this->session->userdata('login') ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <?php
-                }
-                $this->session->set_userdata('login','');
-            ?>
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="card">

@@ -18,19 +18,19 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index($level)
 	{
         if ($this->session->userdata('is_login')==1) {
             redirect('admin');
 		}
-		$this->session->sess_destroy();
-		$this->load->view('login');
+		$data['level'] = $level;
+		$this->load->view('login',$data);
 	}
 
-	public function aksi_login()
+	public function aksi_login($level)
 	{
 		$this->load->model('users_model');
-		$check = $this->users_model->check();
+		$check = $this->users_model->check($level);
 		if ($check->num_rows() > 0) {
 			foreach($check->result() as $user){
 				$sess = array(
@@ -53,26 +53,33 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($sess);
 			}
 			if ($this->session->userdata('level')=="admin") {
-				$this->session->set_userdata('login','Selamat Datang !');
+				$this->session->set_flashdata('login','Selamat Datang !');
 				redirect('admin');
 			}else if($this->session->userdata('level')=="mahasiswa"){
-				$this->session->set_userdata('login','Selamat Datang !');
+				$this->session->set_flashdata('login','Selamat Datang !');
 				redirect('mahasiswa');
 			}else if($this->session->userdata('level')=="dosen"){
-				$this->session->set_userdata('login','Selamat Datang !');
+				$this->session->set_flashdata('login','Selamat Datang !');
 				redirect('admin');
 			}
 		}else{
-			$this->session->set_userdata('login','Password atau Username anda tidak cocok !');
-			redirect('login');
+			$this->session->set_flashdata('login','Password atau Username anda tidak cocok !');
+			redirect('masuk/'.$level);
 		}
 	}
 
 	public function logout()
 	{
+		$level = $this->session->flashdata('gantiPass');
 		$this->session->set_userdata('is_login','0');
 		$this->session->sess_destroy();
-		redirect(base_url());
+		if ($level=="1") {
+			$this->session->set_flashdata('kondisi','1');
+			$this->session->set_flashdata('login','Password berhasil diganti !');
+			$this->load->view('login');
+		}else{
+			redirect(base_url());
+		}
 	}
 
 }

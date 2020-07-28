@@ -28,30 +28,40 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<?php 
-					if ($this->session->userdata('login')) {?>
+					if ($this->session->flashdata('login')) {
+						if($this->session->flashdata('kondisi')=="1"){
+					?>
+						<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+							<span class="badge badge-pill badge-success">Success</span>
+							<?= $this->session->flashdata('login') ?>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<?php }else{ ?>
 						<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
 							<span class="badge badge-pill badge-danger">Failed</span>
-							<?= $this->session->userdata('login') ?>
+							<?= $this->session->flashdata('login') ?>
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 					<?php
-					}
+					} }
 				?>
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="<?= base_url() ?>assets/login/images/img-01.png" alt="IMG">
 				</div>
-				<form class="login100-form validate-form" action="<?= base_url('login/aksi_login') ?>" method="POST" >
+				<form class="login100-form validate-form" action="<?= base_url('login/aksi_login/'.$level) ?>" method="POST" >
 					<span class="login100-form-title">
-						Login
+						Login <?= ucfirst($level) ?>
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid Username required: Nomor induk ">
 						<input class="input100" type="text" name="username" placeholder="Nomor Induk" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-id-card" aria-hidden="true"></i>
 						</span>
 					</div>
 

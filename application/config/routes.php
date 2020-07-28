@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'backend/dashboard/index';
 $route['arsipSkripsi'] = 'welcome/skripsi';
+$route['masuk/(:any)'] = 'login/index/$1';
 $route['mahasiswa'] = 'backend/users/mahasiswa';
 $route['bimbingan/(:any)'] = 'backend/bimbingan/bimbingan/$1';
 $route['tambahBimbingan'] = 'backend/bimbingan/tambahBimbingan';

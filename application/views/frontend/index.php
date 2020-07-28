@@ -6,8 +6,8 @@
         <div class="hero-area-content">
           <h1>Aplikasi Bimbingan Skripsi Online</h1>
           <p>Silahkan lakukan Login untuk menggunakan aplikasi ini</p>
-          <a href="<?= base_url('login') ?>" class="appao-btn">Login Mahasiswa</a>
-          <a href="<?= base_url('login') ?>" class="appao-btn">Login Dosen</a>
+          <a href="<?= base_url('masuk/mahasiswa') ?>" class="appao-btn">Login Mahasiswa</a>
+          <a href="<?= base_url('masuk/dosen') ?>" class="appao-btn">Login Dosen</a>
         </div>
       </div>
       <div class="col-lg-5">
