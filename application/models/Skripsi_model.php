@@ -37,6 +37,18 @@ class Skripsi_model extends CI_Model {
         }
     }
 
+    public function gantiStatusMHS($id,$status)
+    {
+        $data = array('status_mahasiswa'=>$status);
+        $this->db->where('id',$id);
+        $query = $this->db->update('skripsi',$data);
+        if ($query) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
     public function tambah($file_name,$file_size,$level)
     {
         $data = array(

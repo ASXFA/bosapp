@@ -51,7 +51,7 @@
                                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required/>
                             </div>
                             <div class="form-group">
-                                <input type="file" class="form-control" name="file" id="file" placeholder="File" required/>
+                                <input type="file" class="form-control" name="file" id="file" placeholder="File"/>
                             </div>
                             <div class="form-group">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Keterangan" required></textarea>
@@ -64,7 +64,7 @@
                     <h3 class="resume-title">Pesan Terbaru</h3>
                         <?php if(!empty($bimbinganAll)){ 
                                 foreach($bimbinganAll as $bimbingan):  ?>
-                    <div class="resume-item pb-0">
+                    <div class="resume-item">
                         <h4><?= $bimbingan->subject ?></h4>
                         <h5><?= $bimbingan->tgl_bimbingan ?></h5>
                         <p><?= $bimbingan->keterangan ?></p>

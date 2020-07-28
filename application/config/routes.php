@@ -59,3 +59,4 @@ $route['masuk/(:any)'] = 'login/index/$1';
 $route['mahasiswa'] = 'backend/users/mahasiswa';
 $route['bimbingan/(:any)'] = 'backend/bimbingan/bimbingan/$1';
 $route['tambahBimbingan'] = 'backend/bimbingan/tambahBimbingan';
+$route['cetakBimbingan'] = 'backend/bimbingan/cetakBimbingan';

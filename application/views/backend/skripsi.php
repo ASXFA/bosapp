@@ -32,7 +32,11 @@
         ?>
         <div class="card">
             <div class="card-header">
-                <h4 class="d-block">Data Skripsi Mahasiswa <span id="title"><?= ucfirst($title) ?></span><span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModalSkripsi"><i class="fa fa-plus"></i> Tambah Data</a></span></h4>
+                <h4 class="d-block">Data Skripsi Mahasiswa <span id="title"><?= ucfirst($title) ?></span>
+                    <?php if($this->session->userdata('level')=="admin"){ ?>
+                    <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModalSkripsi"><i class="fa fa-plus"></i> Tambah Data</a></span>
+                    <?php } ?>
+                </h4>
             </div>
             <div class="table-stats order-table ov-h">
                 <table class="table">
@@ -43,7 +47,6 @@
                             <th>Kategori</th>
                             <th>Tahun</th>
                             <th>Mahasiswa</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -62,36 +65,22 @@
                                                 <td width="20%"> <?= $skripsi->judul ?> </td>
                                                 <td> <?= $skripsi->kategoriskripsi ?> </td>
                                                 <td> <?= $skripsi->tahun ?> </td>
-                                                <td> <?= $skripsi->mahasiswa ?> </td>
-                                                <td>
+                                                <td> 
                                                     <?php 
-                                                        if ($skripsi->status_skripsi=="published") {
-                                                    ?>
-                                                    <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
-                                                    <?php 
-                                                        }else {
-                                                    ?>
-                                                    <span class="badge badge-warning"><?= $skripsi->status_skripsi ?></span>
-                                                    <?php
-                                                        }
-                                                    ?>
+                                                        foreach($users as $user):
+                                                            if($user->id == $skripsi->mahasiswa){
+                                                                echo $user->nama;
+                                                            }
+                                                        endforeach;
+                                                    ?> 
                                                 </td>
                                                 <td width="25%">
-                                                    <?php 
-                                                        if ($skripsi->status_skripsi == "published") {
-                                                    ?>
-                                                    <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
-                                                    <?php
-                                                        }else{
-                                                    ?>
-                                                    <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
-                                                    <?php
-                                                        }
-                                                    ?>
+                                                    <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/lulus/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Pastikan Mahasiswa anda benar benar telah menyelesaikan kegiatan skripsi dengan penuh !')" alt="anu"><i class="fa fa-check-circle"></i> Selesai</a>
+                                                    
                                                     <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
-                                                    
+                                                    <?php if($this->session->userdata('level')=="admin"){ ?>
                                                     <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
-                                                    
+                                                    <?php } ?>
                                                     <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
@@ -111,6 +100,7 @@
                                             <td> <?= $skripsi->mahasiswa ?> </td>
                                             <td>
                                                 <?php 
+                                                
                                                     if ($skripsi->status_skripsi=="published") {
                                                 ?>
                                                 <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
@@ -124,6 +114,7 @@
                                             </td>
                                             <td width="25%">
                                                 <?php 
+                                                if($this->session->userdata('level')=="admin"){
                                                     if ($skripsi->status_skripsi == "published") {
                                                 ?>
                                                 <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
@@ -132,12 +123,14 @@
                                                 ?>
                                                 <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
                                                 <?php
-                                                    }
+                                                    }}
                                                 ?>
                                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
-                                                
+
+                                                <?php if($this->session->userdata('level')=="admin"){ ?>
                                                 <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
-                                                
+                                                <?php } ?>
+
                                                 <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>

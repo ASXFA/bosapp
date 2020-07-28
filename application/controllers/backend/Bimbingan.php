@@ -87,6 +87,7 @@ class Bimbingan extends CI_Controller {
         $this->load->model('skripsi_model');
         $data['bimbingan'] = $this->bimbingan_model->getByIdSatuRiwayat($idUser,$idBimbingan)->row();
         $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        $data['bimbinganRiwayatCek'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['skripsi'] = $this->skripsi_model->getByLevel('aktif')->result();
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
@@ -247,6 +248,11 @@ class Bimbingan extends CI_Controller {
             $this->session->set_flashdata('status','Data Gagal dihapus !');
             redirect('backend/skripsi/skripsi/'.$level);
         }
+    }
+
+    public function cetakBimbingan()
+    {
+        $this->load->view('frontend/mahasiswa/kartuBimbingan');
     }
 
 }

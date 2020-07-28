@@ -50,7 +50,11 @@ class Skripsi extends CI_Controller {
     }
     
     public function gantiStatus($id,$status,$level){
-        $data = $this->skripsi_model->gantiStatus($id,$status);
+        if ($status == "lulus") {
+            $data = $this->skripsi_model->gantiStatusMHS($id,$status);
+        }else{
+            $data = $this->skripsi_model->gantiStatus($id,$status);
+        }
         if ($data == TRUE) {
             $this->session->set_flashdata('kondisi','1');
             $this->session->set_flashdata('status','Status Berhasil diganti !');

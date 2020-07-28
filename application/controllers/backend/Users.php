@@ -194,7 +194,7 @@ class Users extends CI_Controller {
         endforeach;
         $data['bimbinganBaruDospem1'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem1)->result();
 		$data['bimbinganBaruDospem2'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem2)->result();
-		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'))->result();
+        $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'))->result();
         $this->load->view('frontend/mahasiswa/include/header',$data);
         $this->load->view('frontend/mahasiswa/mahasiswa',$data);
         $this->load->view('frontend/mahasiswa/include/footer');
