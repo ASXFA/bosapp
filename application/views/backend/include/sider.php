@@ -16,9 +16,6 @@
                         <li><i class="fa fa-users"></i><a href="<?= base_url('backend/users/user/mahasiswa') ?>">Manage Mahasiswa</a></li>
                     </ul>
                 </li>
-                <li id="log">
-                    <a href="<?= base_url('backend/bimbingan') ?>"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
-                </li>
                 <li class="menu-item-has-children dropdown" id="akademik">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Skripsi</a>
                     <ul class="sub-menu children dropdown-menu">                            
@@ -26,12 +23,20 @@
                         <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/skripsi/skripsi/aktif') ?>">Skripsi Aktif</a></li>
                     </ul>
                 </li>
+                <?php if($this->session->userdata('level')=="dosen"): ?>
+                <li id="log">
+                    <a href="<?= base_url('backend/bimbingan') ?>"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
+                </li>
                 <li>
                     <a href="<?= base_url('backend/users/editProfil') ?>"> <i class="menu-icon fa fa-cogs"></i>Edit Profil</a>
                 </li>
+                <?php endif ?>
                 <?php if($this->session->userdata('level')=="admin"){ ?>
-                <li id="cetak">
+                <!-- <li id="cetak">
                     <a href="widgets.html"> <i class="menu-icon fa fa-print"></i>Cetak Laporan</a>
+                </li> -->
+                <li>
+                    <a href="<?= base_url('backend/permintaan') ?>"><i class="menu-icon fa fa-envelope"></i> Permintaan</a>
                 </li>
                 <li class="menu-item-has-children dropdown" id="pengaturan">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Pengaturan</a>

@@ -47,7 +47,7 @@
                             <tr>
                                 <td class="text-white"><?= $user->nama ?></td>
                                 <td width="50px"></td>
-                                <td rowspan="3"><span class="badge badge-secondary"><?= $bimbingan->tgl_bimbingan ?></span></td>
+                                <td rowspan="3"><span class="badge badge-secondary"><?= date("d F Y h:i:s", strtotime($bimbingan->tgl_bimbingan))." wib" ?></span></td>
                             </tr>
                             <tr>
                                 <td class="text-white"><?= $user->nomor_induk ?></td>
@@ -145,7 +145,7 @@
                                                 <span class="badge badge-secondary"><i class="fa fa-check-circle"></i></span>
                                                 <?php } ?>
                                             </td>
-                                            <td><?= $riwayat->tgl_bimbingan ?></td>
+                                            <td><?= date("d F Y h:i:s", strtotime($riwayat->tgl_bimbingan))." wib" ?></td>
                                         </tr>
                                     <?php $no++; endforeach ?>
                                 </tbody>

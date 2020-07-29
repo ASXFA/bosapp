@@ -70,13 +70,19 @@ class Login extends CI_Controller {
 
 	public function logout()
 	{
-		$level = $this->session->flashdata('gantiPass');
+		$status = $this->session->flashdata('gantiPass');
+		$level = $this->session->flashdata('level');
 		$this->session->set_userdata('is_login','0');
 		$this->session->sess_destroy();
-		if ($level=="1") {
+		if ($status=="1") {
 			$this->session->set_flashdata('kondisi','1');
 			$this->session->set_flashdata('login','Password berhasil diganti !');
-			$this->load->view('login');
+			?>
+		<script>
+			window.alert('Password Berhasil Diganti !');
+			window.location.href="<?php echo site_url('masuk/'.$level); ?>";
+		</script>
+		<?php
 		}else{
 			redirect(base_url());
 		}

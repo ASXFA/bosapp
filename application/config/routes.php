@@ -60,3 +60,7 @@ $route['mahasiswa'] = 'backend/users/mahasiswa';
 $route['bimbingan/(:any)'] = 'backend/bimbingan/bimbingan/$1';
 $route['tambahBimbingan'] = 'backend/bimbingan/tambahBimbingan';
 $route['cetakBimbingan'] = 'backend/bimbingan/cetakBimbingan';
+$route['editMahasiswa'] = 'backend/permintaan/ajukan';
+$route['tambahPermintaan'] = 'backend/permintaan/tambah';
+$route['gantiPassMHS'] = 'backend/users/gantiPassMHS';
+$route['aksiGantiPass'] = 'backend/users/gantiPassword';

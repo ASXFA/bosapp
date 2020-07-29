@@ -252,7 +252,18 @@ class Bimbingan extends CI_Controller {
 
     public function cetakBimbingan()
     {
-        $this->load->view('frontend/mahasiswa/kartuBimbingan');
+        $this->load->model('skripsi_model');
+        $this->load->model('users_model');
+        $skripsi = $this->skripsi_model->getById($this->session->userdata('id'))->row();
+        $dospem1 = $skripsi->dospem1;
+        $dospem2 = $skripsi->dospem2;
+        $data['skripsi'] = $this->skripsi_model->getById($this->session->userdata('id'))->row();
+        $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();
+        $data['dospem1'] = $this->users_model->getById($dospem1)->row();
+        $data['dospem2'] = $this->users_model->getById($dospem2)->row();
+        $data['bimbinganDospem1'] = $this->bimbingan_model->getByIdCetak($dospem1,$this->session->userdata('id'))->result();
+        $data['bimbinganDospem2'] = $this->bimbingan_model->getByIdCetak($dospem2,$this->session->userdata('id'))->result();
+        $this->load->view('frontend/mahasiswa/kartuBimbingan',$data);
     }
 
 }

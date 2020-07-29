@@ -526,6 +526,23 @@ section {
   background-color: #0563bb;
 }
 
+form.gantiPassMHS .has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: inline-block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  color: #aaa;
+  margin-top: -35px;
+  margin-left: 540px;
+}
+
+form.gantiPassMHS .has-search .form-control-feedback:hover {
+  color: black;
+}
+
 /*--------------------------------------------------------------
 # Resume
 --------------------------------------------------------------*/

@@ -26,6 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="<?= base_url('assets/frontend/mahasiswa') ?>/css/style.css" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- =======================================================
   * Template Name: MyResume - v2.1.0
@@ -45,7 +46,7 @@
 
     <nav class="nav-menu">
         <ul>
-            <?php if($title=="bimbingan"){ ?>
+            <?php if($title=="bimbingan" || $title=="Ajukan" || $title=="GantiPassword"){ ?>
                 <li><a href="<?= base_url('mahasiswa') ?>"><i class="bx bx-undo"></i> <span>Back</span></a></li>
                 <li><a href="<?= base_url('login/logout') ?>"><i class="bx bx-log-out-circle"></i> <span>Logout</span></a></li>
             <?php }else{ ?>

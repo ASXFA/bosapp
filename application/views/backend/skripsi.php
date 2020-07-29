@@ -44,9 +44,11 @@
                         <tr>
                             <th class="serial">#</th>
                             <th>Judul Skripsi</th>
-                            <th>Kategori</th>
                             <th>Tahun</th>
                             <th>Mahasiswa</th>
+                            <?php if($title=="lulus"): ?>
+                            <th>Status</th>
+                            <?php endif ?>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -63,7 +65,6 @@
                                             <tr>
                                                 <td class="serial"><?= $no ?></td>
                                                 <td width="20%"> <?= $skripsi->judul ?> </td>
-                                                <td> <?= $skripsi->kategoriskripsi ?> </td>
                                                 <td> <?= $skripsi->tahun ?> </td>
                                                 <td> 
                                                     <?php 
@@ -94,13 +95,25 @@
                         ?>
                                         <tr>
                                             <td class="serial"><?= $no ?></td>
-                                            <td width="20%"> <?= $skripsi->judul ?> </td>
-                                            <td> <?= $skripsi->kategoriskripsi ?> </td>
+                                            <td width="25%"> <?= $skripsi->judul ?> </td>
                                             <td> <?= $skripsi->tahun ?> </td>
-                                            <td> <?= $skripsi->mahasiswa ?> </td>
+                                            <td> 
+                                                <?php 
+                                                    if(strlen($skripsi->mahasiswa)>1){
+                                                        echo $skripsi->mahasiswa;
+                                                    }else{
+                                                        foreach($users as $user):
+                                                            if($user->id == $skripsi->mahasiswa){
+                                                                echo $user->nama;
+                                                            }
+                                                        endforeach;
+                                                    }
+                                                ?> 
+                                            </td>
+                                            <?php if($title=="lulus"){ ?>
                                             <td>
                                                 <?php 
-                                                
+                                                    
                                                     if ($skripsi->status_skripsi=="published") {
                                                 ?>
                                                 <span class="badge badge-complete"><?= $skripsi->status_skripsi ?></span>
@@ -108,22 +121,30 @@
                                                     }else {
                                                 ?>
                                                 <span class="badge badge-warning"><?= $skripsi->status_skripsi ?></span>
-                                                <?php
-                                                    }
-                                                ?>
                                             </td>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
                                             <td width="25%">
                                                 <?php 
                                                 if($this->session->userdata('level')=="admin"){
-                                                    if ($skripsi->status_skripsi == "published") {
+                                                    if($title=="lulus"){
+                                                        if ($skripsi->status_skripsi == "published") {
                                                 ?>
                                                 <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/unpublish/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')" alt="anu"><i class="fa fa-times"></i> Unpublish</a>
                                                 <?php
-                                                    }else{
+                                                        }else{
                                                 ?>
                                                 <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/published/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Yakin untuk mengganti Status Skripsi ?')"><i class="fa fa-check"></i> Publish</a>
                                                 <?php
-                                                    }}
+                                                        }
+                                                    }else{
+                                                ?>
+                                                <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/lulus/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Pastikan Mahasiswa benar benar telah menyelesaikan kegiatan skripsi dengan penuh !')" alt="anu"><i class="fa fa-check-circle"></i> Selesai</a>
+                                                <?php
+                                                    }
+                                                }
                                                 ?>
                                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
 
@@ -194,15 +215,50 @@
                                         </thead>
                                         <tr>
                                             <td>Nama Mahasiswa </td>
-                                            <td><?= $skripsi->mahasiswa ?></td>
+                                            <td>
+                                            <?php 
+                                                    if(strlen($skripsi->mahasiswa)>1){
+                                                        echo $skripsi->mahasiswa;
+                                                    }else{
+                                                        foreach($users as $user):
+                                                            if($user->id == $skripsi->mahasiswa){
+                                                                echo $user->nama;
+                                                            }
+                                                        endforeach;
+                                                    }
+                                                ?> 
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Dospem 1 </td>
-                                            <td><?= $skripsi->dospem1 ?></td>
+                                            <td>
+                                            <?php 
+                                                    if(strlen($skripsi->dospem1)>1){
+                                                        echo $skripsi->dospem1;
+                                                    }else{
+                                                        foreach($users as $user):
+                                                            if($user->id == $skripsi->dospem1){
+                                                                echo $user->nama;
+                                                            }
+                                                        endforeach;
+                                                    }
+                                                ?> 
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Dospem 2 </td>
-                                            <td><?= $skripsi->dospem2 ?></td>
+                                            <td><?php 
+                                                    if(strlen($skripsi->dospem2)>1){
+                                                        echo $skripsi->dospem2;
+                                                    }else{
+                                                        foreach($users as $user):
+                                                            if($user->id == $skripsi->dospem2){
+                                                                echo $user->nama;
+                                                            }
+                                                        endforeach;
+                                                    }
+                                                ?> 
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Kategori Skripsi </td>
@@ -319,7 +375,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Tahun</label>
-                                    <input type="number" name="tahun" min="1990" max="2030" class="form-control" value="<?= $skripsi->tahun ?>" required>
+                                    <input type="text" name="tahun" id="tahun<?= $skripsi->id ?>" class="form-control" value="<?= $skripsi->tahun ?>" required>
+                                    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    
+                                    <!--Local Stuff-->
+                                    <script>
+                                        jQuery(document).ready(function() {
+                                            jQuery("#tahun<?= $skripsi->id ?>").datepicker({
+                                                format: "yyyy",
+                                                viewMode: "years", 
+                                                minViewMode: "years"
+                                            });
+                                        });
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-control-label">File Skripsi</label>
@@ -370,12 +439,18 @@
                                         }else{
                                     ?>
                                     <select name="mahasiswa" id="" class="form-control" required>
-                                        <option selected disable>--PILIH--</option>
-                                        <?php foreach($users as $user):
-                                            if($user->level=="mahasiswa" && $user->status=="aktif"){ ?>
-                                        <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
-                                        <?php }
-                                    endforeach; ?>
+                                        
+                                        <?php 
+                                        foreach($users as $user):
+                                            for($i=0; $i<count($mhsTersedia); $i++){
+                                                if ($mhsTersedia[$i] == $user->id) {
+                                        ?>
+                                        <option value="<?= $user->id ?>"><?= $user->nama ?></option>
+                                        <?php
+                                                }
+                                            }
+                                        endforeach; 
+                                        ?>
                                     </select>
                                         <?php 
                                         }
@@ -384,10 +459,9 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 1</label>
                                     <select name="dospem1" id="" class="form-control" required>
-                                        <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen" && $user->status=="aktif"){ ?>
-                                        <option value="<?= $user->nama ?>"><?= $user->nama ?></option>
+                                        <option value="<?= $user->id ?>"><?= $user->nama ?></option>
                                         <?php }
                                         endforeach;
                                         ?>
@@ -396,7 +470,6 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Dospem 2</label>
                                     <select name="dospem2" id="" class="form-control" required>
-                                    <option selected disable>--PILIH--</option>
                                         <?php foreach($users as $user):
                                             if($user->level=="dosen" && $user->status=="aktif"){ ?>
                                         <option value="<?= $user->id ?>"><?= $user->nama ?></option>
@@ -408,7 +481,6 @@
                                 <div class="form-group">
                                     <label for="" class="form-control-label">Kategori Skripsi</label>
                                     <select name="kategoriskripsi" id="" class="form-control" required>
-                                        <option selected disable>--PILIH--</option>
                                         <?php foreach($kategori_skripsi as $kategori):?>
                                         <option value="<?= $kategori->nama ?>"><?= $kategori->nama ?></option>
                                         <?php 
@@ -421,8 +493,14 @@
                                     <input type="number" min="1990" max="2030" name="tahun" class="form-control" id="tahun" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="form-control-label">File Skripsi</label>
-                                    <input type="file" name="file" class="form-control" required>
+                                    <label for="" class="form-control-label">File Skripsi 
+                                        <small>
+                                            <?php if($title=="aktif"){
+                                                echo "( Masukan data DUMMY saja ! )";
+                                            } ?>
+                                        </small>
+                                    </label>
+                                    <input type="file" name="file" class="form-control">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>

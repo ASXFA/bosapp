@@ -33,12 +33,38 @@ class Users extends CI_Controller {
 	public function user($level)
 	{
         $this->load->model('kategori_skripsi_model');
+        $this->load->model('permintaan_model');
+        $this->load->model('skripsi_model');
         $data['title'] = $level;
         $data['user'] = $this->users_model->getByLevel($level)->result();
         $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         $data['userModal'] = $this->users_model->getByLevel($level)->result();
         $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
+        if ($this->session->userdata('level')=="admin") {
+            $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+        }
+        $this->load->view('backend/include/head.php');
+        $this->load->view('backend/include/sider.php');
+        $this->load->view('backend/include/navbar.php',$data);
+        $this->load->view('backend/users',$data);
+        $this->load->view('backend/include/footer.php');
+    }
+
+	public function userEdit($id)
+	{
+        $this->load->model('kategori_skripsi_model');
+        $this->load->model('permintaan_model');
+        $this->load->model('skripsi_model');
+        $data['title'] = 'mahasiswa';
+        $data['user'] = $this->users_model->getById($id)->result();
+        $data['userModal'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
+        if ($this->session->userdata('level')=="admin") {
+            $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+        }
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
         $this->load->view('backend/include/navbar.php',$data);
@@ -200,6 +226,14 @@ class Users extends CI_Controller {
         $this->load->view('frontend/mahasiswa/include/footer');
     }
 
+    public function gantiPassMHS()
+    {
+        $data['title'] = "GantiPassword";
+        $this->load->view('frontend/mahasiswa/include/header',$data);
+        $this->load->view('frontend/mahasiswa/gantiPass');
+        $this->load->view('frontend/mahasiswa/include/footer');
+    }
+
     public function gantiPassword()
     {
         $oldPass = $this->input->post('old_pass');
@@ -209,22 +243,35 @@ class Users extends CI_Controller {
         if ($newPass != $confPass) {
             $this->session->set_flashdata('kondisi','0');
             $this->session->set_flashdata('status','Password Baru dengan Konfirmasi beda  !');
-            redirect('backend/users/editProfil');
+            if ($this->session->userdata('level')=="dosen") {
+                redirect('backend/users/editProfil');
+            }else{
+                redirect('gantiPassMHS');
+            }
         }else{
             $check = $this->users_model->cek($oldPass);
             if ($check == FALSE) {
                 $this->session->set_flashdata('kondisi','0');
                 $this->session->set_flashdata('status','Password Lama tidak cocok !');
-                redirect('backend/users/editProfil');
+                if ($this->session->userdata('level')=="dosen") {
+                    redirect('backend/users/editProfil');
+                }else{
+                    redirect('gantiPassMHS');
+                }
             }else{
                 $ganti = $this->users_model->gantiPassword($newPass);
                 if ($ganti==TRUE) {
                     $this->session->set_flashdata('gantiPass','1');
+                    $this->session->set_flashdata('level',$this->session->userdata('level'));
                     redirect('login/logout');
                 }else{
                     $this->session->set_flashdata('kondisi','0');
                     $this->session->set_flashdata('status','Password gagal diganti !');
-                    redirect('backend/users/editProfil');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/users/editProfil');
+                    }else{
+                        redirect('gantiPassMHS');
+                    }
                 }
             }
         }

@@ -19,6 +19,13 @@ class Users_model extends CI_Model {
         return $this->db->get('users');
     }
 
+    public function getByStatus($status,$level)
+    {
+        $this->db->where('status',$status);
+        $this->db->where('level',$level);
+        return $this->db->get('users');
+    }
+
     public function getById($id)
     {
         $this->db->where('id',$id);

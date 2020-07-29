@@ -52,6 +52,14 @@ class Bimbingan_model extends CI_Model {
         $this->db->order_by('id','DESC');
         return $this->db->get('bimbingan');
     }
+
+    public function getByIdCetak($idUser,$idDosen)
+    {
+        $this->db->where('id_from',$idUser);
+        $this->db->where('id_to',$idDosen);
+        $this->db->order_by('id','ASC');
+        return $this->db->get('bimbingan');
+    }
     public function getByIdSatuRiwayat($idUser,$idBimbingan)
     {
         $this->db->where('id_from',$idUser);

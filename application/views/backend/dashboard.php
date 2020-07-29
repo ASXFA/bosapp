@@ -109,6 +109,7 @@
             </div>
         </div>
         <div class="row">
+            <?php if($this->session->userdata('level')=="dosen"){ ?>
             <div class="col-md-4">
                 <?php if(!empty($bimbinganBaruLimit)){ ?>
                     <div class="alert alert-success" role="alert" style="font-size:13px;">
@@ -119,8 +120,27 @@
                     <a href="<?= base_url('backend/bimbingan/detailBimbingan/'.$user->id) ?>" class="">Pesan Baru dari <strong><?= $user->nama ?></strong></a>
                             <?php }endforeach ?> 
                 </div>
-                            <?php } ?>
+                    <?php 
+                    } ?>
             </div>
+                <?php
+                }else if($this->session->userdata('level')=="admin"){
+                    if(!empty($permintaanBaru)){
+                        ?>
+            <div class="col-lg-5 col-md-6">
+                <div class="alert alert-success" style="font-size:14px;" role="alert">
+                    Ada permintaan <a href="<?= base_url('backend/permintaan') ?>" class="alert-link">Perubahan Data Baru</a> dari Mahasiswa.
+                </div>
+            </div>
+            <?php } 
+            if(!empty($skripsiArsipBaru)){
+                ?>
+            <div class="col-lg-5 col-md-6">
+                <div class="alert alert-success" style="font-size:14px;" role="alert">
+                    Ada <a href="<?=base_url('backend/skripsi/skripsi/lulus') ?>" class="alert-link">Arsip skripsi Baru</a> untuk diPublish.
+                </div>
+            </div>
+            <?php }} ?>
         </div>
     </div>
     <!-- .animated -->

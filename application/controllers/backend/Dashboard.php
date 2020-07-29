@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         if ($this->session->userdata('is_login')!=1) {
             $this->session->set_userdata('login','Anda belum login, Silahkan Login Terlebih dahulu !');
-            redirect('login');
+            redirect(base_url());
         }
     }
     
@@ -33,10 +33,13 @@ class Dashboard extends CI_Controller {
 		$this->load->model('kategori_skripsi_model');
 		$this->load->model('skripsi_model');
 		$this->load->model('bimbingan_model');
+		$this->load->model('permintaan_model');
 
 		$data['mhs'] = $this->users_model->getByLevel('mahasiswa')->num_rows();
 		if ($this->session->userdata('level')=="admin") {
 			$data['dosen'] = $this->users_model->getByLevel('dosen')->num_rows();
+			$data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
 		}
 		$data['kategori'] = $this->kategori_skripsi_model->getAll()->num_rows();
 		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->num_rows();

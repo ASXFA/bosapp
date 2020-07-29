@@ -1,3 +1,23 @@
+<?php 
+    if ($this->session->flashdata('status')) {
+        if ($this->session->flashdata('kondisi')=="1") {
+    ?>
+        <script>
+            swal("Bimbingan Sukses !", "<?= $this->session->flashdata('status') ?>", "success");
+        </script>
+    <?php 
+        }else{
+    ?>
+        <script>
+            swal("Bimbingan Gagal!", "<?= $this->session->flashdata('status') ?>", "error");
+        </script>
+    <?php
+        }
+    ?>
+        
+    <?php
+    }
+?>
 <div id="main">
     <div class="bimbingan m-5 ">
         <div class="cards text-center">
@@ -66,7 +86,7 @@
                                 foreach($bimbinganAll as $bimbingan):  ?>
                     <div class="resume-item">
                         <h4><?= $bimbingan->subject ?></h4>
-                        <h5><?= $bimbingan->tgl_bimbingan ?></h5>
+                        <h5><?= date("d F Y h:i:s", strtotime($bimbingan->tgl_bimbingan))." wib" ?></h5>
                         <p><?= $bimbingan->keterangan ?></p>
                         <?php if($bimbingan->file_name != "") {?>
                         <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$bimbingan->id_from.'/'.$bimbingan->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $bimbingan->file_name ?></a></p>
@@ -85,7 +105,7 @@
                     <?php if(!empty($bimbinganRiwayat)){ foreach($bimbinganRiwayat as $riwayat): ?>
                     <div class="resume-item">
                         <h4><?= $riwayat->subject ?></h4>
-                        <h5><?= $riwayat->tgl_bimbingan ?></h5>
+                        <h5><?= date("d F Y h:i:s", strtotime($riwayat->tgl_bimbingan))." wib" ?></h5>
                         <p><?= $riwayat->keterangan ?></p>
                         <?php if($riwayat->file_name != "") {?>
                         <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$riwayat->id_from.'/'.$riwayat->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $riwayat->file_name ?></a></p>

@@ -33,13 +33,27 @@ class Skripsi extends CI_Controller {
 	{
         $this->load->model('kategori_skripsi_model');
         $this->load->model('users_model');
+        $this->load->model('permintaan_model');
         $data['title'] = $statusMhs;
         $data['skripsi'] = $this->skripsi_model->getByLevel($statusMhs)->result();
         $data['users'] = $this->users_model->getAll()->result();
+        $mhsTersedia = array();
+        $mhs = $this->users_model->getByStatus('aktif','mahasiswa')->result();
+        foreach($mhs as $mhs){
+            $cek = $this->skripsi_model->getById($mhs->id)->num_rows();
+            if ($cek == 0) {
+                array_push($mhsTersedia,$mhs->id);
+            }
+        }
+        $data['mhsTersedia'] = $mhsTersedia;
         $data['kategori_skripsi'] = $this->kategori_skripsi_model->getAll()->result();
         $data['skripsiModal'] = $this->skripsi_model->getByLevel($statusMhs)->result();
         $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
+        if ($this->session->userdata('level')=="admin") {
+            $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+        }
         // $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         // $data['userModal'] = $this->users_model->getByLevel($level)->result();
         $this->load->view('backend/include/head.php');

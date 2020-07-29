@@ -32,7 +32,9 @@ class Welcome extends CI_Controller {
 
 	public function skripsi(){
 		$this->load->model('skripsi_model');
-		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->result();
+		$this->load->model('users_model');
+		$data['users'] = $this->users_model->getAll()->result();
+		$data['skripsi'] = $this->skripsi_model->getByStatusBaru('lulus','published')->result();
 		$this->load->view('frontend/skripsi',$data);
 	}
 }

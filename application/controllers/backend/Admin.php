@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
         parent::__construct();
         if ($this->session->userdata('is_login')!=1) {
             $this->session->set_userdata('login','Anda belum login, Silahkan Login Terlebih dahulu !');
-            redirect('login');
+            redirect(base_url());
         }
     }
     

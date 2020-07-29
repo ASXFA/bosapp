@@ -24,7 +24,6 @@ class Skripsi_model extends CI_Model {
         return $this->db->get('skripsi');
     }
 
-
     public function gantiStatus($id,$status)
     {
         $data = array('status_skripsi'=>$status);
@@ -37,9 +36,18 @@ class Skripsi_model extends CI_Model {
         }
     }
 
+    public function getByStatusBaru($statusMHS,$statusSkripsi){
+        $this->db->where('status_mahasiswa',$statusMHS);
+        $this->db->where('status_skripsi',$statusSkripsi);
+        return $this->db->get('skripsi');
+    }
+
     public function gantiStatusMHS($id,$status)
     {
-        $data = array('status_mahasiswa'=>$status);
+        $data = array(
+            'status_mahasiswa'=>$status,
+            'status_skripsi'=>'unpublish'
+        );
         $this->db->where('id',$id);
         $query = $this->db->update('skripsi',$data);
         if ($query) {
@@ -51,18 +59,33 @@ class Skripsi_model extends CI_Model {
 
     public function tambah($file_name,$file_size,$level)
     {
-        $data = array(
-            'judul' => $this->input->post('judul'),
-            'mahasiswa' => $this->input->post('mahasiswa'),
-            'dospem1' => $this->input->post('dospem1'),
-            'dospem2' => $this->input->post('dospem2'),
-            'kategoriskripsi' => $this->input->post('kategoriskripsi'),
-            'tahun' => $this->input->post('tahun'),
-            'status_mahasiswa' => $level,
-            'status_skripsi' => "unpublish",
-            'file' => $file_name,
-            'file_size' => $file_size
-        );
+        if ($level=="lulus") {
+            $data = array(
+                'judul' => $this->input->post('judul'),
+                'mahasiswa' => $this->input->post('mahasiswa'),
+                'dospem1' => $this->input->post('dospem1'),
+                'dospem2' => $this->input->post('dospem2'),
+                'kategoriskripsi' => $this->input->post('kategoriskripsi'),
+                'tahun' => $this->input->post('tahun'),
+                'status_mahasiswa' => $level,
+                'status_skripsi' => "unpublish",
+                'file' => $file_name,
+                'file_size' => $file_size
+            );
+        }else{
+            $data = array(
+                'judul' => $this->input->post('judul'),
+                'mahasiswa' => $this->input->post('mahasiswa'),
+                'dospem1' => $this->input->post('dospem1'),
+                'dospem2' => $this->input->post('dospem2'),
+                'kategoriskripsi' => $this->input->post('kategoriskripsi'),
+                'tahun' => $this->input->post('tahun'),
+                'status_mahasiswa' => $level,
+                'status_skripsi' => "published",
+                'file' => $file_name,
+                'file_size' => $file_size
+            );
+        }
         $query = $this->db->insert('skripsi',$data);
         if ($query) {
             return TRUE;

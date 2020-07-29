@@ -1,3 +1,13 @@
+<?php 
+    if ($this->session->flashdata('login')) {
+    ?>
+        <script>
+            swal("Sukses Login !", " Selemat Datang kembali <?= $this->session->userdata('nama') ?>", "success");
+        </script>
+
+    <?php
+    }
+?>
  <!-- ======= Hero Section ======= -->
  <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
@@ -42,13 +52,23 @@
         <div class="section-title">
           <h2>tentang</h2>
         </div>
-
+          
         <div class="row abouts">
           <div class="col-lg-4">
             <img src="<?= base_url() ?>assets/image/mahasiswa/<?= $user->foto ?>" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3><?= strtoupper($user->nama) ?></h3>
+            <h3><?= strtoupper($user->nama) ?> <a href="" class=""> 
+              <div class="btn-group dropright">
+                <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="bx bx-info-circle"></i>
+                </a>
+                <div class="dropdown-menu">
+                  <a href="<?= base_url('editMahasiswa') ?>" class="dropdown-item" >Permintaan Ganti Data</a>
+                  <a href="<?= base_url('gantiPassMHS') ?>" class="dropdown-item" >Ganti Password</a>
+                </div>
+              </div>
+            </h3>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
