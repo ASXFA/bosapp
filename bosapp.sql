@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 28, 2020 at 07:31 AM
+-- Generation Time: Jul 29, 2020 at 02:17 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -63,7 +63,9 @@ INSERT INTO `bimbingan` (`id`, `id_from`, `id_to`, `subject`, `keterangan`, `tgl
 (29, 8, 6, 'Bimbingan BAB 2', 'ini pak silahkan di review', '2020-07-27 16:43:02', 'CV2.pdf', '4389.33', '0'),
 (30, 5, 6, 'Bimbingan BAB 1', 'silahakan di review pak', '2020-07-27 17:00:23', 'Ijazah1.pdf', '766.31', '1'),
 (31, 6, 5, 'Bimbingan BAB 1', 'silahkan revisi sesuai koreksi saya yang ada di file', '2020-07-27 17:01:06', 'Ijazah2.pdf', '766.31', '1'),
-(32, 5, 6, 'Bimbingan BAB 1 Revisi 1', 'sudah pak, silahkan direview lagi', '2020-07-27 17:02:06', 'Surat_Lamaran.docx', '14.01', '0');
+(32, 5, 6, 'Bimbingan BAB 1 Revisi 1', 'sudah pak, silahkan direview lagi', '2020-07-27 17:02:06', 'Surat_Lamaran.docx', '14.01', '0'),
+(33, 8, 6, 'Bimbingan BAB 1 Revisi 2', 'asdasdads', '2020-07-29 12:35:05', '', '', '0'),
+(34, 5, 7, 'Bimbingan BAB 1', 'popopo', '2020-07-29 13:56:45', 'CV.pdf', '4389.33', '0');
 
 -- --------------------------------------------------------
 
@@ -84,6 +86,29 @@ INSERT INTO `kategori_skripsi` (`id`, `nama`) VALUES
 (2, 'Management Data'),
 (3, 'Security'),
 (4, 'Jaringan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan`
+--
+
+CREATE TABLE `permintaan` (
+  `id` int(3) NOT NULL,
+  `id_mahasiswa` int(3) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `keterangan` text NOT NULL,
+  `tgl_permintaan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `permintaan`
+--
+
+INSERT INTO `permintaan` (`id`, `id_mahasiswa`, `subject`, `keterangan`, `tgl_permintaan`, `status`) VALUES
+(1, 8, 'Perubahan Data', 'gfhfkjzdsgdzjzdhnfzhdzgdrht', '2020-07-28 15:26:18', 0),
+(2, 8, 'Perubahan Data', 'testing ', '2020-07-29 13:19:24', 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +135,6 @@ CREATE TABLE `skripsi` (
 --
 
 INSERT INTO `skripsi` (`id`, `judul`, `mahasiswa`, `dospem1`, `dospem2`, `kategoriskripsi`, `tahun`, `status_mahasiswa`, `status_skripsi`, `file`, `file_size`) VALUES
-(5, 'Aplikasi Booking Online', 'Ramdhany Febriansyah.Skom', 'Ali Ahmadi S.T M.T', 'Amras Mauludin S.T M.T', 'Management Data', '2019', 'lulus', 'published', 'Ijazah2.pdf', '766.31'),
 (6, 'Manajement Keamanan Jaringan', 'Fachri Arief Rachman Agustian.Skom', 'Ali Ahmadi S.T M.T', 'Ali Ahmadi S.T M.T', 'Security', '2019', 'lulus', 'published', 'CV.pdf', '4389.33'),
 (7, 'Bimbingan Skripsi Online Menggunakan Metode User Center Design', '8', '7', '6', 'Management Data', '2020', 'aktif', 'published', 'CV.pdf', '4389.33'),
 (8, 'Study Tracer Alumni Menggunakan Metode K-means', '5', '6', '7', 'Management Data', '2020', 'aktif', 'published', 'transkip.pdf', '1128.04');
@@ -162,7 +186,7 @@ INSERT INTO `users` (`id`, `nama`, `nomor_induk`, `jenis_kelamin`, `telepon`, `e
 (5, 'Bagja Septian', '41155050160039', 'Laki-Laki', '089767263627', 'bagja@gmail.com', 'Management Data', '2016', 'Mahasiswa', '', 'aktif', 'IMG_1072.JPG', 'mahasiswa', '41155050160039', '76bc5640b8b4880ef040b383bd712946'),
 (6, 'Ali Ahmadi S.T M.T', '456346654', 'Perempuan', '08729374738', 'ali@gmail.com', NULL, NULL, '', '<ol><li>Berkas harus per-bab</li><li>Tidak boleh menghubungi setelah pukul 20.00 Wib</li><li>subject jangan diubah bila belum ACC</li><li>file tidak boleh lebih dari 5mb</li><li>Revisi harus diberikan max 5hari setelah saya review</li></ol>', 'aktif', 'IMG_0371A.jpg', 'dosen', '456346654', 'ee23ad4a75e016274e955dc5fd6a9c5e'),
 (7, 'Amras Mauludin S.T M.T', '4765382638', 'Laki-Laki', '087652773654', 'test@email.com', NULL, NULL, 'Dosen', '', 'aktif', 'IMG_1149.JPG', 'dosen', '4765382638', '325e9971a70b2036d7bdcef20c1ff28a'),
-(8, 'Serghi Apriyatna', '41155050160028', 'Laki-Laki', '082376263445', 'sergi@gmail.com', 'Management Data', '2016', 'Mahasiswa', '', 'aktif', 'IMG_1170.JPG', 'mahasiswa', '41155050160028', 'eb17c96c335b11b8a53a4fea4b1609a0');
+(8, 'Serghi Apriyatna', '41155050160028', 'Laki-Laki', '082376263445', 'sergi@gmail.com', 'Management Data', '2016', 'Mahasiswa', '', 'aktif', 'IMG_1170.JPG', 'mahasiswa', '41155050160028', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -201,6 +225,12 @@ ALTER TABLE `kategori_skripsi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `permintaan`
+--
+ALTER TABLE `permintaan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `skripsi`
 --
 ALTER TABLE `skripsi`
@@ -232,7 +262,7 @@ ALTER TABLE `users_category`
 -- AUTO_INCREMENT for table `bimbingan`
 --
 ALTER TABLE `bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `kategori_skripsi`
@@ -241,10 +271,16 @@ ALTER TABLE `kategori_skripsi`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `permintaan`
+--
+ALTER TABLE `permintaan`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_upload`
@@ -256,7 +292,7 @@ ALTER TABLE `tbl_upload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_category`
