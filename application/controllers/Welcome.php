@@ -21,10 +21,12 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('users_model');
+		$this->load->model('quotes_model');
 		$this->load->model('skripsi_model');
 		$data['mahasiswa'] = $this->users_model->getByLevel('mahasiswa')->num_rows();
 		$data['dosen'] = $this->users_model->getByLevel('dosen')->num_rows();
 		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->num_rows();
+		$data['quotes'] = $this->quotes_model->getAll()->result();
 		$this->load->view('frontend/include/header');
 		$this->load->view('frontend/index',$data);
 		$this->load->view('frontend/include/footer');

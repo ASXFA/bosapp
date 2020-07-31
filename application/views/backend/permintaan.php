@@ -33,6 +33,7 @@
         <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
+                    <a href="" data-toggle="modal" data-target="#editModal<?php if(!empty($rules)){ echo $rules->id; } ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-warning"> Rules Bimbingan</i></a>
                 </h4>
             </div>
             <div class="table-stats order-table ov-h" >
@@ -53,7 +54,7 @@
                         <?php 
                             $no=1;
                             foreach($permintaan as $permintaan):
-                                foreach($user as $user):
+                                foreach($users as $user):
                                     if($permintaan->id_mahasiswa == $user->id ){
                         ?>
                         <tr>
@@ -148,93 +149,30 @@
     </div>
 </div>
 <?php endforeach ?> -->
-
-<!-- <?php foreach($userModal as $user): ?>
-<div class="modal fade" id="editModal<?= $user->id ?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+<?php foreach($rulesEdit as $rule): ?>
+<div class="modal fade bd-example-modal-lg" id="editModal<?= $rule->id ?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-body">
-                <form action="<?php echo base_url('backend/users/edit/'.$user->id.'/dosen')?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('backend/rules/edit/'.$rules->id.'/dosen')?>" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-5">
+                        <div class="alert alert-danger text-left" style="font-size:12px;" role="alert">
+                            <h4 class="alert-heading mb-3" style="font-size:17px;">Aturan Pengajuan Permintaan Pengubahan Data </h4>
+                            <div class="text-left ml-3">
+                                <?= $rules->rule ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
                         <div class="card mb-1">
                             <div class="card-header">
-                                <h3>Edit Data <?= $title ?></h3>
+                                <h3>Edit Data Permintaan</h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="" class="form-control-label">Nama Lengkap</label>
-                                    <input type="text" name="nama" class="form-control" value="<?= $user->nama?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Nomor Induk</label>
-                                    <input type="text" name="nomor_induk" class="form-control" value="<?= $user->nomor_induk?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" id="" class="form-control" required>
-                                        <option selected disabled>-- Pilih --</option>
-                                        <?php 
-                                            if ($user->jenis_kelamin=="Laki-Laki") {
-                                        ?>
-                                        <option value="Laki-Laki" selected> Laki-Laki </option>
-                                        <option value="Perempuan"> Perempuan </option>
-                                        <?php 
-                                            }else{
-                                        ?>
-                                        <option value="Laki-Laki"> Laki-Laki </option>
-                                        <option value="Perempuan" selected> Perempuan </option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Telepon</label>
-                                    <input type="text" name="telepon" class="form-control" value="<?= $user->telepon?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">E-mail</label>
-                                    <input type="email" name="email" class="form-control" value="<?= $user->email?>" required>
-                                </div>
-                                <?php 
-                                    if($title=="dosen"){
-                                ?>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Jabatan</label>
-                                    <input type="text" name="jabatan" class="form-control" value="<?= $user->jabatan?>" readonly>
-                                </div>
-                                    <?php }else if($title=="mahasiswa"){ ?>
-                                    <div class="form-group">
-                                        <label for="" class="form-control-label">Konsentrasi</label>
-                                        <select name="konsentrasi" id="" class="form-control" required>
-                                        <option selected disabled>-- Pilih --</option>
-                                        <?php 
-                                            foreach($kategori as $k):
-                                                if($k->nama == $user->konsentrasi){
-                                                    echo "<option value='".$k->nama."' selected>";
-                                                }else{
-                                                    echo "<option value='".$k->nama."'>";
-                                                }
-                                                echo $k->nama;
-                                        ?>
-                                        </option>
-                                        <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-control-label">Angkatan</label>
-                                        <input type="number" min="1990" max="2030" name="angkatan" class="form-control" value="<?= $user->angkatan?>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-control-label">Jabatan</label>
-                                        <input type="text" name="jabatan" class="form-control" value="<?= $user->jabatan?>" readonly>
-                                    </div>
-                                    <?php } ?>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Foto</label>
-                                    <input type="text" name="old_foto" class="form-control" value="<?= $user->foto?>" hidden>
-                                    <input type="file" name="new_foto" class="form-control" >
+                                    <label for="" class="form-control-label">Isi Rules</label>
+                                    <textarea name="rule" id="rulesPermintaan" cols="30" rows="50"><?= $rules->rule ?></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>
@@ -249,77 +187,15 @@
         </div>
     </div>
 </div>
-<?php endforeach ?> -->
+<?php endforeach ?>
 
-<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bg-light">
-            <div class="modal-body">
-                <form action="<?php echo base_url('backend/users/tambah/'.$title)?>" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-1">
-                            <div class="card-header">
-                                <h3>Tambah Data <?= ucfirst($title) ?></h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Nama Lengkap</label>
-                                    <input type="text" name="nama" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Nomor Induk</label>
-                                    <input type="text" name="nomor_induk" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" id="" class="form-control" required>
-                                        <option selected disabled>-- Pilih --</option>
-                                        <option value="Laki-Laki"> Laki-Laki </option>
-                                        <option value="Perempuan"> Perempuan </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Telepon</label>
-                                    <input type="text" name="telepon" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">E-mail</label>
-                                    <input type="email" name="email" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Jabatan</label>
-                                    <input type="text" name="jabatan" class="form-control" value="<?= ucfirst($title) ?>" readonly >
-                                </div>
-                                <?php if($title=="mahasiswa"){ ?>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Konsentrasi</label>
-                                    <select name="konsentrasi" id="" class="form-control" required>
-                                        <option selected disabled>-- PILIH --</option>
-                                        <?php foreach($kategori as $k): ?> 
-                                        <option value="<?= $k->nama ?>"><?= $k->nama ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Angkatan</label>
-                                    <input type="number" min="1990" max="2030" name="angkatan" class="form-control" required >
-                                </div>
-                                <?php } ?>
-                                <div class="form-group">
-                                    <label for="" class="form-control-label">Foto</label>
-                                    <input type="file" name="foto" class="form-control" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#rulesPermintaan' ),{
+            toolbar: ['Heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+        } )
+        .catch( error => {
+                console.error( error );
+        } );
+</script>

@@ -854,7 +854,7 @@ input::-webkit-input-placeholder {
 }
 
 .single-counter-box i::before {
-    background: #0861b5;
+    background: #0074d9;
     width: 120px;
     display: block;
     height: 120px;
@@ -878,9 +878,9 @@ input::-webkit-input-placeholder {
 }
 .single-counter-box:hover i::before {
 	background: transparent;
-	border: 2px solid #0861b5;
+	border: 2px solid #0074d9;
     box-shadow: none;
-    color: #0861b5;
+    color: #0074d9;
 }
 /*--------------------------------------
 -------- COUNTERUP AREA CSS END --------
@@ -1398,10 +1398,10 @@ h4.post-title a {
     display: inline-block;
 }
 .pagination li a {
-    background-color: #000529;
-    background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
+    background-color: #0074d9;
+    /* background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
     background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
-    background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); */
     display: inline-block;
     width: 40px;
     height: 40px;

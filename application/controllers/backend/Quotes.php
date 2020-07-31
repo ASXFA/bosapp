@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Permintaan extends CI_Controller {
+class Quotes extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,19 +25,17 @@ class Permintaan extends CI_Controller {
             $this->session->set_userdata('login','Anda belum login, Silahkan Login Terlebih dahulu !');
             redirect('login');
         }
-        $this->load->model('permintaan_model');
+        $this->load->model('quotes_model');
     }
 
     public function index()
     {
+        $this->load->model('permintaan_model');
         $this->load->model('users_model');
         $this->load->model('skripsi_model');
-        $this->load->model('rules_model');
-        $data['permintaan'] = $this->permintaan_model->getAll()->result();
-        $data['users'] = $this->users_model->getAll()->result();
-        $data['rules'] = $this->rules_model->getAll()->row();
-        $data['rulesEdit'] = $this->rules_model->getAll()->result();
-        $data['title'] = "permintaan";
+        $data['quotes'] = $this->quotes_model->getAll()->result();
+        $data['quotesModal'] = $this->quotes_model->getAll()->result();
+        $data['title'] = "Quotes";
         if ($this->session->userdata('level')=="admin") {
             $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
 			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
@@ -45,44 +43,49 @@ class Permintaan extends CI_Controller {
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
         $this->load->view('backend/include/navbar.php',$data);
-        $this->load->view('backend/permintaan',$data);
+        $this->load->view('backend/quotes',$data);
         $this->load->view('backend/include/footer.php');
-    }
-
-    public function gantiStatus($id_permintaan,$status,$id)
-    {
-        if ($status == 1) {
-            $this->permintaan_model->gantiStatus($id_permintaan,$status);
-            redirect('backend/users/userEdit/'.$id);
-        }else if($status == 2){
-            $this->permintaan_model->gantiStatus($id_permintaan,$status);
-            $this->session->set_flashdata('kondisi','1');
-            $this->session->set_flashdata('status','Status Berhasil diganti !');
-            redirect('backend/permintaan');
-        }
-    }
-    
-	public function ajukan()
-	{
-        $this->load->model('rules_model');
-        $data['rules'] = $this->rules_model->getAll()->row();
-        $data['title'] = "Ajukan";
-        $this->load->view('frontend/mahasiswa/include/header',$data);
-        $this->load->view('frontend/mahasiswa/editProfil',$data);
-        $this->load->view('frontend/mahasiswa/include/footer');
     }
     
     public function tambah()
     {
-        $data = $this->permintaan_model->tambah();
+        $data = $this->quotes_model->tambah();
         if ($data == TRUE) {
             $this->session->set_flashdata('kondisi','1');
-            $this->session->set_flashdata('status','Status Berhasil diganti !');
-            redirect('backend/permintaan/ajukan');
+            $this->session->set_flashdata('status','Quotes berhasil ditambahkan !');
+            redirect('backend/quotes');
         }else{
             $this->session->set_flashdata('kondisi','0');
-            $this->session->set_flashdata('status','Status Berhasil diganti !');
-            redirect('backend/permintaan/ajukan');
+            $this->session->set_flashdata('status','Quotes gagal ditambahkan !');
+            redirect('backend/quotes');
+        }
+    }
+
+    public function edit($id)
+    {
+        $data = $this->quotes_model->edit($id);
+        if ($data == TRUE) {
+            $this->session->set_flashdata('kondisi','1');
+            $this->session->set_flashdata('status','Quotes berhasil diubah !');
+            redirect('backend/quotes');
+        }else{
+            $this->session->set_flashdata('kondisi','0');
+            $this->session->set_flashdata('status','Quotes gagal diubah !');
+            redirect('backend/quotes');
+        }
+    }
+
+    public function delete($id)
+    {
+        $data = $this->quotes_model->delete($id);
+        if ($data == TRUE) {
+            $this->session->set_flashdata('kondisi','1');
+            $this->session->set_flashdata('status','Quotes berhasil dihapus !');
+            redirect('backend/quotes');
+        }else{
+            $this->session->set_flashdata('kondisi','0');
+            $this->session->set_flashdata('status','Quotes gagal dihapus !');
+            redirect('backend/quotes');
         }
     }
 }

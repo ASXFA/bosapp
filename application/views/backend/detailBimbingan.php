@@ -36,18 +36,17 @@
             redirect('backend/bimbingan');
         } ?>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="card" style="font-size:13px;">
                     <div class="card-header bg-info text-white">
                         <table class="detailBimbinganTable">
                         <?php foreach($user as $user): if($user->id == $bimbingan->id_from){  ?>
                             <tr>
-                                <td rowspan="3"><img class="rounded d-block" src="<?= base_url('assets/image/mahasiswa/'.$user->foto) ?>" width="70px" alt=""></td>
+                                <td rowspan="3" width="30%"><img class="rounded d-block" src="<?= base_url('assets/image/mahasiswa/'.$user->foto) ?>" width="40px" alt=""></td>
                             </tr>
                             <tr>
                                 <td class="text-white"><?= $user->nama ?></td>
-                                <td width="50px"></td>
-                                <td rowspan="3"><span class="badge badge-secondary"><?= date("d F Y h:i:s", strtotime($bimbingan->tgl_bimbingan))." wib" ?></span></td>
+                                <td rowspan="3" width="5px"><span class="badge badge-light"><?= date("d F Y h:i:s", strtotime($bimbingan->tgl_bimbingan))." wib" ?></span></td>
                             </tr>
                             <tr>
                                 <td class="text-white"><?= $user->nomor_induk ?></td>
@@ -118,10 +117,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="card riwayat">
                     <div class="card-header bg-info" style="font-size:13px;">
-                        <h5 class="text-white">Riwayat Bimbingan</h5>
+                        <h5 class="text-white">Riwayat Bimbingan 
+                            <span class="badge badge-light float-right ml-1"><i class="fa fa-send"></i> : Pesan Terkirim </span>
+                            <span class="badge badge-light float-right ml-1"><i class="fa fa-check-circle"></i> : Sudah dibalas </span>
+                            <span class="badge badge-light float-right"><i class="fa fa-comment"></i> : Pesan Baru </span> 
+                        </h5>
                     </div>
                     <div class="card-body">
                         <div class="table-stats order-table ov-h">
@@ -129,7 +132,8 @@
                                 <thead>
                                     <tr>
                                         <th class="serial">#</th>
-                                        <th>Subject</th>
+                                        <th width="50%">Subject</th>
+                                        <th>Dari</th>
                                         <th>Tanggal</th>
                                     </tr>
                                 </thead>
@@ -138,14 +142,35 @@
                                         <tr>
                                             <td ><?= $no ?></td>
                                             <td>
+                                                <?php 
+                                                    if($riwayat->id_from!=$this->session->userdata('id')){
+                                                ?>
                                                 <a href="<?= base_url('backend/bimbingan/detailBimbinganRiwayat/'.$riwayat->id_from.'/'.$riwayat->id) ?>" class=""><?= $riwayat->subject ?></a> 
-                                                <?php if($riwayat->status == "0"){ ?>
-                                                <span class="badge badge-success"><i class="fa fa-comment"></i></span>
-                                                <?php }else{ ?>
-                                                <span class="badge badge-secondary"><i class="fa fa-check-circle"></i></span>
+                                                <?php 
+                                                    }else{
+                                                ?>
+                                                <a href="" data-toggle="modal" data-target="#detailPesan<?= $riwayat->id ?>" class=""><?= $riwayat->subject ?></a> 
+                                                <?php
+                                                    }
+                                                ?>
+                                                <?php if($riwayat->status == "0" && $riwayat->id_from!=$this->session->userdata('id')){ ?>
+                                                <span class=""><i class="fa fa-comment"></i></span>
+                                                <?php }else if($riwayat->status == "1" && $riwayat->id_from!=$this->session->userdata('id')){ ?>
+                                                <span class=""><i class="fa fa-check-circle"></i></span>
+                                                <?php }else if($riwayat->id_from==$this->session->userdata('id')){ ?>
+                                                <span class=""><i class="fa fa-send"></i></span>
                                                 <?php } ?>
                                             </td>
-                                            <td><?= date("d F Y h:i:s", strtotime($riwayat->tgl_bimbingan))." wib" ?></td>
+                                            <td>
+                                                <?php 
+                                                    if ($riwayat->id_from==$this->session->userdata('id')) {
+                                                        echo "Anda";
+                                                    }else{
+                                                        echo "Mahasiswa";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td><?= date("d F Y H:i", strtotime($riwayat->tgl_bimbingan))." wib" ?></td>
                                         </tr>
                                     <?php $no++; endforeach ?>
                                 </tbody>
@@ -157,6 +182,82 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<?php foreach($bimbinganDetail as $detail): ?>
+<div class="modal fade" id="detailPesan<?= $detail->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card" style="font-size:13px;">
+            <div class="card-header bg-info">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <table class="detailBimbinganTable">
+                    <tr>
+                        <td rowspan="3"><img class="rounded d-block" src="<?= base_url('assets/image/dosen/'.$this->session->userdata('foto')) ?>" width="35px" alt=""></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white"><?= $this->session->userdata('nama') ?></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white"><?= $this->session->userdata('nomor_induk') ?></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-header">
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="font-weight-bold">From</td>
+                        <td> : </td>
+                        <td> <?= $this->session->userdata('nama') ?> </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">To</td>
+                        <td> : </td>
+                        <td>
+                            <?php 
+                                foreach($userModal as $user){
+                                    if($user->id == $detail->id_to){
+                                        echo $user->nama;
+                                    }
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Subject</td>
+                        <td> : </td>
+                        <td> <?= $detail->subject ?> </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Pesan</td>
+                        <td> : </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><?= $detail->keterangan ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                        <?php 
+                            if ($detail->file_name != "") {
+                        ?>
+                        <a href="<?= base_url('assets/bimbingan/'.$detail->id_to.'/'.$detail->id_from.'/'.$detail->file_name) ?>" class="btn btn-info btn-sm mt-4"><i class="fa fa-download"></i> Download File</a>
+                        <?php
+                            }
+                        ?>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<?php endforeach ?>
+
 <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor

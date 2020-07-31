@@ -63,39 +63,12 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
         <div class="testimonial-wrap">
+          <?php foreach($quotes as $quote): ?>
           <div class="single-testimonial-box">
-            <h5>Catatan Akhir Kuliah</h5>
-            <p>Skripsi sama seperti kehidupan karena hidup penuh misteri yang masih perlu diteliti. Di kuliah kita belajar untuk diuji, di kehidupan kita diuji agar belajar.</p>
-            <div class="author-rating">
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-            </div>
+            <h5><?= $quote->judul ?></h5>
+            <p><?= $quote->isi ?></p>
           </div>
-          <div class="single-testimonial-box">
-            <h5>Anis Baswedan</h5>
-            <p>“Sibuk mengerjakan skripsi itu baik, tapi menyelesaikan skripsi itu jauh lebih baik. Dan akhirnya. skripsi yg baik adalah skripsi yg selesai.”</p>
-            <div class="author-rating">
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-            </div>
-          </div>
-          <div class="single-testimonial-box">
-            <h5>Mary Balogh</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in </p>
-            <div class="author-rating">
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-              <i class="icofont icofont-star"></i>
-            </div>
-          </div>
+          <?php endforeach ?>
         </div>
       </div>
     </div>

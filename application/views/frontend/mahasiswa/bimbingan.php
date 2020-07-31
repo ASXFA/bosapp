@@ -29,8 +29,8 @@
                                 <img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="">
                             </li>
                         </ul>
-                        <h5><?= $dosen->nama ?></h5>
-                        <h6><?= $dosen->nomor_induk ?></h6>
+                        <h5 class="namaBimb"><?= $dosen->nama ?></h5>
+                        <h6 class="nikBimb"><?= $dosen->nomor_induk ?></h6>
                     </div>
                     <div class="col-md-6">
                         
@@ -56,27 +56,27 @@
                         <form action="<?= base_url('tambahBimbingan') ?>" method="post"  class="" enctype="multipart/form-data"> 
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="id_from_nama" class="form-control" placeholder="Your Name" value="<?= $this->session->userdata('nama') ?>" readonly />
+                                    <input type="text" name="id_from_nama" class="form-control form-control-sm" placeholder="Your Name" value="<?= $this->session->userdata('nama') ?>" readonly />
                                     <input type="text" name="id_from" class="form-control" id="id_from" placeholder="Your Name" value="<?= $this->session->userdata('id') ?>" hidden />
                                     <?php if(!empty($bimbingan)){ ?>
-                                    <input type="text" name="idBimbingan" class="form-control" placeholder="Your Name" value="<?= $bimbingan->id ?>" hidden />
+                                    <input type="text" name="idBimbingan" class="form-control form-control-sm" placeholder="Your Name" value="<?= $bimbingan->id ?>" hidden />
                                     <?php } ?>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="id_to_nama" class="form-control" placeholder="Your Name" value="<?= $dosen->nama ?>" readonly />
+                                    <input type="text" name="id_to_nama" class="form-control form-control-sm" placeholder="Your Name" value="<?= $dosen->nama ?>" readonly />
                                     <input type="text" name="id_to" class="form-control" id="id_to" placeholder="Your Name" value="<?= $dosen->id ?>" hidden />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required/>
+                                <input type="text" class="form-control form-control-sm" name="subject" id="subject" placeholder="Subject" required/>
                             </div>
                             <div class="form-group">
-                                <input type="file" class="form-control" name="file" id="file" placeholder="File"/>
+                                <input type="file" class="form-control form-control-sm" name="file" id="file" placeholder="File"/>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Keterangan" required></textarea>
+                                <textarea class="form-control form-control-sm" name="message" rows="5" placeholder="Keterangan" required></textarea>
                             </div>
-                            <div class="text-center"><button class="btn btn-primary" type="submit">Kirim</button></div>
+                            <div class="text-center"><button class="btn btn-primary btn-sm" type="submit">Kirim</button></div>
                         </form>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                                 foreach($bimbinganAll as $bimbingan):  ?>
                     <div class="resume-item">
                         <h4><?= $bimbingan->subject ?></h4>
-                        <h5><?= date("d F Y h:i:s", strtotime($bimbingan->tgl_bimbingan))." wib" ?></h5>
+                        <h5><?= date("d F Y H:i", strtotime($bimbingan->tgl_bimbingan))." wib" ?></h5>
                         <p><?= $bimbingan->keterangan ?></p>
                         <?php if($bimbingan->file_name != "") {?>
                         <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$bimbingan->id_from.'/'.$bimbingan->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $bimbingan->file_name ?></a></p>
@@ -104,8 +104,20 @@
                     <h3 class="resume-title">Riwayat</h3>
                     <?php if(!empty($bimbinganRiwayat)){ foreach($bimbinganRiwayat as $riwayat): ?>
                     <div class="resume-item">
-                        <h4><?= $riwayat->subject ?></h4>
-                        <h5><?= date("d F Y h:i:s", strtotime($riwayat->tgl_bimbingan))." wib" ?></h5>
+                        <h4>
+                            <?= $riwayat->subject ?>
+                            <span class="dari">
+                               ( Dari 
+                                <?php 
+                                    if ($riwayat->id_from == $this->session->userdata('id')) {
+                                        echo "Anda )";
+                                    }else{
+                                        echo "Dosen )";
+                                    }
+                                ?>
+                            </span>
+                        </h4>
+                        <h5><?= date("d F Y H:i", strtotime($riwayat->tgl_bimbingan))." wib" ?></h5>
                         <p><?= $riwayat->keterangan ?></p>
                         <?php if($riwayat->file_name != "") {?>
                         <p><a href="<?= base_url('assets/bimbingan/'.$this->session->userdata('id').'/'.$riwayat->id_from.'/'.$riwayat->file_name) ?>" class=""><i class="bx bx-file"></i> <?= $riwayat->file_name ?></a></p>

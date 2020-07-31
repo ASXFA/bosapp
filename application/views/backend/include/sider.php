@@ -38,13 +38,8 @@
                 <li>
                     <a href="<?= base_url('backend/permintaan') ?>"><i class="menu-icon fa fa-envelope"></i> Permintaan</a>
                 </li>
-                <li class="menu-item-has-children dropdown" id="pengaturan">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Pengaturan</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
-                    </ul>
+                <li>
+                    <a href="<?= base_url('backend/quotes') ?>"><i class="menu-icon fa fa-cogs"></i> Quotes</a>
                 </li>
                 <?php } ?>
             </ul>

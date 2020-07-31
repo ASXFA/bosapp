@@ -53,7 +53,32 @@ class Bimbingan extends CI_Controller {
         $data['dosen'] = $this->users_model->getById($idDosen)->row();
         $data['bimbingan'] = $this->bimbingan_model->getByIdLimit($idDosen,$this->session->userdata('id'))->row();
         $data['bimbinganAll'] = $this->bimbingan_model->getByStatusNol($idDosen,$this->session->userdata('id'),'0')->result();
-        $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idDosen,$this->session->userdata('id'))->result();
+        // $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idDosen,$this->session->userdata('id'))->result();
+        $b1 = $this->bimbingan_model->getById($idDosen,$this->session->userdata('id'))->result();
+        $b2 = $this->bimbingan_model->getById($this->session->userdata('id'),$idDosen)->result();
+        $bMix1 = array_merge($b1,$b2);
+        $bMix = json_decode(json_encode($bMix1),true);
+        function build_sorter($key) {
+            return function ($a, $b) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
+        }
+        usort($bMix, build_sorter('tgl_bimbingan'));
+        array_multisort($bMix, SORT_DESC);
+        function arrayToObject($d) {
+            if (is_array($d)) {
+                /*
+                * Return array converted to object
+                * Using __FUNCTION__ (Magic constant)
+                * for recursive call
+                */
+                return (object) array_map(__FUNCTION__, $d);
+            }else{
+                return $d;
+            }
+        }
+        $bMixx = arrayToObject($bMix);
+        $data['bimbinganRiwayat'] = $bMixx;
         // $data['kategori_skripsi'] = $this->kategori_skripsi_model->getAll()->result();
         // $data['skripsiModal'] = $this->skripsi_model->getByLevel($statusMhs)->result();
         // $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
@@ -69,9 +94,37 @@ class Bimbingan extends CI_Controller {
         $this->load->model('skripsi_model');
 		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
         $data['bimbingan'] = $this->bimbingan_model->getByIdLimitDosen($idUser,$this->session->userdata('id'))->row();
-        $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        // $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        
+        $b1 = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        $b2 = $this->bimbingan_model->getById($this->session->userdata('id'),$idUser)->result();
+        $bMix1 = array_merge($b1,$b2);
+        $bMix = json_decode(json_encode($bMix1),true);
+        function build_sorter($key) {
+            return function ($a, $b) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
+        }
+        usort($bMix, build_sorter('tgl_bimbingan'));
+        array_multisort($bMix, SORT_DESC);
+        function arrayToObject($d) {
+            if (is_array($d)) {
+                /*
+                * Return array converted to object
+                * Using __FUNCTION__ (Magic constant)
+                * for recursive call
+                */
+                return (object) array_map(__FUNCTION__, $d);
+            }else{
+                return $d;
+            }
+        }
+        $bMixx = arrayToObject($bMix);
+        $data['bimbinganRiwayat'] = $bMixx;
+        $data['bimbinganDetail'] = $bMixx;
         $data['bimbinganRiwayatCek'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['userModal'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['skripsi'] = $this->skripsi_model->getByLevel('aktif')->result();
         $this->load->view('backend/include/head.php');
@@ -86,9 +139,36 @@ class Bimbingan extends CI_Controller {
         $this->load->model('users_model');
         $this->load->model('skripsi_model');
         $data['bimbingan'] = $this->bimbingan_model->getByIdSatuRiwayat($idUser,$idBimbingan)->row();
-        $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        // $data['bimbinganRiwayat'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        $b1 = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
+        $b2 = $this->bimbingan_model->getById($this->session->userdata('id'),$idUser)->result();
+        $bMix1 = array_merge($b1,$b2);
+        $bMix = json_decode(json_encode($bMix1),true);
+        function build_sorter($key) {
+            return function ($a, $b) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
+        }
+        usort($bMix, build_sorter('tgl_bimbingan'));
+        array_multisort($bMix, SORT_DESC);
+        function arrayToObject($d) {
+            if (is_array($d)) {
+                /*
+                * Return array converted to object
+                * Using __FUNCTION__ (Magic constant)
+                * for recursive call
+                */
+                return (object) array_map(__FUNCTION__, $d);
+            }else{
+                return $d;
+            }
+        }
+        $bMixx = arrayToObject($bMix);
+        $data['bimbinganRiwayat'] = $bMixx;
+        $data['bimbinganDetail'] = $bMixx;
         $data['bimbinganRiwayatCek'] = $this->bimbingan_model->getById($idUser,$this->session->userdata('id'))->result();
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['userModal'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['skripsi'] = $this->skripsi_model->getByLevel('aktif')->result();
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
 		$data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));

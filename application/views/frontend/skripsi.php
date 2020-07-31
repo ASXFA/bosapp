@@ -83,10 +83,10 @@
 			<div class="container">
 				<div class="row">
 					<?php foreach($skripsi as $skripsi): ?>
-					<div class="col-lg-4 col-md-6">
-					    <div class="single-post">
-							<div class="post-thumbnail">
-								<a><img src="<?= base_url('assets/frontend/img/pdfDefault.png') ?>" alt="pdfDefault"></a>
+					<div class="col-lg-3">
+					    <div class="single-post" style="width:270px;">
+							<div class="post-thumbnail mt-2">
+								<a><img class="mx-auto d-block" src="<?= base_url('assets/frontend/img/pdfDefault.png') ?>" width="120px" alt="pdfDefault"></a>
 							</div>
 							<div class="post-details">
 								<div class="post-author">
@@ -101,10 +101,11 @@
 													}
 												}
 											}
-											echo "<a><i class='icofont icofont-calendar'></i>".$skripsi->tahun."</a>";
+											echo "<a><i class='fa fa-graduation-cap'></i>".$skripsi->tahun."</a>";
 										?>
 								</div>
-								<h4 class="post-title"><?= $skripsi->judul ?></h4>
+								<h5 class="post-title"><?= $skripsi->judul ?></h5>
+								<hr>
 								<div class="pb-3">
 									<a href="<?= base_url('assets/file/skripsi/lulus/'.$skripsi->file) ?>" class="badge badge-primary float-right p-2"><i class="icofont icofont-download"></i> Download File</a>
 								</div>
@@ -135,26 +136,27 @@
 				<div class="row">
                     <div class="col-lg-12">
 						<div class="subscribe-form">
-							<form action="#">
+							<!-- <form action="#">
 								<input type="text" placeholder="Your email address here">
 								<button type="submit">Subcribe</button>
-							</form>
+							</form> -->
 						</div>
                     </div>
 				</div>
 				<div class="row">
                     <div class="col-lg-12">
 						<div class="copyright-area">
-							<ul>
+							<!-- <ul>
 								<li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
 								<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
 								<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
 								<li><a href="#"><i class="icofont icofont-social-pinterest"></i></a></li>
 								<li><a href="#"><i class="icofont icofont-social-google-plus"></i></a></li>
-							</ul>
+							</ul> -->
 							<p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </p>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> 
+							</p>
 						</div>
                     </div>
 				</div>

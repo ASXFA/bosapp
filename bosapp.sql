@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 29, 2020 at 02:17 PM
+-- Generation Time: Jul 31, 2020 at 03:39 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -63,9 +63,10 @@ INSERT INTO `bimbingan` (`id`, `id_from`, `id_to`, `subject`, `keterangan`, `tgl
 (29, 8, 6, 'Bimbingan BAB 2', 'ini pak silahkan di review', '2020-07-27 16:43:02', 'CV2.pdf', '4389.33', '0'),
 (30, 5, 6, 'Bimbingan BAB 1', 'silahakan di review pak', '2020-07-27 17:00:23', 'Ijazah1.pdf', '766.31', '1'),
 (31, 6, 5, 'Bimbingan BAB 1', 'silahkan revisi sesuai koreksi saya yang ada di file', '2020-07-27 17:01:06', 'Ijazah2.pdf', '766.31', '1'),
-(32, 5, 6, 'Bimbingan BAB 1 Revisi 1', 'sudah pak, silahkan direview lagi', '2020-07-27 17:02:06', 'Surat_Lamaran.docx', '14.01', '0'),
+(32, 5, 6, 'Bimbingan BAB 1 Revisi 1', 'sudah pak, silahkan direview lagi', '2020-07-27 17:02:06', 'Surat_Lamaran.docx', '14.01', '1'),
 (33, 8, 6, 'Bimbingan BAB 1 Revisi 2', 'asdasdads', '2020-07-29 12:35:05', '', '', '0'),
-(34, 5, 7, 'Bimbingan BAB 1', 'popopo', '2020-07-29 13:56:45', 'CV.pdf', '4389.33', '0');
+(34, 5, 7, 'Bimbingan BAB 1', 'popopo', '2020-07-29 13:56:45', 'CV.pdf', '4389.33', '0'),
+(35, 6, 5, 'Bimbingan BAB 1 Revisi 1', 'banyak yg salah, silahkan perbaiki sendiri', '2020-07-30 18:00:10', '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -109,6 +110,44 @@ CREATE TABLE `permintaan` (
 INSERT INTO `permintaan` (`id`, `id_mahasiswa`, `subject`, `keterangan`, `tgl_permintaan`, `status`) VALUES
 (1, 8, 'Perubahan Data', 'gfhfkjzdsgdzjzdhnfzhdzgdrht', '2020-07-28 15:26:18', 0),
 (2, 8, 'Perubahan Data', 'testing ', '2020-07-29 13:19:24', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotes`
+--
+
+CREATE TABLE `quotes` (
+  `id` int(3) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quotes`
+--
+
+INSERT INTO `quotes` (`id`, `judul`, `isi`) VALUES
+(1, 'Catatan Akhir Kuliah', 'Skripsi sama seperti kehidupan karena hidup penuh misteri yang masih perlu diteliti. Di kuliah kita belajar untuk diuji, di kehidupan kita diuji agar belajar.'),
+(3, 'Anis Baswedan', '“Sibuk mengerjakan skripsi itu baik, tapi menyelesaikan skripsi itu jauh lebih baik. Dan akhirnya. skripsi yg baik adalah skripsi yg selesai.”');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rules`
+--
+
+CREATE TABLE `rules` (
+  `id` int(3) NOT NULL,
+  `rule` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rules`
+--
+
+INSERT INTO `rules` (`id`, `rule`) VALUES
+(1, '<ol><li>Pengajuan permintaan perubahan data hanya bisa dilakukan oleh Mahasiswa itu sendiri !</li><li>Perubahan data hanya dilakukan oleh Admin Program Studi Informatika UNLA !</li></ol>');
 
 -- --------------------------------------------------------
 
@@ -231,6 +270,18 @@ ALTER TABLE `permintaan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `quotes`
+--
+ALTER TABLE `quotes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rules`
+--
+ALTER TABLE `rules`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `skripsi`
 --
 ALTER TABLE `skripsi`
@@ -262,7 +313,7 @@ ALTER TABLE `users_category`
 -- AUTO_INCREMENT for table `bimbingan`
 --
 ALTER TABLE `bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `kategori_skripsi`
@@ -277,10 +328,22 @@ ALTER TABLE `permintaan`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `quotes`
+--
+ALTER TABLE `quotes`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `rules`
+--
+ALTER TABLE `rules`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_upload`
@@ -292,7 +355,7 @@ ALTER TABLE `tbl_upload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users_category`

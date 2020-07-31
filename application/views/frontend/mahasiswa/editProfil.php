@@ -24,16 +24,10 @@
             <div class="card-body" data-aos="zoom-in">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger text-left" role="alert">
                             <h4 class="alert-heading">Aturan Pengajuan Permintaan Pengubahan Data </h4>
                             <div class="text-left">
-                                <ol>
-                                    <li>Pengajuan permintaan perubahan data hanya bisa dilakukan oleh Mahasiswa itu sendiri !</li>
-                                    <li>Perubahan data hanya dilakukan oleh Admin Program Studi Informatika UNLA !</li>
-                                    <li>Waktu pengubahan data paling lambat 1x24 Jam terhitung setelah permintaan diajukan !</li>
-                                    <li>Bila data belum berubah setelah waktu yg ditentukan, hubungi Admin ke Program Studi Informatika UNLA</li>
-                                    <li>Cantumkan Field yg akan diubah beserta dengan data pengubahnya di bagian Keterangan !</li>
-                                </ol>
+                                <?= $rules->rule ?>
                             </div>
                         </div>
                     </div>

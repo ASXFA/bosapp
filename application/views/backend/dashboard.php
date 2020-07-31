@@ -111,7 +111,7 @@
         <div class="row">
             <?php if($this->session->userdata('level')=="dosen"){ ?>
             <div class="col-md-4">
-                <?php if(!empty($bimbinganBaruLimit)){ ?>
+                <?php if($permintaanBaru->num_rows() > 0){ ?>
                     <div class="alert alert-success" role="alert" style="font-size:13px;">
                     <?php 
                         foreach($user as $user): 
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <?php } 
-            if(!empty($skripsiArsipBaru)){
+            if($skripsiArsipBaru->num_rows() > 0){
                 ?>
             <div class="col-lg-5 col-md-6">
                 <div class="alert alert-success" style="font-size:14px;" role="alert">
