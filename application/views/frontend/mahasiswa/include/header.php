@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MyResume Bootstrap Template - Index</title>
+  <link rel="icon" href="<?= base_url('assets/frontend/') ?>img/topi.png" type="image/png">
+    <title>Panel Mahasiswa Bimbingan Online Skripsi IF UNLA</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
