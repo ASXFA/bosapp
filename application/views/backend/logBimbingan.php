@@ -30,7 +30,7 @@
             $this->session->set_userdata('status','');
             $this->session->set_userdata('kondisi','');
         ?>
-        <div class="card">
+        <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data Bimbingan Mahasiswa <span id="title"></span></h4>
             </div>
@@ -41,14 +41,20 @@
                             <th class="serial">#</th>
                             <th>Mahasiswa</th>
                             <th>NPM</th>
+                            <?php if($this->session->userdata('level')=="admin"): ?>
+                            <th>Dospem 1</th>
+                            <th>Dospem 2</th>
+                            <?php endif ?>
                             <th>Judul Skripsi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $users=array(); foreach($user as $user): array_push($users, array('id'=>$user->id,'nama'=>$user->nama,'nomor_induk'=>$user->nomor_induk)); endforeach ?>
+                        <?php 
+                        $users=array(); foreach($user as $user): array_push($users, array('id'=>$user->id,'nama'=>$user->nama,'nomor_induk'=>$user->nomor_induk)); endforeach ?>
                         
                             <?php 
+                            if($this->session->userdata('level')=="dosen"){
                                 $no= 1;
                                 foreach($skripsi as $skripsi):
                                     if($skripsi->dospem1==$this->session->userdata('id') || $skripsi->dospem2==$this->session->userdata('id')){
@@ -84,7 +90,62 @@
                                         endforeach;
                             
                                     } $no++;
-                                endforeach 
+                                endforeach;
+                            
+                            }else{
+                                $no= 1;
+                                foreach($skripsi as $skripsi):
+                                        foreach($users as $user):
+                                            if($user['id'] == $skripsi->mahasiswa){
+                            ?>
+                                            <tr>
+                                                <td><?= $no ?></td>
+                                                <td><?= $user['nama'] ?></td>
+                                                <td><?= $user['nomor_induk'] ?></td>
+                                                <td>
+                                                <?php 
+                                                        foreach($dosen as $dsn):
+                                                            if($dsn->id == $skripsi->dospem1){
+                                                                echo $dsn->nama;
+                                                            }
+                                                        endforeach
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                <?php 
+                                                        foreach($dosen as $dsn):
+                                                            if($dsn->id == $skripsi->dospem2){
+                                                                echo $dsn->nama;
+                                                            }
+                                                        endforeach
+                                                    ?>
+                                                </td>
+                                                <td><?= $skripsi->judul?></td>
+                                                <td>
+                                                    <?php $status="0"; 
+                                                        foreach($cekBimbingan as $cb): 
+                                                            if ($cb->id_from == $user['id'] ) {
+                                                                $status="1";
+                                                                break;
+                                                            }
+                                                        endforeach;
+                                                        if ($status == "1") {
+
+                                                        ?>
+                                                    <a href="<?= base_url('backend/bimbingan/cetakBimbingan/'.$user['id']) ?>" class="btn btn-info btn-sm"><i class="fa fa-file"></i> Cetak</a>
+                                                        <?php }else{
+                                                    ?>
+                                                    <span class="badge badge-danger">Mahasiswa Belum Melakukan Bimbingan</span>
+                                                    <?php
+                                                        } ?>
+                                                </td>
+                                            </tr>
+                            <?php
+                                            } 
+                                        endforeach;
+                                     $no++;
+                                endforeach;
+                            }
                             ?>
                         
                     </tbody>

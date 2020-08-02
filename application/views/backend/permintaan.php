@@ -1,12 +1,12 @@
 <div class="content users-content">
     <div class="animated fadeIn">
         <?php 
-            if ($this->session->userdata('status')) {
-                if ($this->session->userdata('kondisi')=="1") {
+            if ($this->session->flashdata('status')) {
+                if ($this->session->flashdata('kondisi')=="1") {
             ?>
                 <div class="sufee-alert alert with-close alert-dark alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-dark">Success</span>
-                    <?= $this->session->userdata('status') ?>
+                    <?= $this->session->flashdata('status') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -16,7 +16,7 @@
             ?>
                 <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-danger">Failed</span>
-                    <?= $this->session->userdata('status') ?>
+                    <?= $this->session->flashdata('status') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -27,13 +27,11 @@
                 
             <?php
             }
-            $this->session->set_userdata('status','');
-            $this->session->set_userdata('kondisi','');
         ?>
         <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
-                    <a href="" data-toggle="modal" data-target="#editModal<?php if(!empty($rules)){ echo $rules->id; } ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-warning"> Rules Bimbingan</i></a>
+                    <a href="" data-toggle="modal" data-target="#editModal<?php if(!empty($rules)){ echo $rules->id; } ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-warning"> Rules Pengajuan Perubahan Data</i></a>
                 </h4>
             </div>
             <div class="table-stats order-table ov-h" >
@@ -81,8 +79,8 @@
                                 
                                     }else{
                                 ?>
-                                    <a href="<?= base_url('backend/permintaan/gantiStatus/'.$permintaan->id.'/1/'.$user->id) ?>" class="btn btn-success btn-sm" title="Terima Permintaan"><i class="fa fa-check-circle"></i></a>
-                                    <a href="<?= base_url('backend/permintaan/gantiStatus/'.$permintaan->id.'/2/'.$user->id) ?>" class="btn btn-danger btn-sm" title="Tolak Permintaan"><i class="fa fa-times-circle"></i></a>
+                                    <a href="<?= base_url('backend/permintaan/editPermintaan/'.$permintaan->id.'/'.$user->id) ?>" class="btn btn-success btn-sm" title="Lakukan Perubahan Data"><i class="fa fa-exclamation-circle"></i></a>
+                                    <!-- <a href="<?= base_url('backend/permintaan/gantiStatus/'.$permintaan->id.'/2/'.$user->id) ?>" class="btn btn-danger btn-sm" title="Tolak Permintaan"><i class="fa fa-times-circle"></i></a> -->
                                 <?php
                                     }
                                 ?>

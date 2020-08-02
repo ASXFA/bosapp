@@ -36,6 +36,7 @@ class Users extends CI_Controller {
         $this->load->model('permintaan_model');
         $this->load->model('skripsi_model');
         $data['title'] = $level;
+        $data['users'] = 'users';
         $data['user'] = $this->users_model->getByLevel($level)->result();
         $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         $data['userModal'] = $this->users_model->getByLevel($level)->result();
@@ -119,7 +120,7 @@ class Users extends CI_Controller {
         }
     }
 
-    public function edit($id,$level)
+    public function edit($id,$level,$page)
     {
         $config['upload_path']          = './assets/image/'.$level.'/';
 		$config['allowed_types']        = 'gif|jpg|png|jpeg';
@@ -142,7 +143,12 @@ class Users extends CI_Controller {
             if ($this->session->userdata('level')=="dosen") {
                 redirect('backend/users/editProfil');
             }else{
-                redirect('backend/users/user/'.$level);
+                if($page=="editPermintaan"){
+                    $idPermintaan = $this->uri->segment(7) ;
+                    redirect('backend/permintaan/editPermintaan/'.$idPermintaan.'/'.$id);
+                }else{
+                    redirect('backend/users/user/'.$level);
+                }
             }
         }else{
             $this->session->set_flashdata('kondisi','0');
@@ -150,6 +156,10 @@ class Users extends CI_Controller {
             if ($this->session->userdata('level')=="dosen") {
                 redirect('backend/users/editProfil');
             }else{
+                if($page=="editPermintaan"){
+                    $idPermintaan = $this->uri->segment(7);
+                    redirect('backend/permintaan/editPermintaan/'.$idPermintaan.'/'.$id);
+                }
                 redirect('backend/users/user/'.$level);
             }
         }
@@ -218,8 +228,8 @@ class Users extends CI_Controller {
 				$dospem2 = $s->dospem2;
 			}
         endforeach;
-        $data['bimbinganBaruDospem1'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem1)->result();
-		$data['bimbinganBaruDospem2'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem2)->result();
+        $data['bimbinganBaruDospem1'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem1);
+		$data['bimbinganBaruDospem2'] = $this->bimbingan_model->getByStatusAndDospem('0',$this->session->userdata('id'),$dospem2);
         $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'))->result();
         $this->load->view('frontend/mahasiswa/include/header',$data);
         $this->load->view('frontend/mahasiswa/mahasiswa',$data);

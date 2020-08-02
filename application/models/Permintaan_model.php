@@ -24,6 +24,12 @@ class Permintaan_model extends CI_Model {
         }
     }
 
+
+    public function getById($id_permintaan){
+        $this->db->where('id',$id_permintaan);
+        return $this->db->get('permintaan');
+    }
+
     public function gantiStatus($id_permintaan,$status)
     {
         $this->db->where('id',$id_permintaan);

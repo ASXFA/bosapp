@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="subject" id="subject" placeholder="Subject" required/>
+                                <input type="text" class="form-control form-control-sm" name="subject" id="subject" placeholder="Subject" value="<?= $bimbingan->subject ?>" readonly required/>
                             </div>
                             <div class="form-group">
                                 <input type="file" class="form-control form-control-sm" name="file" id="file" placeholder="File"/>

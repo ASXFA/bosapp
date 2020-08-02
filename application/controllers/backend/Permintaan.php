@@ -49,16 +49,36 @@ class Permintaan extends CI_Controller {
         $this->load->view('backend/include/footer.php');
     }
 
-    public function gantiStatus($id_permintaan,$status,$id)
+    public function editPermintaan($idPermintaan, $idUser){
+        $this->load->model('users_model');
+        $this->load->model('kategori_skripsi_model');
+        $this->load->model('skripsi_model');
+        $data['title'] = "permintaan";
+        $data['page'] = "editPermintaan";
+        $data['user'] = $this->users_model->getById($idUser)->row();
+        $data['users'] = $this->users_model->getAll()->result();
+        $data['dosen'] = $this->users_model->getByLevel('dosen')->result();
+        $data['skripsi'] = $this->skripsi_model->getById($idUser)->row();
+        $data['kategori_skripsi'] = $this->kategori_skripsi_model->getAll()->result();
+        $data['permintaan'] = $this->permintaan_model->getById($idPermintaan)->row();
+        if ($this->session->userdata('level')=="admin") {
+            $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+        }
+        $this->load->view('backend/include/head.php');
+        $this->load->view('backend/include/sider.php');
+        $this->load->view('backend/include/navbar.php',$data);
+        $this->load->view('backend/editPermintaan',$data);
+        $this->load->view('backend/include/footer.php');
+    }
+
+    public function gantiStatus($id_permintaan,$status)
     {
         if ($status == 1) {
             $this->permintaan_model->gantiStatus($id_permintaan,$status);
-            redirect('backend/users/userEdit/'.$id);
-        }else if($status == 2){
-            $this->permintaan_model->gantiStatus($id_permintaan,$status);
             $this->session->set_flashdata('kondisi','1');
             $this->session->set_flashdata('status','Status Berhasil diganti !');
-            redirect('backend/permintaan');
+            redirect('backend/permintaan/');
         }
     }
     

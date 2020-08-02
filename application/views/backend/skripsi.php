@@ -30,7 +30,7 @@
             $this->session->set_userdata('status','');
             $this->session->set_userdata('kondisi','');
         ?>
-        <div class="card">
+        <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data Skripsi Mahasiswa <span id="title"><?= ucfirst($title) ?></span>
                     <?php if($this->session->userdata('level')=="admin"){ ?>

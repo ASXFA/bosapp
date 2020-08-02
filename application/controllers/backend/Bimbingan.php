@@ -32,11 +32,17 @@ class Bimbingan extends CI_Controller {
     {
         $this->load->model('users_model');
         $this->load->model('skripsi_model');
+        $this->load->model('permintaan_model');
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
+        $data['dosen'] = $this->users_model->getByLevel('dosen')->result();
         $data['skripsi'] = $this->skripsi_model->getByLevel('aktif')->result();
         $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['cekBimbingan'] = $this->bimbingan_model->getAll()->result();
+        if ($this->session->userdata('level')=="admin") {
+			$data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
+			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+		}
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
         $this->load->view('backend/include/navbar.php',$data);
@@ -226,10 +232,16 @@ class Bimbingan extends CI_Controller {
             $file_size = "";
             $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);
             if ($data == TRUE) {
-                if ($idBimbingan != "") {
-                    $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
-                    foreach($list as $list){
-                        $this->bimbingan_model->gantiStatus($list->id);
+                if($this->session->userdata('level')=="mahasiswa"){
+                    if ($idBimbingan != "") {
+                        $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
+                        foreach($list as $list){
+                            $this->bimbingan_model->gantiStatus($list->id);
+                        }
+                    }
+                }else{
+                    if ($idBimbingan != "") {
+                        $this->bimbingan_model->gantiStatus($idBimbingan);
                     }
                 }
                 $this->session->set_flashdata('kondisi','1');
@@ -330,19 +342,19 @@ class Bimbingan extends CI_Controller {
         }
     }
 
-    public function cetakBimbingan()
+    public function cetakBimbingan($id)
     {
         $this->load->model('skripsi_model');
         $this->load->model('users_model');
-        $skripsi = $this->skripsi_model->getById($this->session->userdata('id'))->row();
+        $skripsi = $this->skripsi_model->getById($id)->row();
         $dospem1 = $skripsi->dospem1;
         $dospem2 = $skripsi->dospem2;
-        $data['skripsi'] = $this->skripsi_model->getById($this->session->userdata('id'))->row();
-        $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();
+        $data['skripsi'] = $this->skripsi_model->getById($id)->row();
+        $data['user'] = $this->users_model->getById($id)->row();
         $data['dospem1'] = $this->users_model->getById($dospem1)->row();
         $data['dospem2'] = $this->users_model->getById($dospem2)->row();
-        $data['bimbinganDospem1'] = $this->bimbingan_model->getByIdCetak($dospem1,$this->session->userdata('id'))->result();
-        $data['bimbinganDospem2'] = $this->bimbingan_model->getByIdCetak($dospem2,$this->session->userdata('id'))->result();
+        $data['bimbinganDospem1'] = $this->bimbingan_model->getByIdCetak($dospem1,$id)->result();
+        $data['bimbinganDospem2'] = $this->bimbingan_model->getByIdCetak($dospem2,$id)->result();
         $this->load->view('frontend/mahasiswa/kartuBimbingan',$data);
     }
 

@@ -28,7 +28,7 @@
             <?php
             }
         ?>
-        <div class="card">
+        <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
                     <span class="float-right"><a href="" data-toggle="modal" data-target="#modalTambah" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a></span>

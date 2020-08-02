@@ -23,10 +23,10 @@
                         <li><i class="fa fa-file-text-o"></i><a href="<?= base_url('backend/skripsi/skripsi/aktif') ?>">Skripsi Aktif</a></li>
                     </ul>
                 </li>
-                <?php if($this->session->userdata('level')=="dosen"): ?>
                 <li id="log">
                     <a href="<?= base_url('backend/bimbingan') ?>"> <i class="menu-icon fa fa-list"></i>Log Bimbingan</a>
                 </li>
+                <?php if($this->session->userdata('level')=="dosen"): ?>
                 <li>
                     <a href="<?= base_url('backend/users/editProfil') ?>"> <i class="menu-icon fa fa-cogs"></i>Edit Profil</a>
                 </li>

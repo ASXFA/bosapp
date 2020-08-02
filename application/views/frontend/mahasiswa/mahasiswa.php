@@ -14,23 +14,31 @@
       <h1><?= $user->nama ?> - <span class="font-weight-light nip"><?= $user->nomor_induk ?></span> </h1>
       <p><span class="typed" data-typed-items="<?= ucfirst($user->level) ?>"></span></p>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <?php 
             if(!empty($bimbinganBaruDospem1) || !empty($bimbinganBaruDospem2) ){
-              foreach($bimbinganBaruDospem1 as $bimbingan):
+              if($bimbinganBaruDospem1->num_rows() > 0){
+                $idDosen1;
+                foreach($bimbinganBaruDospem1->result() as $b1){
+                  $idDosen1 = $b1->id_from;
+                }
           ?>
           <div class="alert alert-secondary" role="alert">
-            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan->id_from) ?>" class="alert-link">Dosen Pembimbing 1 </a>. </div>
+            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Ada <strong><?= $bimbinganBaruDospem1->num_rows() ?></strong> Pesan baru dari <a href="<?= base_url('bimbingan/'.$idDosen1) ?>" class="alert-link">Dosen Pembimbing 1 </a>. </div>
           </div>
           <?php 
-            endforeach;
-            foreach($bimbinganBaruDospem2 as $bimbingan2):
+              }
+              if($bimbinganBaruDospem2->num_rows() > 0){
+                $idDosen2;
+                foreach($bimbinganBaruDospem1->result() as $b2){
+                  $idDosen2 = $b2->id_from;
+                }
           ?>
           <div class="alert alert-secondary" role="alert">
-            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan2->id_from) ?>" class="alert-link">Dosen Pembimbing 2 </a>. </div>
+            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Ada <strong><?= $bimbinganBaruDospem2->num_rows() ?></strong> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan2->id_from) ?>" class="alert-link">Dosen Pembimbing 2 </a>. </div>
           </div>
           <?php
-          endforeach;}
+          }}
           ?>
         </div>
       </div>
@@ -178,7 +186,7 @@
                 </svg>
                 <i class="bx bx-file"></i>
               </div>
-              <h4><a target="__blank" href="<?= base_url('cetakBimbingan') ?>">Cetak Kartu Bimbingan</a></h4>
+              <h4><a target="__blank" href="<?= base_url('cetakBimbingan/'.$this->session->userdata('id')) ?>">Cetak Kartu Bimbingan</a></h4>
             </div>
           </div>
 

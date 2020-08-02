@@ -1,7 +1,7 @@
 <div class="content users-content">
     <div class="animated fadeIn">
         <?php 
-            if ($this->session->flahsdata('status')) {
+            if ($this->session->flashdata('status')) {
                 if ($this->session->flashdata('kondisi')=="1") {
             ?>
                 <div class="sufee-alert alert with-close alert-dark alert-dismissible fade show" id="alertlogin">
@@ -16,7 +16,7 @@
             ?>
                 <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-danger">Failed</span>
-                    <?= $this->session->flahsdata('status') ?>
+                    <?= $this->session->flashdata('status') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -31,7 +31,8 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
-                    <?php if($this->session->userdata('level')=="admin"){ ?>
+                    <?php if($this->session->userdata('level')=="admin"){ 
+                    ?>
                     <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
                     <?php } ?>
                 </h4>
@@ -98,7 +99,7 @@
                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $user->id ?>" ><i class="fa fa-eye"></i></a>
                                 <?php if($this->session->userdata('level')=="admin"){ ?>
                                 <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $user->id ?>"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('backend/users/delete/'.$user->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('backend/users/delete/'.$user->id.'/'.$title.'/'.$page) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
                                 <?php } ?>
                             </td>
                         </tr>
@@ -167,7 +168,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-body">
-                <form action="<?php echo base_url('backend/users/edit/'.$user->id.'/dosen')?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('backend/users/edit/'.$user->id.'/'.$this->session->userdata('id').'/'.$page)?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mb-1">
@@ -268,7 +269,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-body">
-                <form action="<?php echo base_url('backend/users/tambah/'.$title)?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('backend/users/tambah/'.$title.'/'.$page)?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mb-1">

@@ -128,11 +128,24 @@ class Skripsi extends CI_Controller {
         if ($data == TRUE) {
             $this->session->set_flashdata('kondisi','1');
             $this->session->set_flashdata('status','Data Berhasil disimpan !');
-            redirect('backend/skripsi/skripsi/'.$level);
+            $page = $this->uri->segment(6);
+            if($page == "editPermintaan"){
+                $idPermintaan = $this->uri->segment(7);
+                $idUser = $this->uri->segment(8);
+                redirect('backend/permintaan/editPermintaan/'.$idPermintaan.'/'.$idUser);
+            }else{
+                redirect('backend/skripsi/skripsi/'.$level);
+            }
         }else{
             $this->session->set_flashdata('kondisi','0');
             $this->session->set_flashdata('status','Data Gagal diedit !');
-            redirect('backend/skripsi/skripsi/'.$level);
+            if($page == "editPermintaan"){
+                $idPermintaan = $this->uri->segment(7);
+                $idUser = $this->uri->segment(8);
+                redirect('backend/permintaan/editPermintaan/'.$idPermintaan.'/'.$idUser);
+            }else{
+                redirect('backend/skripsi/skripsi/'.$level);
+            }
         }
     }
 
