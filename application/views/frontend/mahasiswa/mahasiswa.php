@@ -120,9 +120,20 @@
                 <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
               </ul>
               <div class="ml-4">
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-user mr-4 ml-3 mb-2"></i> <?= $dosen->nama ?> </h4>
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-id-card mr-4 ml-3 mb-2"></i> <?= $dosen->nomor_induk ?></h4>
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-phone mr-4 ml-3 mb-2"></i> <?= $dosen->telepon ?></h4>
+                <table>
+                  <tr>
+                    <td><i class="bx bx-user mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->nama ?> </h4></td>
+                  </tr>
+                  <tr>
+                    <td><i class="bx bx-id-card mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->nomor_induk ?></h4></td>
+                  </tr>
+                  <tr>
+                    <td><i class="bx bx-phone mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->telepon ?></h4></td>
+                  </tr>
+                </table>
               </div>
               <div class="text-center mt-5"> <a href="<?= base_url('bimbingan/'.$dosen->id) ?>" class="btn btn-primary dosen">Mulai Bimbingan</a>  </div>
               <?php } endforeach; ?>
@@ -154,9 +165,20 @@
                 <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
               </ul>
               <div class="ml-4">
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-user mr-4 ml-3 mb-2"></i> <?= $dosen->nama ?></h4>
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-id-card mr-4 ml-3 mb-2"></i> <?= $dosen->nomor_induk ?></h4>
-                <h4 class="font-weight-bold ml-5"> <i class="bx bx-phone mr-4 ml-3 mb-2"></i> <?= $dosen->telepon ?></h4>
+                <table>
+                  <tr>
+                    <td><i class="bx bx-user mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->nama ?> </h4></td>
+                  </tr>
+                  <tr>
+                    <td><i class="bx bx-id-card mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->nomor_induk ?></h4></td>
+                  </tr>
+                  <tr>
+                    <td><i class="bx bx-phone mr-4 ml-3 mb-2"></i></td>
+                    <td><h4 class="font-weight-bold ml-3">  <?= $dosen->telepon ?></h4></td>
+                  </tr>
+                </table>
               </div>
               <div class="text-center mt-5"> <a href="<?= base_url('bimbingan/'.$dosen->id) ?>" class="btn btn-primary dosen">Mulai Bimbingan</a>  </div>
               <?php } endforeach; ?>

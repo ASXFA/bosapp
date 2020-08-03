@@ -618,8 +618,12 @@ form.gantiPassMHS .has-search .form-control-feedback:hover {
 
 .resume h4{
   font-family: 'Montserrat', sans-serif;
-  font-size:20px;
+  font-size:18px;
   letter-spacing: 1px;
+}
+
+.resume table tr td i {
+  font-size: 25px;
 }
 
 .resume ul li

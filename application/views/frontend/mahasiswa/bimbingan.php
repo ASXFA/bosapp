@@ -24,7 +24,7 @@
             <div class="card-body" data-aos="zoom-in">
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="mx-auto d-block">
+                        <ul class="mx-auto d-block mr-4">
                             <li>
                                 <img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="">
                             </li>
