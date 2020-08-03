@@ -39,7 +39,7 @@
                     <a href="<?= base_url('backend/permintaan') ?>"><i class="menu-icon fa fa-envelope"></i> Permintaan</a>
                 </li>
                 <li>
-                    <a href="<?= base_url('backend/quotes') ?>"><i class="menu-icon fa fa-cogs"></i> Quotes</a>
+                    <a href="<?= base_url('backend/quotes') ?>"><i class="menu-icon fa fa-cogs"></i>Edit Profil & Quotes</a>
                 </li>
                 <?php } ?>
             </ul>

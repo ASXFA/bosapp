@@ -74,7 +74,7 @@
                     <img class="user-avatar img-thumbnail" src="<?= base_url('assets/image/').$this->session->userdata('level').'/'.$this->session->userdata('foto') ?>" alt="User Avatar">
                     <?php }else{
                     ?>
-                    <img class="user-avatar img-thumbnail" src="<?= base_url('assets/image/').$this->session->userdata('foto') ?>" alt="User Avatar">
+                    <img class="user-avatar img-thumbnail" src="<?= base_url('assets/image/').'/'.$this->session->userdata('level').'/'.$userSekarang->foto ?>" alt="User Avatar">
                     <?php
                     } ?>
                 </a>

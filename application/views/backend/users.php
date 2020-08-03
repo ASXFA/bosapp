@@ -123,7 +123,7 @@
         </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="card p-2 mb-1">
+                    <div class="card p-2 mb-1" style="width: 35rem;">
                         <img class="card-img-top" src="<?= base_url('assets/image/'.$title.'/'.$user->foto) ?>"  width="35% !important" alt="Card image cap">
                         <div class="card-body">
                             <h4 class="mb-2"><?= $user->nama ?> ( <?= $user->nomor_induk ?> ) </h4>

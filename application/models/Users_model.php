@@ -76,7 +76,7 @@ class Users_model extends CI_Model {
 
     public function edit($id,$foto)
     {
-        if ($this->session->userdata('id')=="dosen") {
+        if ($this->session->userdata('level')=="dosen") {
             $data = array(
                 'nama' => $this->input->post('nama'),
                 'nomor_induk' => $this->input->post('nomor_induk'),
@@ -86,6 +86,11 @@ class Users_model extends CI_Model {
                 'jabatan' => $this->input->post('jabatan'),
                 'foto' => $foto,
                 'username'=>$this->input->post('nomor_induk')
+            );
+        }else if($this->session->userdata('level')=="admin" && $id==$this->session->userdata('id')){
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'foto' => $foto
             );
         }else{
             $data = array(
@@ -130,7 +135,7 @@ class Users_model extends CI_Model {
         $this->db->where('password',md5($password));
         $data = $this->db->get('users');
         if ($data) {
-            return TRUE;
+            return $data;
         }else{
             return FALSE;
         }

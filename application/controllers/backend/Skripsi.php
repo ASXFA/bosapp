@@ -52,7 +52,8 @@ class Skripsi extends CI_Controller {
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         if ($this->session->userdata('level')=="admin") {
             $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
-			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+            $data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+            $data['userSekarang'] = $this->users_model->getById($this->session->userdata('id'))->row();
         }
         // $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         // $data['userModal'] = $this->users_model->getByLevel($level)->result();

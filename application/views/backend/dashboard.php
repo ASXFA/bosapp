@@ -125,7 +125,7 @@
             </div>
                 <?php
                 }else if($this->session->userdata('level')=="admin"){
-                    if(!empty($permintaanBaru)){
+                    if(!empty($permintaanBaru) && $permintaanBaru->num_rows() > 0){
                         ?>
             <div class="col-lg-5 col-md-6">
                 <div class="alert alert-success" style="font-size:14px;" role="alert">
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <?php } 
-            if($skripsiArsipBaru->num_rows() > 0){
+            if(!empty($permintaanBaru) && $skripsiArsipBaru->num_rows() > 0){
                 ?>
             <div class="col-lg-5 col-md-6">
                 <div class="alert alert-success" style="font-size:14px;" role="alert">

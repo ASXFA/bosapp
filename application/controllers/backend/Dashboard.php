@@ -43,6 +43,7 @@ class Dashboard extends CI_Controller {
 		}
 		$data['kategori'] = $this->kategori_skripsi_model->getAll()->num_rows();
 		$data['skripsi'] = $this->skripsi_model->getByLevel('lulus')->num_rows();
+		$data['userSekarang'] = $this->users_model->getById($this->session->userdata('id'))->row();
 
         $data['user'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();

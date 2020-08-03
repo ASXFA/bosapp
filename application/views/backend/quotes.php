@@ -28,6 +28,67 @@
             <?php
             }
         ?>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card permintaan" style="font-size:13px;">
+                    <div class="card-header">
+                        <h4 class="d-block">Ganti Password
+                        </h4>
+                    </div>
+                    <form action="<?= base_url('backend/users/gantiPassword') ?>" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="old_pass" class="form-control-label">Password Lama</label>
+                                <div class="input-group">
+                                    <input type="password" id="old_pass" name="old_pass" class="form-control" required>
+                                    <a href="#" id="btnOldPass"><div class="input-group-addon"><i id="addOld" class="fa fa-eye"></i></div></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="old_pass" class="form-control-label">Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" id="new_pass" name="new_pass" class="form-control" required>
+                                    <a href="#" id="btnNewPass"><div class="input-group-addon"><i id="addNew" class="fa fa-eye"></i></div></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="old_pass" class="form-control-label">Konfirmasi Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="conf_pass" name="conf_pass" class="form-control" required>
+                                    <a href="#" id="btnConfPass"><div class="input-group-addon"><i id="addConf" class="fa fa-eye"></i></div></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-sm float-right mb-3" value="Simpan">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Edit Profil Form</div>
+                    <div class="card-body card-block">
+                        <form action="<?= base_url('backend/users/edit/'.$this->session->userdata('id').'/admin/'.$title) ?>" method="post" class="" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                    <input type="text" id="nama" name="nama" placeholder="Nama" value="<?= $userSekarang->nama ?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-picture-o"></i></div>
+                                    <input type="file" name="new_foto" placeholder="Foto" class="form-control">
+                                    <input type="text" name="old_foto" placeholder="Foto" value="<?= $userSekarang->foto ?>" hidden class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-actions form-group"><button type="submit" class="btn btn-primary btn-sm float-right">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
@@ -133,3 +194,52 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#btnEditProfil').click(function(){
+            $('#editProfilForm').slideToggle();
+            $('#formAturanBimbingan').slideUp();
+        });
+        $('#btnEditAturanBimbingan').click(function(){
+            $('#formAturanBimbingan').slideToggle();
+            $('#editProfilForm').slideUp();
+        });
+
+        $('#btnOldPass').click(function(){
+            if ($('#old_pass').attr('type')=="password") {
+                $('#old_pass').attr('type','text');
+                $('#addOld').removeClass('fa-eye');
+                $('#addOld').addClass('fa-eye-slash');
+            }else{
+                $('#old_pass').attr('type','password');
+                $('#addOld').removeClass('fa-eye-slash');
+                $('#addOld').addClass('fa-eye');
+            }
+        });
+        $('#btnNewPass').click(function(){
+            if ($('#new_pass').attr('type')=="password") {
+                $('#new_pass').attr('type','text');
+                $('#addNew').removeClass('fa-eye');
+                $('#addNew').addClass('fa-eye-slash');
+            }else{
+                $('#new_pass').attr('type','password');
+                $('#addNew').removeClass('fa-eye-slash');
+                $('#addNew').addClass('fa-eye');
+            }
+        });
+        $('#btnConfPass').click(function(){
+            if ($('#conf_pass').attr('type')=="password") {
+                $('#conf_pass').attr('type','text');
+                $('#addConf').removeClass('fa-eye');
+                $('#addConf').addClass('fa-eye-slash');
+            }else{
+                $('#conf_pass').attr('type','password');
+                $('#addConf').removeClass('fa-eye-slash');
+                $('#addConf').addClass('fa-eye');
+            }
+        });
+
+
+    });
+</script>
