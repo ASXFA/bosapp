@@ -101,7 +101,7 @@
                     <div class="card">
                         <div class="card-header">Edit Profil Form</div>
                         <div class="card-body card-block">
-                            <form action="<?= base_url('backend/users/edit/'.$this->session->userdata('id').'/dosen') ?>" method="post" class="" enctype="multipart/form-data">
+                            <form action="<?= base_url('backend/users/edit/'.$this->session->userdata('id').'/dosen/users') ?>" method="post" class="" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
