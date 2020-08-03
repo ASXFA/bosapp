@@ -99,7 +99,7 @@
                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $user->id ?>" ><i class="fa fa-eye"></i></a>
                                 <?php if($this->session->userdata('level')=="admin"){ ?>
                                 <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $user->id ?>"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('backend/users/delete/'.$user->id.'/'.$title.'/'.$page) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('backend/users/delete/'.$user->id.'/'.$title.'/'.$page) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')" title="Hapus Data"><i class="fa fa-trash"></i></a>
                                 <?php } ?>
                             </td>
                         </tr>

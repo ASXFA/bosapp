@@ -78,11 +78,11 @@
                                                 <td width="25%">
                                                     <a href="<?= base_url('backend/skripsi/gantiStatus/'.$skripsi->id.'/lulus/'.$title) ?>" class="btn btn-success btn-sm" onclick="return confirm('Pastikan Mahasiswa anda benar benar telah menyelesaikan kegiatan skripsi dengan penuh !')" alt="anu"><i class="fa fa-check-circle"></i> Selesai</a>
                                                     
-                                                    <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye" title="Detail"></i></a>
                                                     <?php if($this->session->userdata('level')=="admin"){ ?>
-                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
+                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit" title="Edit"></i></a>
                                                     <?php } ?>
-                                                    <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                                    <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')" title="Delete"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                         <?php
@@ -146,13 +146,13 @@
                                                     }
                                                 }
                                                 ?>
-                                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" ><i class="fa fa-eye"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?= $skripsi->id ?>" title="Detail" ><i class="fa fa-eye" title="Detail"></i></a>
 
                                                 <?php if($this->session->userdata('level')=="admin"){ ?>
-                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>"><i class="fa fa-edit"></i></a>
+                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $skripsi->id ?>" title="Edit"><i class="fa fa-edit"></i></a>
                                                 <?php } ?>
 
-                                                <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')"><i class="fa fa-trash"></i></a>
+                                                <a href="<?= base_url('backend/skripsi/delete/'.$skripsi->id.'/'.$title) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau delete data ini ? ')" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                         <?php

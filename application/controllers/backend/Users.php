@@ -36,7 +36,7 @@ class Users extends CI_Controller {
         $this->load->model('permintaan_model');
         $this->load->model('skripsi_model');
         $data['title'] = $level;
-        $data['users'] = 'users';
+        $data['page'] = 'users';
         $data['user'] = $this->users_model->getByLevel($level)->result();
         $data['kategori'] = $this->kategori_skripsi_model->getAll()->result();
         $data['userModal'] = $this->users_model->getByLevel($level)->result();

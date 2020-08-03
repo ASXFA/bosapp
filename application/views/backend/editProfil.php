@@ -192,21 +192,21 @@
                 <div class="form-group">
                     <label for="old_pass" class="form-control-label">Password Lama</label>
                     <div class="input-group">
-                        <input type="password" id="old_pass" name="old_pass" class="form-control">
+                        <input type="password" id="old_pass" name="old_pass" class="form-control" required>
                         <a href="#" id="btnOldPass"><div class="input-group-addon"><i id="addOld" class="fa fa-eye"></i></div></a>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="old_pass" class="form-control-label">Password Baru</label>
                     <div class="input-group">
-                        <input type="password" id="new_pass" name="new_pass" class="form-control">
+                        <input type="password" id="new_pass" name="new_pass" class="form-control" required>
                         <a href="#" id="btnNewPass"><div class="input-group-addon"><i id="addNew" class="fa fa-eye"></i></div></a>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="old_pass" class="form-control-label">Konfirmasi Password</label>
                     <div class="input-group">
-                        <input type="password" id="conf_pass" name="conf_pass" class="form-control">
+                        <input type="password" id="conf_pass" name="conf_pass" class="form-control" required>
                         <a href="#" id="btnConfPass"><div class="input-group-addon"><i id="addConf" class="fa fa-eye"></i></div></a>
                     </div>
                 </div>

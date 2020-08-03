@@ -77,7 +77,7 @@
                                                         if ($status == "1") {
 
                                                         ?>
-                                                    <a href="<?= base_url('backend/bimbingan/detailBimbingan/'.$user['id']) ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="<?= base_url('backend/bimbingan/detailBimbingan/'.$user['id']) ?>" class="btn btn-info btn-sm" title="Detail"><i class="fa fa-eye"></i></a>
                                                         <?php }else{
                                                     ?>
                                                     <span class="badge badge-danger">Mahasiswa Belum Melakukan Bimbingan</span>
