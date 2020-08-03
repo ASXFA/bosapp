@@ -84,7 +84,8 @@ class Users_model extends CI_Model {
                 'telepon' => $this->input->post('telepon'),
                 'email' => $this->input->post('email'),
                 'jabatan' => $this->input->post('jabatan'),
-                'foto' => $foto
+                'foto' => $foto,
+                'username'=>$this->input->post('nomor_induk')
             );
         }else{
             $data = array(
@@ -96,7 +97,8 @@ class Users_model extends CI_Model {
                 'konsentrasi' => $this->input->post('konsentrasi'),
                 'angkatan' => $this->input->post('angkatan'),
                 'jabatan' => $this->input->post('jabatan'),
-                'foto' => $foto
+                'foto' => $foto,
+                'username'=>$this->input->post('nomor_induk')
             );
         }
         $this->db->where('id',$id);

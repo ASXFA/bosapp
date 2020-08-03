@@ -84,7 +84,7 @@ class Skripsi extends CI_Controller {
     {
         $config['upload_path']          = './assets/file/skripsi/'.$level.'/';
 		$config['allowed_types']        = 'pdf';
-		$config['max_size']             = 5120;
+		$config['max_size']             = 100000;
         
         $this->load->library('upload', $config);
 

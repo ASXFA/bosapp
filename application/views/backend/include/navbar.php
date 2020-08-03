@@ -57,7 +57,7 @@
                          if($skripsiArsipBaru->num_rows() > 0){
                              ?>
                         <p class="red font-weight-bold">Skripsi Arsip Baru</p>
-                        <a class="dropdown-item media" href="<?= base_url('backend/skripsi/lulus') ?>">
+                        <a class="dropdown-item media" href="<?= base_url('backend/skripsi/skripsi/lulus') ?>">
                                  <i class="fa fa-envelope"></i>
                                  <p>Tersedia <?= $skripsiArsipBaru->num_rows() ?> <strong> Skripsi Arsip Baru</strong></p>
                         <?php } ?>

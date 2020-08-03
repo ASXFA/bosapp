@@ -140,8 +140,10 @@ class Users extends CI_Controller {
         if ($data == TRUE) {
             $this->session->set_flashdata('kondisi','1');
             $this->session->set_flashdata('status','Data Berhasil disimpan !');
-            if ($this->session->userdata('level')=="dosen") {
+            if ($this->session->userdata('level')=="dosen" && $page=='editProfil') {
                 redirect('backend/users/editProfil');
+            }else if ($this->session->userdata('level')=="dosen" && $page=='users') {
+                redirect('backend/users/user/'.$level);
             }else{
                 if($page=="editPermintaan"){
                     $idPermintaan = $this->uri->segment(7) ;
@@ -167,6 +169,7 @@ class Users extends CI_Controller {
 
     public function editProfil()
     {
+        $data['page']='editProfil';
         $data['userNotif'] = $this->users_model->getByLevel('mahasiswa')->result();
         $data['bimbinganBaru'] = $this->bimbingan_model->getByStatus('0',$this->session->userdata('id'));
         $data['user'] = $this->users_model->getById($this->session->userdata('id'))->row();

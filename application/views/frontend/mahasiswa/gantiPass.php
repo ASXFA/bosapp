@@ -8,17 +8,17 @@
                         <form action="<?= base_url('aksiGantiPass') ?>" method="post" class="gantiPassMHS">
                             <div class="form-group has-search">
                                 <label for="old_pass" class="form-control-label">Password Lama</label>
-                                <input type="password" id="old_pass" name="old_pass" class="form-control">
+                                <input type="password" id="old_pass" name="old_pass" class="form-control" required>
                                 <a href="#" id="btnOldPass"><span id="addOld" class="bx bx-show form-control-feedback"></span></a>
                             </div>
                             <div class="form-group has-search">
                                 <label for="new_pass" class="form-control-label">Password Baru</label>
-                                <input type="password" id="new_pass" name="new_pass" class="form-control">
+                                <input type="password" id="new_pass" name="new_pass" class="form-control" required>
                                 <a href="#" id="btnNewPass"><span id="addNew" class="bx bx-show form-control-feedback"></span></a>
                             </div>
                             <div class="form-group has-search">
                                 <label for="conf_pass" class="form-control-label">Password Konfirmasi</label>
-                                <input type="password" id="conf_pass" name="conf_pass" class="form-control">
+                                <input type="password" id="conf_pass" name="conf_pass" class="form-control" required>
                                 <a href="#" id="btnConfPass"><span id="addConf" class="bx bx-show form-control-feedback"></span></a>
                             </div>
                             <div class="form-group">

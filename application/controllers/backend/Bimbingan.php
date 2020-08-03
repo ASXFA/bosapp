@@ -261,7 +261,61 @@ class Bimbingan extends CI_Controller {
                 }
             }
         }else{
-            if ($this->upload->data('file_ext')==".pdf" || $this->upload->data('file_ext')==".doc" || $this->upload->data('file_ext')==".docx" ) {
+            if ($this->upload->data('file_ext')==".pdf" || $this->upload->data('file_ext')==".PDF") {
+                $file_name = $this->upload->data('file_name');
+                $file_size = $this->upload->data('file_size');
+                $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);
+                if ($data == TRUE) {
+                    if ($idBimbingan != "") {
+                        $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
+                        foreach($list as $list){
+                            $this->bimbingan_model->gantiStatus($list->id);
+                        }
+                    }
+                    $this->session->set_flashdata('kondisi','1');
+                    $this->session->set_flashdata('status','Pesan Berhasil dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/detailBimbingan/'.$this->input->post('id_to').'/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }else{
+                    $this->session->set_flashdata('kondisi','0');
+                    $this->session->set_flashdata('status','Pesan Gagal dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }
+            }else if ($this->upload->data('file_ext')==".doc" || $this->upload->data('file_ext')==".DOC") {
+                $file_name = $this->upload->data('file_name');
+                $file_size = $this->upload->data('file_size');
+                $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);
+                if ($data == TRUE) {
+                    if ($idBimbingan != "") {
+                        $list = $this->bimbingan_model->getByStatusNol($this->input->post('id_to'),$this->session->userdata('id'),"0")->result();
+                        foreach($list as $list){
+                            $this->bimbingan_model->gantiStatus($list->id);
+                        }
+                    }
+                    $this->session->set_flashdata('kondisi','1');
+                    $this->session->set_flashdata('status','Pesan Berhasil dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/detailBimbingan/'.$this->input->post('id_to').'/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }else{
+                    $this->session->set_flashdata('kondisi','0');
+                    $this->session->set_flashdata('status','Pesan Gagal dikirim !');
+                    if ($this->session->userdata('level')=="dosen") {
+                        redirect('backend/bimbingan/'.$this->input->post('idBimbingan'));
+                    }else if($this->session->userdata('level')=="mahasiswa"){
+                        redirect('backend/bimbingan/bimbingan/'.$this->input->post('id_to'));
+                    }
+                }
+            }else if ($this->upload->data('file_ext')==".docx" || $this->upload->data('file_ext')==".DOCX") {
                 $file_name = $this->upload->data('file_name');
                 $file_size = $this->upload->data('file_size');
                 $data = $this->bimbingan_model->tambahBimbingan($file_name,$file_size);

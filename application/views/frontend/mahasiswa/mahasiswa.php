@@ -30,12 +30,12 @@
               }
               if($bimbinganBaruDospem2->num_rows() > 0){
                 $idDosen2;
-                foreach($bimbinganBaruDospem1->result() as $b2){
+                foreach($bimbinganBaruDospem2->result() as $b2){
                   $idDosen2 = $b2->id_from;
                 }
           ?>
           <div class="alert alert-secondary" role="alert">
-            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Ada <strong><?= $bimbinganBaruDospem2->num_rows() ?></strong> Pesan baru dari <a href="<?= base_url('bimbingan/'.$bimbingan2->id_from) ?>" class="alert-link">Dosen Pembimbing 2 </a>. </div>
+            <div class="pl-1"> <i class="bx bx-message-square-error"></i> Ada <strong><?= $bimbinganBaruDospem2->num_rows() ?></strong> Pesan baru dari <a href="<?= base_url('bimbingan/'.$idDosen2) ?>" class="alert-link">Dosen Pembimbing 2 </a>. </div>
           </div>
           <?php
           }}

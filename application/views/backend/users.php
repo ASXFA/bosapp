@@ -168,7 +168,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-body">
-                <form action="<?php echo base_url('backend/users/edit/'.$user->id.'/'.$this->session->userdata('id').'/'.$page)?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('backend/users/edit/'.$user->id.'/'.$title.'/'.$page)?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mb-1">
