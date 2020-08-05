@@ -64,7 +64,8 @@ class Permintaan extends CI_Controller {
         $data['permintaan'] = $this->permintaan_model->getById($idPermintaan)->row();
         if ($this->session->userdata('level')=="admin") {
             $data['permintaanBaru'] = $this->permintaan_model->getByStatus(0);
-			$data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+            $data['skripsiArsipBaru'] = $this->skripsi_model->getByStatusBaru('lulus','unpublish');
+            $data['userSekarang'] = $this->users_model->getById($this->session->userdata('id'))->row();
         }
         $this->load->view('backend/include/head.php');
         $this->load->view('backend/include/sider.php');
