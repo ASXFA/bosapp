@@ -33,24 +33,29 @@ class Login extends CI_Controller {
 		$check = $this->users_model->check($level);
 		if ($check->num_rows() > 0) {
 			foreach($check->result() as $user){
-				$sess = array(
-					'is_login' => 1,
-					'id' => $user->id,
-					'nama'=> $user->nama,
-					'nomor_induk'=> $user->nomor_induk,
-					'jenis_kelamin'=> $user->jenis_kelamin,
-					'telepon' => $user->telepon,
-					'email' => $user->email,
-					'konsentrasi' => $user->konsentrasi,
-					'angkatan' => $user->angkatan,
-					'jabatan' => $user->jabatan,
-					'status' => $user->status,
-					'foto' => $user->foto,
-					'level' => $user->level,
-					'username' => $user->username
-
-				);
-				$this->session->set_userdata($sess);
+				if($user->status == "tidak aktif"){
+					$this->session->set_flashdata('login','Akun anda belum Aktif, Silahkan hubungi admin Prodi IF UNLA !');
+					redirect('masuk/'.$level);
+				}else{
+					$sess = array(
+						'is_login' => 1,
+						'id' => $user->id,
+						'nama'=> $user->nama,
+						'nomor_induk'=> $user->nomor_induk,
+						'jenis_kelamin'=> $user->jenis_kelamin,
+						'telepon' => $user->telepon,
+						'email' => $user->email,
+						'konsentrasi' => $user->konsentrasi,
+						'angkatan' => $user->angkatan,
+						'jabatan' => $user->jabatan,
+						'status' => $user->status,
+						'foto' => $user->foto,
+						'level' => $user->level,
+						'username' => $user->username
+	
+					);
+					$this->session->set_userdata($sess);
+				}
 			}
 			if ($this->session->userdata('level')=="admin") {
 				$this->session->set_flashdata('login','Selamat Datang !');

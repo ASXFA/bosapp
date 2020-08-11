@@ -28,7 +28,7 @@
             <?php
             }
         ?>
-        <div class="card">
+        <div class="card permintaan">
             <div class="card-header">
                 <h4 class="d-block">Data <?= $title ?>
                     <?php if($this->session->userdata('level')=="admin"){ 

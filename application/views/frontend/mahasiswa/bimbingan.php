@@ -29,11 +29,10 @@
                                 <img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="">
                             </li>
                         </ul>
-                        <h5 class="namaBimb"><?= $dosen->nama ?></h5>
-                        <h6 class="nikBimb"><?= $dosen->nomor_induk ?></h6>
+                        <span><h5 class="namaBimb"><?= $dosen->nama ?></h5></span>
+                        <span><h6 class="nikBimb"><?= $dosen->nomor_induk ?></h6></span>
                     </div>
                     <div class="col-md-6">
-                        
                         <div class="alert alert-danger" role="alert">
                             <h4 class="alert-heading">Rules Bimbingan !</h4>
                             <div class="text-left">
