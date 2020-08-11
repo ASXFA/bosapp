@@ -391,10 +391,17 @@ section {
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
+
+}
+
+.bimbingan .cards.dsn{
+  height: 180px;
+  margin-left: -35px;
 }
 
 .bimbingan h5.namaBimb{
   font-size: 22px;
+  padding-left: 75px;
 }
 .bimbingan h6.nikBimb{
   font-size: 18px;

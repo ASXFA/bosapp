@@ -12,7 +12,7 @@
                     </button>
                 </div>
             <?php 
-                }else{
+                }else {
             ?>
                 <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-danger">Failed</span>
