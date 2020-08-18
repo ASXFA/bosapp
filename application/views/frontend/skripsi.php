@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="<?= base_url('assets/frontend/') ?>img/topi.png" type="image/png">
-		<title>Bimbingan Online Skripsi IF UNLA</title>
+		<title>Bimbingan Skripsi Online IF UNLA</title>
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" type="text/css" href="<?= base_url('assets/frontend/') ?>css/bootstrap.min.css" media="all" />
 		<!-- Slick nav CSS -->

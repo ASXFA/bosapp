@@ -95,7 +95,11 @@
             </div>
             <h5 class="font-weight-bold">Judul Skripsi</h5>
             <p>
-              <?= $skripsi->judul ?>
+              <?php 
+              if(!empty($skripsi)){
+                echo $skripsi->judul; 
+              }
+              ?>
             </p>
           </div>
         </div>
@@ -115,7 +119,9 @@
           <div class="col-lg-6">
             <h3 class="resume-title text-center">Dosen Pembimbing 1</h3>
             <div class="card p-5 ml-3">              
-              <?php foreach($dosen as $dosen): if($dosen->id == $skripsi->dospem1){ ?>
+              <?php 
+              foreach($dosen as $dosen): 
+                if($dosen->id == $skripsi->dospem1){ ?>
               <ul>
                 <li><img src="<?= base_url('assets/image/dosen/'.$dosen->foto) ?>" alt="" class="mx-auto d-block"></li>
               </ul>
@@ -136,7 +142,9 @@
                 </table>
               </div>
               <div class="text-center mt-5"> <a href="<?= base_url('bimbingan/'.$dosen->id) ?>" class="btn btn-primary dosen">Mulai Bimbingan</a>  </div>
-              <?php } endforeach; ?>
+              <?php 
+              } 
+            endforeach; ?>
             </div>
           </div>
 
@@ -195,7 +203,7 @@
 
         <div class="section-title">
           <h2>Kartu Bimbingan</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Silahkan Mencetak Kartu Bimbingan Dengan Menekan Tombol Cetak Kartu Bimbingan Dibawah</p>
         </div>
 
         <div class="row">

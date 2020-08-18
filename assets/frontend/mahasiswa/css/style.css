@@ -247,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top right no-repeat;
+  background: url("../img/hero-bg.png") top right no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -260,7 +260,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero:before {
   content: "";
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -399,15 +399,25 @@ section {
   margin-left: -35px;
 }
 
-.bimbingan h5.namaBimb{
+.bimbingan span h5.namaBimb{
   font-size: 22px;
+<<<<<<< HEAD
   padding-left: 75px;
+=======
+  width: 350px;
+  margin-left: 150px;
+  text-align: left;
+>>>>>>> 6461c4de05134479ccb80f0fbe5c0a8d32f3e4c2
 }
-.bimbingan h6.nikBimb{
-  font-size: 18px;
+.bimbingan span h6.nikBimb{
+  font-size: 16px;
+  width: 350px;
+  margin-left: 150px;
+  text-align: left;
+  font-weight: normal;
 }
 .bimbingan .alert.alert-danger .alert-heading{
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
 }
 
@@ -464,7 +474,7 @@ section {
 }
 
 .about .content ul li {
-  padding-bottom: 10px;
+  padding-bottom: 10  px;
 }
 
 .about .content ul i {
