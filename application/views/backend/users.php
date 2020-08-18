@@ -33,7 +33,7 @@
                 <h4 class="d-block">Data <?= $title ?>
                     <?php if($this->session->userdata('level')=="admin"){ 
                     ?>
-                    <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
+                    <span class="float-right"><a href="" classs="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
                     <?php } ?>
                 </h4>
             </div>

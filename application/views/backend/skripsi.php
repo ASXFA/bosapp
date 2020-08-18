@@ -1,8 +1,8 @@
 <div class="content users-content">
     <div class="animated fadeIn">
         <?php 
-            if ($this->session->userdata('status')) {
-                if ($this->session->userdata('kondisi')=="1") {
+            if ($this->session->flashdata('status')) {
+                if ($this->session->flashdata('kondisi')=="1") {
             ?>
                 <div class="sufee-alert alert with-close alert-dark alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-dark">Success</span>
@@ -16,7 +16,7 @@
             ?>
                 <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-danger">Failed</span>
-                    <?= $this->session->userdata('status') ?>
+                    <?= $this->session->flashdata('status') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -27,8 +27,6 @@
                 
             <?php
             }
-            $this->session->set_userdata('status','');
-            $this->session->set_userdata('kondisi','');
         ?>
         <div class="card permintaan">
             <div class="card-header">
