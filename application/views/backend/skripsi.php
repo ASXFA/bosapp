@@ -28,16 +28,15 @@
             <?php
             }
         ?>
-        <div class="card permintaan">
-            <div class="card-header">
+        <div class="card permintaan p-3">
+            <div class="card-header mb-3">
                 <h4 class="d-block">Data Skripsi Mahasiswa <span id="title"><?= ucfirst($title) ?></span>
                     <?php if($this->session->userdata('level')=="admin"){ ?>
                     <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModalSkripsi"><i class="fa fa-plus"></i> Tambah Data</a></span>
                     <?php } ?>
                 </h4>
             </div>
-            <div class="table-stats order-table ov-h">
-                <table class="table">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px; border:0; border-collapse: collapse !important;">
                     <thead>
                         <tr>
                             <th class="serial">#</th>
@@ -160,7 +159,23 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/datatables.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/jszip.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/vfs_fonts.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.html5.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.print.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.colVis.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/init/datatables-init.js"></script>
+
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                    $('#bootstrap-data-table-export').DataTable();
+                } );
+                </script>
         </div>
     </div>
 </div>

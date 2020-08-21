@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="col-lg-5">
-          <div class="hand-mockup text-lg-left text-center mb-5">
+          <div class="hand-mockup text-lg-left text-center pb-5">
           <img src="<?= base_url() ?>assets/frontend/img/hand-mockup.png" alt="Hand Mockup" />
         </div>
       </div>

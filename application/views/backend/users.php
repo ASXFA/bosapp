@@ -12,7 +12,7 @@
                     </button>
                 </div>
             <?php 
-                }else{
+                }else {
             ?>
                 <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertlogin">
                     <span class="badge badge-pill badge-danger">Failed</span>
@@ -28,26 +28,24 @@
             <?php
             }
         ?>
-        <div class="card permintaan">
-            <div class="card-header">
+        <div class="card permintaan p-2">
+            <div class="card-header mb-3">
                 <h4 class="d-block">Data <?= $title ?>
                     <?php if($this->session->userdata('level')=="admin"){ 
                     ?>
-                    <span class="float-right"><a href="" classs="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
+                    <span class="float-right"><a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i> Tambah Data</a></span>
                     <?php } ?>
                 </h4>
             </div>
-            <div class="table-stats order-table ov-h">
-                <table class="table">
-                    <thead>
+                <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px; border:0; border-collapse: collapse !important;">
+                    <thead class="thead-secondary">
                         <tr>
                             <th class="serial">#</th>
-                            <th class="avatar">Avatar</th>
                             <th>Name</th>
                             <th>Nomor Induk</th>
                             <th>E-mail</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,11 +55,11 @@
                         ?>
                         <tr>
                             <td class="serial"><?= $no ?></td>
-                            <td class="avatar">
+                            <!-- <td class="avatar">
                                 <div class="round-img">
                                     <a href="<?= base_url('assets/image/'.$title.'/'.$user->foto) ?>" target="_blank"><img class="img-thumbnail" src="<?= base_url('assets/image/'.$title.'/'.$user->foto) ?>" alt=""></a>
                                 </div>
-                            </td>
+                            </td> -->
                             <td> <?= $user->nama ?> </td>
                             <td> <?= $user->nomor_induk ?> </td>
                             <td> <?= $user->email ?> </td>
@@ -69,15 +67,15 @@
                                 <?php 
                                     if ($user->status=="aktif") {
                                 ?>
-                                <span class="badge badge-complete"><?= $user->status ?></span>
+                                <span class="badge badge-success"><?= strtoupper($user->status) ?></span>
                                 <?php 
                                     }else if($user->status=="tidak aktif"){
                                 ?>
-                                <span class="badge badge-danger"><?= $user->status ?></span>
+                                <span class="badge badge-danger"><?= strtoupper($user->status) ?></span>
                                 <?php
                                     }else{
                                 ?>
-                                <span class="badge badge-warning"><?= $user->status ?></span>
+                                <span class="badge badge-warning"><?= strtoupper($user->status) ?></span>
                                 <?php
                                     }
                                 ?>
@@ -109,7 +107,23 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/datatables.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/jszip.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/vfs_fonts.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.html5.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.print.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/lib/data-table/buttons.colVis.min.js"></script>
+                <script src="<?= base_url() ?>assets/js/init/datatables-init.js"></script>
+
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                    $('#bootstrap-data-table-export').DataTable();
+                } );
+                </script>
         </div>
     </div>
 </div>

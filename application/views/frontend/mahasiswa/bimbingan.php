@@ -20,7 +20,7 @@
 ?>
 <div id="main">
     <div class="bimbingan m-5 ">
-        <div class="cards text-center">
+        <div class="cards dsn text-center">
             <div class="card-body" data-aos="zoom-in">
                 <div class="row">
                     <div class="col-md-6">
